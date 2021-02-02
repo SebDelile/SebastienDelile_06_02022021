@@ -1,0 +1,21 @@
+{
+  "name": "FishEye",
+  "version": "1.0.0",
+  "description": "P06 - parcours Dev frontend OCR",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch ./sass/main.scss:./public/css/style.css",
+    "prefix": "postcss ./public/css/style.css --use autoprefixer -d ./public/css/prefixed/"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "SebDelile",
+  "license": "",
+  "browserslist": "last 4 versions",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": ""
+}
