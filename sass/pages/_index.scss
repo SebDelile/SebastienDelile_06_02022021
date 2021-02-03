@@ -1,0 +1,71 @@
+.index {
+  position: unset;
+  &__title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 2rem;
+    top: 0;
+    height: 3rem;
+    width: 20rem;
+    font-size: 2.25rem;
+    font-weight: 400;
+    color: map-get($color, primary);
+  }
+}
+
+.main__grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 20rem);
+  justify-content: space-between;
+  grid-auto-flow: row;
+  align-items: start;
+  justify-items: stretch;
+}
+
+.card {
+  width: 100%;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  &__picture {
+    width: 16rem;
+    height: 16rem;
+    object-fit: cover;
+    clip-path: circle(45%);
+  }
+  &__name {
+    font-size: 2.25rem;
+    font-weight: 400;
+    color: map-get($color, secondary);
+  }
+  &__location {
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: map-get($color, tertiary);
+  }
+  &__quote {
+    font-size: 0.625rem;
+    font-weight: 400;
+    color: black;
+  }
+  &__price {
+    font-size: 0.5625rem;
+    font-weight: 400;
+    color: map-get($color, quaternary);
+  }
+  &__taglist {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+  }
+  &__tag {
+
+  }
+}

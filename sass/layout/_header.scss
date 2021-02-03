@@ -1,0 +1,24 @@
+.header {
+  margin: 2rem 0;
+  width: 100%;
+  padding-left: 2rem;
+  padding-right: 26rem; /*need space for title main>h1* : 20rem + 3*2rem padding*/
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  &__logo {
+    width: 12.5rem;
+  }
+  &__nav {
+    padding-left: 2rem;
+    &__taglist {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      flex-wrap: wrap;
+      flex: 1;
+    }
+  }
+}

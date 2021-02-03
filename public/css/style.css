@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
 *,
 *::after,
 *::before {
@@ -8,6 +9,142 @@
 
 body {
   box-sizing: border-box;
+  width: 90%;
+  max-width: 1296px;
+  margin: 0 auto;
+  position: relative;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: unset;
+}
+
+/*Used to hide text for users except screen-reader users*/
+.sr-only {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+body * {
+  font-family: "DM Sans", "sans-serif";
+}
+
+.tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.5px solid #C4C4C4;
+  margin: 0.1rem;
+  padding: 0.1rem 0.25rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #901C1C;
+}
+
+.header {
+  margin: 2rem 0;
+  width: 100%;
+  padding-left: 2rem;
+  padding-right: 26rem;
+  /*need space for title main>h1* : 20rem + 3*2rem padding*/
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__logo {
+  width: 12.5rem;
+}
+.header__nav {
+  padding-left: 2rem;
+}
+.header__nav__taglist {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.index {
+  position: unset;
+}
+.index__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 2rem;
+  top: 0;
+  height: 3rem;
+  width: 20rem;
+  font-size: 2.25rem;
+  font-weight: 400;
+  color: #901C1C;
+}
+
+.main__grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 20rem);
+  justify-content: space-between;
+  grid-auto-flow: row;
+  align-items: start;
+  justify-items: stretch;
+}
+
+.card {
+  width: 100%;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.card__picture {
+  width: 16rem;
+  height: 16rem;
+  object-fit: cover;
+  clip-path: circle(45%);
+}
+.card__name {
+  font-size: 2.25rem;
+  font-weight: 400;
+  color: #D3573C;
+}
+.card__location {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: #901C1C;
+}
+.card__quote {
+  font-size: 0.625rem;
+  font-weight: 400;
+  color: black;
+}
+.card__price {
+  font-size: 0.5625rem;
+  font-weight: 400;
+  color: #757575;
+}
+.card__taglist {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 /*# sourceMappingURL=style.css.map */
