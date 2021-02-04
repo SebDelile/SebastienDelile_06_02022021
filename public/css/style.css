@@ -7,10 +7,15 @@
   box-sizing: inherit;
 }
 
+html {
+  min-width: 20rem;
+  max-width: 90rem;
+  margin: 0 auto;
+}
+
 body {
   box-sizing: border-box;
   width: 90%;
-  max-width: 1296px;
   margin: 0 auto;
   position: relative;
 }
@@ -78,6 +83,37 @@ body * {
   flex-wrap: wrap;
   flex: 1;
 }
+@media only screen and (min-width: 51.0001rem) and (max-width: 70rem) {
+  .header {
+    padding-left: 1rem;
+    padding-right: 16.5rem;
+    /*need space for title main>h1* : 13.5rem + 3*1rem padding*/
+  }
+  .header__logo {
+    width: 9.375rem;
+  }
+  .header__nav {
+    padding-left: 1rem;
+  }
+}
+@media only screen and (max-width: 51rem) {
+  .header {
+    padding: 0 0;
+    /*tag menu down to second line*/
+    flex-wrap: wrap;
+  }
+  .header__logo {
+    width: 9.375rem;
+  }
+  .header__nav {
+    margin-top: 1rem;
+    width: 100%;
+    padding: 0;
+  }
+  .header__nav__taglist {
+    justify-content: center;
+  }
+}
 
 .index {
   position: unset;
@@ -95,15 +131,46 @@ body * {
   font-weight: 400;
   color: #901C1C;
 }
+@media only screen and (min-width: 30.0001rem) and (max-width: 70rem) {
+  .index__title {
+    right: 1rem;
+    height: 2.25rem;
+    width: 13.5rem;
+    font-size: 1.5rem;
+  }
+}
+@media only screen and (max-width: 30rem) {
+  .index__title {
+    right: 0rem;
+    height: 2.25rem;
+    width: 8rem;
+    font-size: 0.875rem;
+  }
+}
 
 .main__grid {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 20rem);
-  justify-content: space-between;
+  justify-content: space-around;
   grid-auto-flow: row;
   align-items: start;
   justify-items: stretch;
+}
+@media only screen and (min-width: 45.0001rem) and (max-width: 70rem) {
+  .main__grid {
+    grid-template-columns: repeat(2, 20rem);
+  }
+}
+@media only screen and (min-width: 22.5001rem) and (max-width: 45rem) {
+  .main__grid {
+    grid-template-columns: 18rem;
+  }
+}
+@media only screen and (max-width: 45rem) {
+  .main__grid {
+    grid-template-columns: 20rem;
+  }
 }
 
 .card {

@@ -21,4 +21,29 @@
       flex: 1;
     }
   }
+  @media only screen and (min-width: 51.0001rem) and (max-width: 70rem) {
+    padding-left: 1rem;
+    padding-right: 16.5rem; /*need space for title main>h1* : 13.5rem + 3*1rem padding*/
+    &__logo {
+      width: 9.375rem;
+    }
+    &__nav {
+      padding-left: 1rem;
+    }
+  }
+  @media only screen and (max-width: 51rem) {
+    padding: 0 0; /*tag menu down to second line*/
+    flex-wrap: wrap;
+    &__logo {
+      width: 9.375rem;
+    }
+    &__nav {
+      margin-top: 1rem;
+      width: 100%;
+      padding: 0;
+      &__taglist {
+        justify-content: center;
+      }
+    }
+  }
 }
