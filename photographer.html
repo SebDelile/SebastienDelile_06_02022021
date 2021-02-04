@@ -10,7 +10,7 @@
 
   <body>
     <header class="header">
-      <img class="header__logo" src="public/img/logo-Fisheye.svg" alt="logo FishEye" />
+      <a href="index.html"><img class="header__logo" src="public/img/logo-Fisheye.svg" alt="logo FishEye" /></a>
     </header>
 
     <main class="main">
@@ -21,28 +21,27 @@
           <p class="profile__quote">Voir le beau dans le quotidien</p>
 
           <ul class="profile__taglist">
-            <li class="profile__tag"><a href="portrait">#Portrait</a></li>
-            <li class="profile__tag"><a href="events">#Events</a></li>
-            <li class="profile__tag"><a href="travel">#Travel</a></li>
-            <li class="profile__tag"><a href="animals">#Animals</a></li>
+            <li class="profile__tag tag"><a href="portrait">#Portrait</a></li>
+            <li class="profile__tag tag"><a href="events">#Events</a></li>
+            <li class="profile__tag tag"><a href="travel">#Travel</a></li>
+            <li class="profile__tag tag"><a href="animals">#Animals</a></li>
           </ul>
         </article>
-        <button class="profil__contact" type="button">Contactez-moi</button>
+        <button class="profile__contact" type="button">Contactez-moi</button>
         <img class="profile__picture" src="public/img/Photographers-ID-Photos/MimiKeel.jpg" alt="Mimi Keel" />
         <aside class="profile__moreinfo">
-          <p class="profile__likes">297</p>
+          <p class="profile__likes">297 <img src="public/img/like-icon.svg"></p>
           <p class="profile__price">400€/j</p>
         </aside>
       </section>
       <section class="portfolio">
         <h2 class="porfolio__title sr-only">Portfolio</h2>
-        <aside class="portfolio__sort">
-          <label class="portfolio__sort__label" for="filter-button">Trier par</label>
-          <input class="portfolio__sort__button" id="filter-button" type="button" value="Sélectionner" />
-          <ul class="portfolio__sort__criterialist">
-            <li class="portfolio__sort__criteria"><a href="popularite">Popularité</a></li>
-            <li class="portfolio__sort__criteria"><a href="date">Date</a></li>
-            <li class="portfolio__sort__criteria"><a href="titre">Titre</a></li>
+        <aside class="sort">
+          <label class="sort__label" for="filter-button">Trier par</label>
+          <ul class="sort__criterialist">
+            <li class="sort__criteria"><a href="popularite">Popularité</a></li>
+            <li class="sort__criteria"><a href="date">Date</a></li>
+            <li class="sort__criteria"><a href="titre">Titre</a></li>
           </ul>
         </aside>
         <article class="main__grid">

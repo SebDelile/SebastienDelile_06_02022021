@@ -1,0 +1,131 @@
+.profile {
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 3.5rem 3.125rem;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  justify-items: center;
+  align-items: center;
+  background-color: map-get($color, contrastBack);
+  &__info {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  &__name {
+    font-size: 4rem;
+    font-weight: 400;
+    color: map-get($color, secondary);
+  }
+  &__location {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: map-get($color, tertiary);
+  }
+  &__quote {
+    font-size: 1.125rem;
+    font-weight: 400;
+    color: map-get($color, contrastFore);
+  }
+  &__taglist {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  &__tag {
+    font-size: 1.125rem;
+  }
+  &__contact {
+    justify-self: start;
+    align-self: start;
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+  }
+  &__picture {
+    width: 12.5rem;
+    height: 12.5rem;
+    object-fit: cover;
+    clip-path: circle(50%);
+    justify-self: end;
+  }
+  &__moreinfo {
+    position: fixed;
+    bottom: 0;
+    right: 2.25rem;
+    background-color: map-get($color, secondary);
+    border-radius: 0.3125rem 0.3125rem 0 0;
+  }
+  &__likes,
+  &__price {
+    display: inline-block;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: black;
+    padding: 1.3125rem 2rem;
+  }
+}
+
+.portfolio {
+}
+
+.sort {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  &__label {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: black;
+    padding-right: 1.5rem;
+    margin-top: 0.75rem;
+  }
+  &__button {
+    img {
+      padding-left: 1.5rem;
+    }
+  }
+  &__criterialist {
+    /*display: none;*/
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: repeat(3, auto);
+    grid-auto-flow: column;
+    justify-items: stretch;
+    align-items: center;
+    border-radius: 0.3125rem;
+    background-color: map-get($color, primary);
+  }
+  &__criteria {
+    color: white;
+    font-size: 1.25rem;
+    position: relative;
+    a {
+      display: block;
+      padding: 1.5rem 1.25rem;
+    }
+    &:first-child a::after {
+      content: url("../img/menuClosed-icon.svg");
+      padding-left: 2rem;
+    }
+    &:not(:first-child) {
+      display: none;
+      &::before {
+        content: "";
+        height: 1px;
+        width: 86%;
+        background-color: white;
+        position: absolute;
+        top: 0;
+        left: 5%;
+      }
+    }
+  }
+}
+
+.media__img {
+  width: 50vw;
+}
