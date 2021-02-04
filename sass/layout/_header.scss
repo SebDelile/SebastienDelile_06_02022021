@@ -2,33 +2,35 @@
   margin: 2rem 0;
   width: 100%;
   padding-left: 2rem;
-  padding-right: 26rem; /*need space for title main>h1* : 20rem + 3*2rem padding*/
+  padding-right: 22rem; /*need space for title main>h1* : 20rem + 2rem padding*/
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  min-height: $header-minheight;
   &__logo {
     width: 12.5rem;
   }
   &__nav {
-    padding-left: 2rem;
+    flex: 1;
+    padding: 0 1rem;
     &__taglist {
       display: flex;
       flex-direction: row;
-      justify-content: flex-start;
+      justify-content: center;
       align-items: center;
       flex-wrap: wrap;
-      flex: 1;
+      
     }
   }
   @media only screen and (min-width: 51.0001rem) and (max-width: 70rem) {
     padding-left: 1rem;
-    padding-right: 16.5rem; /*need space for title main>h1* : 13.5rem + 3*1rem padding*/
+    padding-right: 14.5rem; /*need space for title main>h1* : 13.5rem + 1rem padding*/
     &__logo {
       width: 9.375rem;
     }
     &__nav {
-      padding-left: 1rem;
+      padding: 0 0.5rem;
     }
   }
   @media only screen and (max-width: 51rem) {
@@ -38,12 +40,10 @@
       width: 9.375rem;
     }
     &__nav {
+      flex: none;
       margin-top: 1rem;
       width: 100%;
       padding: 0;
-      &__taglist {
-        justify-content: center;
-      }
     }
   }
 }

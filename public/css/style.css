@@ -1,3 +1,4 @@
+/*height when nav breaks line : 2x (tag-line height + 2 * (border + padding + margin))*/
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
 *,
 *::after,
@@ -49,7 +50,7 @@ body * {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 0.5px solid #C4C4C4;
+  border: 1px solid #C4C4C4;
   margin: 0.1rem;
   padding: 0.1rem 0.25rem;
   border-radius: 1rem;
@@ -62,38 +63,39 @@ body * {
   margin: 2rem 0;
   width: 100%;
   padding-left: 2rem;
-  padding-right: 26rem;
-  /*need space for title main>h1* : 20rem + 3*2rem padding*/
+  padding-right: 22rem;
+  /*need space for title main>h1* : 20rem + 2rem padding*/
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  min-height: calc(2* (1.3325 *0.75rem + 2 * (1px + 0.1rem + 0.1rem)));
 }
 .header__logo {
   width: 12.5rem;
 }
 .header__nav {
-  padding-left: 2rem;
+  flex: 1;
+  padding: 0 1rem;
 }
 .header__nav__taglist {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  flex: 1;
 }
 @media only screen and (min-width: 51.0001rem) and (max-width: 70rem) {
   .header {
     padding-left: 1rem;
-    padding-right: 16.5rem;
-    /*need space for title main>h1* : 13.5rem + 3*1rem padding*/
+    padding-right: 14.5rem;
+    /*need space for title main>h1* : 13.5rem + 1rem padding*/
   }
   .header__logo {
     width: 9.375rem;
   }
   .header__nav {
-    padding-left: 1rem;
+    padding: 0 0.5rem;
   }
 }
 @media only screen and (max-width: 51rem) {
@@ -106,12 +108,10 @@ body * {
     width: 9.375rem;
   }
   .header__nav {
+    flex: none;
     margin-top: 1rem;
     width: 100%;
     padding: 0;
-  }
-  .header__nav__taglist {
-    justify-content: center;
   }
 }
 
@@ -126,23 +126,30 @@ body * {
   right: 2rem;
   top: 0;
   height: 3rem;
+  /*logo's height*/
   width: 20rem;
   font-size: 2.25rem;
   font-weight: 400;
   color: #901C1C;
 }
-@media only screen and (min-width: 30.0001rem) and (max-width: 70rem) {
+@media only screen and (max-width: 70rem) {
+  .index__title {
+    height: calc(2* (1.3325 *0.75rem + 2 * (1px + 0.1rem + 0.1rem)));
+    /*2-lines nav height*/
+  }
+}
+@media only screen and (max-width: 70rem) and (max-width: 51rem) {
   .index__title {
     right: 1rem;
-    height: 2.25rem;
+    height: 2.34375rem;
+    /*logo's height*/
     width: 13.5rem;
     font-size: 1.5rem;
   }
 }
-@media only screen and (max-width: 30rem) {
+@media only screen and (max-width: 70rem) and (max-width: 51rem) and (max-width: 30rem) {
   .index__title {
     right: 0rem;
-    height: 2.25rem;
     width: 8rem;
     font-size: 0.875rem;
   }
@@ -157,17 +164,17 @@ body * {
   align-items: start;
   justify-items: stretch;
 }
-@media only screen and (min-width: 45.0001rem) and (max-width: 70rem) {
+@media only screen and (max-width: 70rem) {
   .main__grid {
     grid-template-columns: repeat(2, 20rem);
   }
 }
-@media only screen and (min-width: 22.5001rem) and (max-width: 45rem) {
+@media only screen and (max-width: 70rem) and (max-width: 45rem) {
   .main__grid {
     grid-template-columns: 18rem;
   }
 }
-@media only screen and (max-width: 45rem) {
+@media only screen and (max-width: 70rem) and (max-width: 45rem) and (max-width: 45rem) {
   .main__grid {
     grid-template-columns: 20rem;
   }

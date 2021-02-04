@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 0.5px solid map-get($color, border-tag);
+    border: 1px solid map-get($color, border-tag);
     margin: 0.1rem;
     padding: 0.1rem 0.25rem;
     border-radius: 1rem;
