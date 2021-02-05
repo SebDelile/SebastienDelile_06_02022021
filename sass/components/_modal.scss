@@ -1,0 +1,13 @@
+.modal {
+    /*display: block;*/
+    position: fixed;
+    width: auto;
+    height: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: map-get($color, modal-bg);
+    z-index: 10;
+    overflow: auto;
+  }

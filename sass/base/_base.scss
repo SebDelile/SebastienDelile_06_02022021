@@ -29,9 +29,17 @@ a {
 }
 
 button {
+  font-family: inherit;
 }
 
-label {
+input {
+  font: inherit;
+}
+
+dialog {
+  border: none;
+  color: inherit;
+  background: unset;
 }
 
 /*Used to hide text for users except screen-reader users*/

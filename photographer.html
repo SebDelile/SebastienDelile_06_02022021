@@ -113,5 +113,32 @@
         </article>
       </section>
     </main>
+    <dialog class="modal form__modal">
+      <h2 class="modal__title sr-only">Formulaire de contact</h2>
+      <form class="form">
+        <h3 class="form__title">Contactez-moi</h3>
+        <h3 class="form__subtitle">Ellen-Rose Wilkens</h3>
+        <label class="form__label" for="firstname">Prénom</label>
+        <input class="form__input" type="text" id="firstname" name="firstname" required>
+        <label class="form__label" for="lastname">Nom</label>
+        <input class="form__input" type="text" id="lastname" name="lastname" required>
+        <label class="form__label" for="email">Email</label>
+        <input class="form__input" type="email" id="email" name="email" required>
+        <label class="form__label" for="message">Votre message</label>
+        <textarea class="form__input form__input--area" id="message" name="message" required></textarea>
+        <button class="form__submit">Envoyer</button>
+        <img class="form__close" src="public/img/icon/modal-close-button-alt.svg">
+      </form>
+    </dialog>
+    <dialog class="modal lightbox__modal">
+      <h2 class="modal__title sr-only">Aperçu des média</h2>
+        <div class="lightbox">
+          <img class="lightbox__media" src="public/img/photographer-media/243/Animals_Rainbow.jpg">
+          <h3 class="lightbox__title">Arc-en-ciel</h3>
+          <img class="lightbox__command lightbox__command__backward" src="public/img/icon/modal-left-button.svg">
+          <img class="lightbox__command lightbox__command__foreward" src="public/img/icon/modal-right-button.svg">
+          <img class="lightbox__close" src="public/img/icon/modal-close-button.svg">
+        </div>     
+    </dialog>
   </body>
 </html>
