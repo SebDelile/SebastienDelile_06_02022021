@@ -5,4 +5,5 @@ button {
     background-color: map-get($color, primary);
     color: white;
     font-size: 1.25rem;
+    white-space:nowrap;
 }
