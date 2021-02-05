@@ -51,10 +51,12 @@
 .card {
   width: 100%;
   padding: 2rem 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+  a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
   &__picture {
     width: 16rem;
     height: 16rem;
