@@ -7,13 +7,16 @@
 @import "./base/typography";
 
 @import "./components/buttons";
+@import "./components/modal";
+@import "./components/tags";
 
 @import "./layout/header";
 @import "./layout/nav";
 @import "./layout/container";
 @import "./layout/footer";
 @import "./layout/form";
+@import "./layout/ligthbox";
 
 
 @import "./pages/index";
-
+@import "./pages/photographer";

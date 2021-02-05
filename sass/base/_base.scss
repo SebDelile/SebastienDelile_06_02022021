@@ -1,12 +1,55 @@
 *,
 *::after,
 *::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
 }
 
+html {
+  min-width: 20rem;
+  max-width: 90rem;
+  margin: 0 auto;
+}
 
 body {
-    box-sizing: border-box;
+  box-sizing: border-box;
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: unset;
+}
+
+button {
+  font-family: inherit;
+}
+
+input {
+  font: inherit;
+}
+
+dialog {
+  border: none;
+  color: inherit;
+  background: unset;
+}
+
+/*Used to hide text for users except screen-reader users*/
+.sr-only {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
 }

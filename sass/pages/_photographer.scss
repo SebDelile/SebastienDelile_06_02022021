@@ -1,0 +1,253 @@
+.profile {
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 3.5rem 3.125rem;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  justify-items: start;
+  align-items: center;
+  background-color: map-get($color, contrastBack);
+  &__info {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  &__name {
+    font-size: 4rem;
+    font-weight: 400;
+    color: map-get($color, secondary);
+  }
+  &__location {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: map-get($color, tertiary);
+  }
+  &__quote {
+    font-size: 1.125rem;
+    font-weight: 400;
+    color: map-get($color, contrastFore);
+  }
+  &__taglist {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  &__tag {
+    font-size: 1.125rem;
+  }
+  &__contact {
+    justify-self: start;
+    align-self: start;
+    margin: 0.5rem 1rem;
+  }
+  &__picture {
+    width: 12.5rem;
+    height: 12.5rem;
+    object-fit: cover;
+    clip-path: circle(50%);
+    align-self: start;
+    justify-self: end;
+  }
+  &__moreinfo {
+    position: fixed;
+    bottom: 0;
+    right: 2.25rem;
+    background-color: map-get($color, secondary);
+    border-radius: 0.3125rem 0.3125rem 0 0;
+    white-space:nowrap;
+  }
+  &__likes,
+  &__price {
+    display: inline-block;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: black;
+    padding: 1.3125rem 2rem;
+  }
+  @media only screen and (max-width: 75rem) {
+    &__name {
+      font-size: 2.25rem;
+    }
+    @media only screen and (max-width: 62.5rem) {
+      &__location,
+      &__quote,
+      &__tag {
+        font-size: 0.8125rem;
+      }
+      @media only screen and (max-width: 57rem) {
+        &__picture {
+          width: 9rem;
+          height: 9rem;
+        }
+        @media only screen and (max-width: 57rem) {
+        background-color: white;
+        padding: 0;
+        grid-template-columns: auto auto;
+        &__contact {
+          padding: 0.35rem 1rem;
+          margin: 0;
+          position: fixed;
+          bottom: 2rem;
+          left: 50%;
+          transform: translateX(-50%);
+          z-index: 1;
+        }
+        &__moreinfo {
+          position: absolute;
+          left: 50%;
+          right: unset;
+          transform: translateX(-50%);
+          background-color: map-get($color, secondary);
+          border-radius: 0.3125rem 0.3125rem 0 0;
+          z-index: 2;
+        }
+      }
+      }
+      @media only screen and (max-width: 35rem) {
+        &__taglist {
+          flex-wrap: wrap;
+          justify-content: flex-start;
+        }
+        &__picture {
+          width: 6.25rem;
+          height: 6.25rem;
+        }
+      }
+    }
+  }
+}
+
+.portfolio {
+  &__grid {
+    margin-top: 0.5rem;
+    padding-bottom: 4.5rem;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 21.875rem);
+    justify-content: space-between;
+    grid-auto-flow: row;
+    align-items: start;
+    justify-items: stretch;
+    @media only screen and (max-width: 78rem) {
+      grid-template-columns: repeat(3, 18rem);
+      @media only screen and (max-width: 64rem) {
+        grid-template-columns: repeat(2, 21.875rem);
+        @media only screen and (max-width: 52rem) {
+          grid-template-columns: repeat(2, 18rem);
+          @media only screen and (max-width: 44rem) {
+            grid-template-columns: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.sort {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  &__label {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: black;
+    padding-right: 1.5rem;
+    margin-top: 0.75rem;
+  }
+  &__button {
+    img {
+      padding-left: 1.5rem;
+    }
+  }
+  &__criterialist {
+    /*display: none;*/
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: repeat(3, auto);
+    grid-auto-flow: column;
+    justify-items: stretch;
+    align-items: center;
+    border-radius: 0.3125rem;
+    background-color: map-get($color, primary);
+  }
+  &__criteria {
+    color: white;
+    font-size: 1.25rem;
+    position: relative;
+    a {
+      display: block;
+      padding: 1.5rem 1.25rem;
+    }
+    &:first-child a::after {
+      content: url("../img/icon/menu-closed.svg");
+      padding-left: 2rem;
+    }
+    &:not(:first-child) {
+      display: none;
+      &::before {
+        content: "";
+        height: 1px;
+        width: 86%;
+        background-color: white;
+        position: absolute;
+        top: 0;
+        left: 5%;
+      }
+    }
+  }
+  @media only screen and (max-width: 57rem) {
+    display: none;
+  }
+}
+
+.media {
+  margin: 1rem 0;
+  &__img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 0.3125rem;
+    height: 18.75rem;
+    @media only screen and (max-width: 44rem) {
+      height: calc(0.567 * 0.9 * 100vw); /*ratio * width taking into account body margin*/
+      @media only screen and (max-width: 20rem) {
+        height: calc(0.567 * 0.9 * 20rem); /*min width of <html> is 20rem*/
+      }
+    }
+  }
+  &__legend {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  &__title {
+    flex: 1;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: map-get($color, tertiary);
+  }
+  &__price {
+    flex: none;
+    padding-right: 0.9rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: map-get($color, tertiary);
+  }
+  &__likes {
+    flex: none;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: black;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    img {
+      height: 1.14rem;
+      padding-left: 0.3rem;
+    }
+  }
+}

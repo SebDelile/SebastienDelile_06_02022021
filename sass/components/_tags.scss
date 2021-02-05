@@ -1,0 +1,12 @@
+.tag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid map-get($color, border-tag);
+    margin: 0.1rem;
+    padding: 0.1rem 0.25rem;
+    border-radius: 1.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: map-get($color, tertiary);
+  }
