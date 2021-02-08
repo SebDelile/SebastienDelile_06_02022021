@@ -1,0 +1,17 @@
+Both:
+- filtre selon keywords
+
+index:
+- génération des photographes depuis le json
+- lien sur carte qui envoie vers photographe 
+
+Photographer:
+- generation profil
+- génération liste média
+- bouton like incrémentable
+- compilation like dans profil
+- ouverture/fermeture formulaire
+- validation du formulaire
+- ouverture/fermeture ligthbox
+- mouvement gauche/droite ligthbox
+- activation video avec controles ?
