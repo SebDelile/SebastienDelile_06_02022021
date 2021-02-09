@@ -22,18 +22,30 @@
     top: -1rem;
     margin-bottom: 1.125rem;
   }
+  &__field {
+    width: 100%;
+    position: relative;
+  }
+  &__validity {
+      position: absolute;
+      height: 2rem;
+      top : calc(2.25rem * 1.31 + 4.25rem / 2 - 2rem / 2); /*label's height + half input's - half its height*/
+      right: 1rem;
+      z-index: 15;
+  }
   &__label {
     font-size: 2.25rem;
     font-weight: 400;
     color: map-get($color, form-text);
+    padding: 0 0.25rem /*compensate the border of input*/
   }
   &__input {
     width: 100%;
     height: 4.25rem;
     background-color: white;
-    border: none;
+    border: 0.25rem solid map-get($color, primary);
     border-radius: 0.3125rem;
-    padding: 0 1rem;
+    padding: 0 4rem 0 1rem;
     font-size: 1.5rem;
     font-weight: 400;
     color: black;
@@ -41,6 +53,7 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    position: relative;
     &--area {
       height: 10.625rem;
       align-items: flex-start;
@@ -49,7 +62,7 @@
     }
   }
   &__submit {
-    margin: 1.5rem 0;
+    margin: 1.5rem 0.25rem; /*0.25rem is to compensate input border*/
     padding: 1.5rem 3rem;
     font-size: 1.125rem;
     font-weight: 700;
@@ -60,9 +73,29 @@
     right: 2rem;
     width: 2.625rem;
     height: 2.625rem;
+    z-index: 1000;
+  }
+  &__submitted {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: inherit;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    p {
+      font-size: 2rem;
+      font-weight: 400;
+      color: map-get($color, form-text);
+      text-align: center;
+      position: relative;
+    }
   }
   @media only screen and (max-width: 45rem) {
-      width:90%;
+    width: 90%;
     &__title,
     &__subtitle {
       font-size: 2.25rem;
@@ -74,9 +107,14 @@
     &__label {
       font-size: 1.5rem;
     }
+    &__validity {
+      height: 1.5rem;
+      top: calc(1.5 * 1.31rem + 3.25rem / 2 - 1.5rem / 2); /*label's height + half input's - half its height*/
+      right: 0.75rem;
+    }
     &__input {
       height: 3.25rem;
-      padding: 0 0.75rem;
+      padding: 0 3 0 0.75rem;
       font-size: 1.25rem;
       margin-bottom: 0.5rem;
       &--area {
@@ -89,16 +127,20 @@
       padding: 0.3125rem 3rem;
     }
     &__close {
-        top: 1.5rem;
-        right: 1.5rem;
-        width: 1.125rem;
-        height: 1.125rem;
-      }
+      top: 1.5rem;
+      right: 1.5rem;
+      width: 1.125rem;
+      height: 1.125rem;
+    }
     @media only screen and (max-width: 28rem) {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    overflow-y: auto;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow-y: auto;
+      @media only screen and (max-width: 20rem) {
+        min-width: 20rem;
+        padding: 1rem;
+      }
     }
   }
 }
