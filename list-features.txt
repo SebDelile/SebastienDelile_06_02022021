@@ -2,8 +2,8 @@ Both:
 - filtre selon keywords
 
 index:
-- génération des photographes depuis le json
-- lien sur carte qui envoie vers photographe 
+v génération des photographes depuis le json
+v lien sur carte qui envoie vers photographe 
 
 Photographer:
 - generation profil
@@ -11,7 +11,7 @@ Photographer:
 - bouton like incrémentable
 - compilation like dans profil
 v ouverture/fermeture formulaire
-- validation du formulaire
+v validation du formulaire
 v ouverture/fermeture ligthbox
 - mouvement gauche/droite ligthbox
 - activation video avec controles ?
