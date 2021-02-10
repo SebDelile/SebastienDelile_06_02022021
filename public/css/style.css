@@ -135,6 +135,11 @@ button {
   color: #901C1C;
 }
 
+.tagON {
+  color: black;
+  background-color: #DB8876;
+}
+
 .header {
   margin: 2rem 0;
   width: 100%;

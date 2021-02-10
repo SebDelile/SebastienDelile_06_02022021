@@ -10,3 +10,8 @@
     font-weight: 500;
     color: map-get($color, tertiary);
   }
+
+  .tagON {
+    color:black;
+    background-color: map-get($color, secondary);
+  }

@@ -1,5 +1,5 @@
 Both:
-- filtre selon keywords
+v filtre selon keywords
 
 index:
 v génération des photographes depuis le json
