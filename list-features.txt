@@ -8,6 +8,7 @@ v lien sur carte qui envoie vers photographe
 Photographer:
 - generation profil
 - génération liste média
+- tri par popularité/date/titre
 - bouton like incrémentable
 - compilation like dans profil
 v ouverture/fermeture formulaire

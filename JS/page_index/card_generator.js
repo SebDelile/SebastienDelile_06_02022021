@@ -23,8 +23,9 @@ export function createCard(photographer) {
      <p class="card__price">${photographer.price} €/j</p>
     </a>
     <ul class="card__taglist"></ul>`;
-  for (let tag in photographer.tags) {
-    element.querySelector(".card__taglist").insertAdjacentHTML("beforeend", `<li class="card__tag tag"><a href="${photographer.tags[tag]}">#${photographer.tags[tag]}</a></li>`);
-    document.querySelector(".main__grid").append(element);
+  for (let tag of photographer.tags) {
+    let Tag = tag.charAt(0).toUpperCase() + tag.substr(1); //1st letter uppercase
+    element.querySelector(".card__taglist").insertAdjacentHTML("beforeend", `<li class="card__tag tag"><a href="${tag}">#${Tag}</a></li>`);
   };
+  document.querySelector(".main__grid").append(element);
 }
