@@ -74,6 +74,10 @@ dialog {
   width: 1px;
 }
 
+.hidden {
+  display: none;
+}
+
 body * {
   font-family: "DM Sans", "sans-serif";
 }

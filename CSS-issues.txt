@@ -1,0 +1,9 @@
+common
+
+
+index
+- titre H1 dépasse sur keyword à résolution moyenne
+
+photographer
+- defaut alignement vertical légende de média
+- ajouter un margin left au prix dans les média

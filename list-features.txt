@@ -6,13 +6,14 @@ v génération des photographes depuis le json
 v lien sur carte qui envoie vers photographe 
 
 Photographer:
-- generation profil
-- génération liste média
+v generation profil
+v génération liste média
 - tri par popularité/date/titre
 - bouton like incrémentable
 - compilation like dans profil
 v ouverture/fermeture formulaire
 v validation du formulaire
 v ouverture/fermeture ligthbox
+- chargement média lightbox
 - mouvement gauche/droite ligthbox
 - activation video avec controles ?
