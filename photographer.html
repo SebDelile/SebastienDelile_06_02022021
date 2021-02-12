@@ -14,102 +14,35 @@
     </header>
 
     <main class="main">
-      <h1 class="main__title sr-only">Page de Mimi Keel</h1>
+      <h1 class="main__title sr-only"></h1>
       <section class="profile">
         <h2 class="Profile__title sr-only">Profil</h2>
         <article class="profile__info">
-          <h3 class="profile__name">Mimi Keel</h3>
-          <p class="profile__location">London, UK</p>
-          <p class="profile__quote">Voir le beau dans le quotidien</p>
+          <h3 class="profile__name"></h3>
+          <p class="profile__location"></p>
+          <p class="profile__quote"></p>
           <ul class="profile__taglist">
-            <li class="profile__tag tag"><a href="portrait">#Portrait</a></li>
-            <li class="profile__tag tag"><a href="events">#Events</a></li>
-            <li class="profile__tag tag"><a href="travel">#Travel</a></li>
-            <li class="profile__tag tag"><a href="animals">#Animals</a></li>
           </ul>
         </article>
         <button class="profile__contact" type="button">Contactez-moi</button>
-        <img class="profile__picture" src="public/img/Photographers-ID-Photos/MimiKeel.jpg" alt="Mimi Keel" />
+        <img class="profile__picture" src="" alt="" />
         <aside class="profile__moreinfo">
-          <p class="profile__likes">297 <img src="public/img/icon/like-alt.svg" /></p>
-          <p class="profile__price">400€/j</p>
+          <p class="profile__likes"><img src="public/img/icon/like-alt.svg" /></p>
+          <p class="profile__price"></p>
         </aside>
       </section>
       <section class="portfolio">
         <h2 class="porfolio__title sr-only">Portfolio</h2>
         <aside class="sort">
           <p class="sort__label">Trier par</p>
-          <ul class="sort__criterialist">
-            <li class="sort__criteria"><a href="popularite">Popularité</a></li>
-            <li class="sort__criteria"><a href="date">Date</a></li>
-            <li class="sort__criteria"><a href="titre">Titre</a></li>
+          <ul class="sort__criterialist" aria-expanded="false">
+            <li class="sort__criteria">Popularité</li>
+            <li class="sort__criteria">Date</li>
+            <li class="sort__criteria">Titre</li>
           </ul>
         </aside>
         <article class="portfolio__grid">
-          <div class="media">
-            <img class="media__img" src="public/img/photographer-media/243/Animals_Rainbow.jpg" alt="Animals Rainbow" />
-            <div class="media__legend">
-              <h3 class="media__title">Arc en ciel</h3>
-              <p class="media__price">70€</p>
-              <p class="media__likes">12 <img src="public/img/icon/like.svg" /></p>
-            </div>
-          </div>
-          <div class="media">
-            <img class="media__img" src="public/img/photographer-media/243/Travel_Lonesome.jpg" alt="Animals Rainbow" />
-            <div class="media__legend">
-              <h3 class="media__title">Arc en ciel</h3>
-              <p class="media__price">70€</p>
-              <p class="media__likes">12 <img src="public/img/icon/like.svg" /></p>
-            </div>
-          </div>
-          <div class="media">
-            <img class="media__img" src="public/img/photographer-media/243/Event_SeasideWedding.jpg" alt="Animals Rainbow" />
-            <div class="media__legend">
-              <h3 class="media__title">Arc en ciel</h3>
-              <p class="media__price">70€</p>
-              <p class="media__likes">12 <img src="public/img/icon/like.svg" /></p>
-            </div>
-          </div>
-          <div class="media">
-            <img class="media__img" src="public/img/photographer-media/243/Portrait_Background.jpg" alt="Animals Rainbow" />
-            <div class="media__legend">
-              <h3 class="media__title">Arc en ciel</h3>
-              <p class="media__price">70€</p>
-              <p class="media__likes">12 <img src="public/img/icon/like.svg" /></p>
-            </div>
-          </div>
-          <div class="media">
-            <img class="media__img" src="public/img/photographer-media/243/Event_PintoWedding.jpg" alt="Animals Rainbow" />
-            <div class="media__legend">
-              <h3 class="media__title">Arc en ciel</h3>
-              <p class="media__price">70€</p>
-              <p class="media__likes">12 <img src="public/img/icon/like.svg" /></p>
-            </div>
-          </div>
-          <div class="media">
-            <img class="media__img" src="public/img/photographer-media/243/Portrait_Wednesday.jpg" alt="Animals Rainbow" />
-            <div class="media__legend">
-              <h3 class="media__title">Arc en ciel</h3>
-              <p class="media__price">70€</p>
-              <p class="media__likes">12 <img src="public/img/icon/like.svg" /></p>
-            </div>
-          </div>
-          <div class="media">
-            <img class="media__img" src="public/img/photographer-media/243/Portrait_Nora.jpg" alt="Animals Rainbow" />
-            <div class="media__legend">
-              <h3 class="media__title">Arc en ciel</h3>
-              <p class="media__price">70€</p>
-              <p class="media__likes">12 <img src="public/img/icon/like.svg" /></p>
-            </div>
-          </div>
-          <div class="media">
-            <img class="media__img" src="public/img/photographer-media/243/Event_BenevidesWedding.jpg" alt="Animals Rainbow" />
-            <div class="media__legend">
-              <h3 class="media__title">Arc en ciel</h3>
-              <p class="media__price">70€</p>
-              <p class="media__likes">12 <img src="public/img/icon/like.svg" /></p>
-            </div>
-          </div>
+          <!--Media are generated with JS-->
         </article>
       </section>
     </main>
@@ -118,27 +51,43 @@
       <form class="form">
         <h3 class="form__title">Contactez-moi</h3>
         <h3 class="form__subtitle">Ellen-Rose Wilkens</h3>
-        <label class="form__label" for="firstname">Prénom</label>
-        <input class="form__input" type="text" id="firstname" name="firstname" required>
-        <label class="form__label" for="lastname">Nom</label>
-        <input class="form__input" type="text" id="lastname" name="lastname" required>
-        <label class="form__label" for="email">Email</label>
-        <input class="form__input" type="email" id="email" name="email" required>
-        <label class="form__label" for="message">Votre message</label>
-        <textarea class="form__input form__input--area" id="message" name="message" required></textarea>
-        <button class="form__submit">Envoyer</button>
-        <img class="form__close" src="public/img/icon/modal-close-button-alt.svg">
+        <div class="form__field">
+          <label class="form__label" for="firstname">Prénom</label>
+          <input class="form__input" type="text" id="firstname" name="firstname" required minlength="2" />
+          <img class="form__validity" src="public/img/icon/warning.svg">
+        </div>
+        <div class="form__field">
+          <label class="form__label" for="lastname">Nom</label>
+          <input class="form__input" type="text" id="lastname" name="lastname" required minlength="2" />
+          <img class="form__validity" src="public/img/icon/warning.svg">
+        </div>
+        <div class="form__field">
+          <label class="form__label" for="email">Email</label>
+          <input class="form__input" type="email" id="email" name="email" required />
+          <img class="form__validity" src="public/img/icon/warning.svg">
+        </div>
+        <div class="form__field">
+          <label class="form__label" for="message">Votre message</label>
+          <textarea class="form__input form__input--area" id="message" name="message" required minlength="10"></textarea>
+          <img class="form__validity" src="public/img/icon/warning.svg">
+        </div>
+        <button class="form__submit" type="submit">Envoyer</button>
+        <img class="form__close" src="public/img/icon/modal-close-button-alt.svg" />
+        <div class="form__submitted">
+          <p>Votre message a bien été envoyé</p>
+        </div>
       </form>
     </dialog>
     <dialog class="modal lightbox__modal">
       <h2 class="modal__title sr-only">Aperçu des média</h2>
-        <div class="lightbox">
-          <img class="lightbox__media" src="public/img/photographer-media/243/Animals_Rainbow.jpg">
-          <h3 class="lightbox__title">Arc-en-ciel</h3>
-          <img class="lightbox__command lightbox__command__backward" src="public/img/icon/modal-left-button.svg">
-          <img class="lightbox__command lightbox__command__foreward" src="public/img/icon/modal-right-button.svg">
-          <img class="lightbox__close" src="public/img/icon/modal-close-button.svg">
-        </div>     
+      <div class="lightbox">
+        <img class="lightbox__media" src="public/img/media/243/full/Animals_Rainbow.jpg" />
+        <h3 class="lightbox__title">Arc-en-ciel</h3>
+        <img class="lightbox__command lightbox__command__backward" src="public/img/icon/modal-left-button.svg" />
+        <img class="lightbox__command lightbox__command__foreward" src="public/img/icon/modal-right-button.svg" />
+        <img class="lightbox__close" src="public/img/icon/modal-close-button.svg" />
+      </div>
     </dialog>
+    <script type="module" src="./JS/main_photographer.js"></script>
   </body>
 </html>

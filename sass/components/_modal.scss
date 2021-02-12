@@ -1,13 +1,30 @@
 .modal {
-    /*display: block;*/
-    position: fixed;
-    width: auto;
-    height: auto;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: map-get($color, modal-bg);
-    z-index: 10;
-    overflow: auto;
-  }
+  display:none;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: auto;
+  height: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: map-get($color, modal-bg);
+  z-index: 10;
+  overflow: auto;
+}
+
+/*Group of classes added via javascript*/
+.modal__appear {
+  animation: fade 600ms both;
+}
+.modal__child__appear {
+  animation: fade-shift 600ms 200ms both;
+}
+.modal__disappear {
+  animation: fade 600ms 200ms reverse both;
+}
+.modal__child__disappear {
+  animation: fade-shift 600ms reverse both;
+}
