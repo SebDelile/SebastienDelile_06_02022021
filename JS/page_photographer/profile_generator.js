@@ -2,7 +2,7 @@
 //------------------------------ Import from modules -----------------------------------------
 //--------------------------------------------------------------------------------------------
 
-import {idNumber} from "../main_photographer.js";
+import {idNumber, mediaList} from "../main_photographer.js";
 
 //--------------------------------------------------------------------------------------------
 //----------------------------------- Export(s) ----------------------------------------------
@@ -28,6 +28,12 @@ export function profileGenerator(photographers) {
       break;
     }
   }
+}
 
-  //copying the data in the profile section
+export function sumLikes() {
+  let sum = 0;
+  for (let media of mediaList) {
+    sum = sum + media.likes
+  }
+  document.querySelector(".profile__likes").innerHTML = `${sum} <img src="public/img/icon/like-alt.svg" />`
 }

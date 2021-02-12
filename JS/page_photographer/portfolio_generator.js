@@ -67,3 +67,16 @@ export function portfolioGenerator() {
     portfolio.append(element);
   }
 }
+
+export function incrementLikes(target) {
+  //get the Id of the media (media > media__legend > media__likes > img)
+  let mediaId = target.parentNode.parentNode.parentNode.getAttribute("id");
+  for (let media of mediaList) {
+    if (media.id === mediaId) {
+      media.likes++;
+      //changing the innerHTML with new value as great effect to remove the event listener on the <img> !
+      target.parentNode.innerHTML = `${media.likes}<img class="media__likes__liked" src="public/img/icon/like.svg" /></p>`
+      break;
+    }
+  }
+}

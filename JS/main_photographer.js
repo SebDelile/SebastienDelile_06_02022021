@@ -3,8 +3,8 @@
 //--------------------------------------------------------------------------------------------
 import { openModal, closeModal } from "./common/openCloseModal.js";
 import { formValidity, formSubmission, submissionConfirmation } from "./page_photographer/contact_form.js";
-import { profileGenerator } from "./page_photographer/profile_generator.js";
-import { portfolioGenerator, mediaListGenerator } from "./page_photographer/portfolio_generator.js";
+import { profileGenerator, sumLikes } from "./page_photographer/profile_generator.js";
+import { portfolioGenerator, mediaListGenerator, incrementLikes } from "./page_photographer/portfolio_generator.js";
 import { lightboxMediaDisplay, lightboxChangeMedia } from "./page_photographer/lightbox.js";
 
 //--------------------------------------------------------------------------------------------
@@ -58,6 +58,7 @@ fetch("./public/FishEyeDataFR.json")
   })
   .then(function () {
     portfolioGenerator();
+    sumLikes();
   })
   .then(function () {
     const medias = document.getElementsByClassName("media__img");
@@ -65,6 +66,13 @@ fetch("./public/FishEyeDataFR.json")
       media.addEventListener("click", function (event) {
         openModal(lightboxModal);
         lightboxMediaDisplay(event.target.parentNode.getAttribute("id"));
+      });
+    }
+    const likes = document.getElementsByClassName("media__likes");
+    for (let like of likes) {
+      like.querySelector("img").addEventListener("click", function (event) {
+        incrementLikes(event.target);
+        sumLikes();
       });
     }
   });

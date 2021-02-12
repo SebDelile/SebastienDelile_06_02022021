@@ -21,14 +21,14 @@ function Factory() {
   };
 }
 
-let IsImage = function (media) {
+function IsImage (media) {
   let imageElement = document.createElement("img");
   imageElement.classList.add("lightbox__media");
   imageElement.setAttribute("src", media.fullpath);
   imageElement.setAttribute("alt", "");
   return imageElement;
 };
-let IsVideo = function (media) {
+function IsVideo (media) {
   let videoElement = document.createElement("video");
   videoElement.classList.add("lightbox__media");
   videoElement.setAttribute("src", media.fullpath);

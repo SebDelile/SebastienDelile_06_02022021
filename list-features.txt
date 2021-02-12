@@ -9,8 +9,8 @@ Photographer:
 v generation profil
 v génération liste média
 - tri par popularité/date/titre
-- bouton like incrémentable
-- compilation like dans profil
+v bouton like incrémentable
+v compilation like dans profil
 v ouverture/fermeture formulaire
 v validation du formulaire
 v ouverture/fermeture ligthbox
