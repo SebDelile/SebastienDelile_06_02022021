@@ -8,6 +8,7 @@ v lien sur carte qui envoie vers photographe
 Photographer:
 v generation profil
 v génération liste média
+- ouvrir/fermer le menu de tri
 - tri par popularité/date/titre
 v bouton like incrémentable
 v compilation like dans profil

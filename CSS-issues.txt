@@ -10,3 +10,6 @@ photographer
 - lightbox : photo ouverte en petit sur chrome, titre non aligné avec photo
 - profile__likes : passer en inline-flex et whitespace pre
 - mettre une classe media__likes__liked
+- sort : class button n'existe plus
+- sort : ne pas déclaer les média (position absolute ?)
+

@@ -6,12 +6,14 @@ import { formValidity, formSubmission, submissionConfirmation } from "./page_pho
 import { profileGenerator, sumLikes } from "./page_photographer/profile_generator.js";
 import { portfolioGenerator, mediaListGenerator, incrementLikes } from "./page_photographer/portfolio_generator.js";
 import { lightboxMediaDisplay, lightboxChangeMedia } from "./page_photographer/lightbox.js";
+import {openCloseCriteriaSort, sortMedia} from "./page_photographer/criteria_sort.js"
 
 //--------------------------------------------------------------------------------------------
 //----------------------------------- DOM elements -------------------------------------------
 //--------------------------------------------------------------------------------------------
 
-const buttonContact = document.querySelector(".profile__contact");
+const sortButton = document.querySelector(".sort__criterialist");
+const contactButton = document.querySelector(".profile__contact");
 const formModal = document.querySelector(".form__modal");
 const formModalClose = formModal.querySelector(".form__close");
 const form = document.querySelector("form");
@@ -25,7 +27,9 @@ const lightboxForeward = lightboxModal.querySelector(".lightbox__command__forewa
 //--------------------------------------------------------------------------------------------
 
 //the id of the photographer picked from the url
-export let idNumber = window.location.search.slice(3); //remove "?id" from url
+export const idNumber = window.location.search.slice(3); //remove "?id" from url
+
+export const sortCriterias = document.getElementsByClassName("sort__criteria");
 
 //the media corresponding to the photographer, with some data reorganization
 //will be filled during fetch json import method
@@ -55,6 +59,8 @@ fetch("./public/FishEyeDataFR.json")
   //Creation of the mediaList of the photographer
   .then(function (json) {
     mediaListGenerator(json.media);
+    sortMedia(sortCriterias[0]);
+    console.log(sortCriterias[0].textcontent);
   })
   .then(function () {
     portfolioGenerator();
@@ -74,15 +80,27 @@ fetch("./public/FishEyeDataFR.json")
         incrementLikes(event.target);
         sumLikes();
       });
-    }
+    };
   });
 
 //--------------------------------------------------------------------------------------------
 //--------------------------------- Event listeners ------------------------------------------
 //--------------------------------------------------------------------------------------------
 
+//-------------------------------- sort the media --------------------------------------------
+
+sortButton.addEventListener("click", function () {
+  openCloseCriteriaSort();
+})
+for (let criteria of sortCriterias) {
+  criteria.addEventListener("click", function(event){
+    sortMedia(event.target);
+  })
+}
+
+
 //------------------------------ Open/Close the modale ---------------------------------------
-buttonContact.addEventListener("click", function () {
+contactButton.addEventListener("click", function () {
   openModal(formModal);
 });
 //for the lightbox modal, the eventlistener is set within the fetch method (needs to wait for the media to be generated)
