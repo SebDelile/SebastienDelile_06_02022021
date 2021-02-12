@@ -2,18 +2,16 @@
 //------------------------------ Import from modules -----------------------------------------
 //--------------------------------------------------------------------------------------------
 
-//--------------------------------------------------------------------------------------------
-//------------------------------- Intermediate stages ----------------------------------------
-//--------------------------------------------------------------------------------------------
+import {idNumber} from "../main_photographer.js";
 
 //--------------------------------------------------------------------------------------------
 //----------------------------------- Export(s) ----------------------------------------------
 //--------------------------------------------------------------------------------------------
 
-export function profileGenerator(json, idNumber) {
+export function profileGenerator(photographers) {
   const profile = document.querySelector(".profile");
   //looking for the photographer in the list
-  for (let photographer of json) {
+  for (let photographer of photographers) {
     if (photographer.id == idNumber) {
       //copying the data in the profile section
       profile.querySelector(".profile__name").textContent = photographer.name;

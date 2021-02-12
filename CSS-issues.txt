@@ -7,3 +7,4 @@ index
 photographer
 - defaut alignement vertical légende de média
 - ajouter un margin left au prix dans les média
+- lightbox : photo ouverte en petit sur chrome, titre non aligné avec photo

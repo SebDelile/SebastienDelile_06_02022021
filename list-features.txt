@@ -14,6 +14,9 @@ v génération liste média
 v ouverture/fermeture formulaire
 v validation du formulaire
 v ouverture/fermeture ligthbox
-- chargement média lightbox
-- mouvement gauche/droite ligthbox
-- activation video avec controles ?
+v chargement média lightbox
+v mouvement gauche/droite ligthbox
+v activation video avec controles ?
+
+ARIA:
+-

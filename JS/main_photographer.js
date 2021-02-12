@@ -4,18 +4,33 @@
 import { openModal, closeModal } from "./common/openCloseModal.js";
 import { formValidity, formSubmission, submissionConfirmation } from "./page_photographer/contact_form.js";
 import { profileGenerator } from "./page_photographer/profile_generator.js";
-import {portfolioGenerator} from "./page_photographer/portfolio_generator.js";
+import { portfolioGenerator, mediaListGenerator } from "./page_photographer/portfolio_generator.js";
+import { lightboxMediaDisplay, lightboxChangeMedia } from "./page_photographer/lightbox.js";
 
 //--------------------------------------------------------------------------------------------
 //----------------------------------- DOM elements -------------------------------------------
 //--------------------------------------------------------------------------------------------
 
-let idNumber = window.location.search.slice(3); //remove "?id" from url
 const buttonContact = document.querySelector(".profile__contact");
-const medias = document.getElementsByClassName("media");
 const formModal = document.querySelector(".form__modal");
-const lightboxModal = document.querySelector(".lightbox__modal");
+const formModalClose = formModal.querySelector(".form__close");
 const form = document.querySelector("form");
+const lightboxModal = document.querySelector(".lightbox__modal");
+const lightboxModalClose = lightboxModal.querySelector(".lightbox__close");
+const lightboxBackward = lightboxModal.querySelector(".lightbox__command__backward");
+const lightboxForeward = lightboxModal.querySelector(".lightbox__command__foreward");
+
+//--------------------------------------------------------------------------------------------
+//--------------------------------- On page loading ------------------------------------------
+//--------------------------------------------------------------------------------------------
+
+//the id of the photographer picked from the url
+export let idNumber = window.location.search.slice(3); //remove "?id" from url
+
+//the media corresponding to the photographer, with some data reorganization
+//will be filled during fetch json import method
+//usefull for the sort and the display in the lightbox
+export let mediaList = [];
 
 //--------------------------------------------------------------------------------------------
 //--------------------------------- On page loading ------------------------------------------
@@ -34,12 +49,24 @@ fetch("./public/FishEyeDataFR.json")
   })
   //Creation of the profile section
   .then(function (json) {
-    profileGenerator(json.photographers, idNumber);
+    profileGenerator(json.photographers);
     return json;
   })
-  //Creation of the profile section
+  //Creation of the mediaList of the photographer
   .then(function (json) {
-    portfolioGenerator(json.media, idNumber);
+    mediaListGenerator(json.media);
+  })
+  .then(function () {
+    portfolioGenerator();
+  })
+  .then(function () {
+    const medias = document.getElementsByClassName("media__img");
+    for (let media of medias) {
+      media.addEventListener("click", function (event) {
+        openModal(lightboxModal);
+        lightboxMediaDisplay(event.target.parentNode.getAttribute("id"));
+      });
+    }
   });
 
 //--------------------------------------------------------------------------------------------
@@ -50,16 +77,19 @@ fetch("./public/FishEyeDataFR.json")
 buttonContact.addEventListener("click", function () {
   openModal(formModal);
 });
-for (let media of medias) {
-  media.addEventListener("click", function () {
-    openModal(lightboxModal);
-  });
-}
-formModal.querySelector(".form__close").addEventListener("click", function () {
+//for the lightbox modal, the eventlistener is set within the fetch method (needs to wait for the media to be generated)
+formModalClose.addEventListener("click", function () {
   closeModal(formModal);
 });
-lightboxModal.querySelector(".lightbox__close").addEventListener("click", function () {
+lightboxModalClose.addEventListener("click", function () {
   closeModal(lightboxModal);
+});
+
+lightboxForeward.addEventListener("click", function () {
+  lightboxMediaDisplay(lightboxChangeMedia(1));
+});
+lightboxBackward.addEventListener("click", function () {
+  lightboxMediaDisplay(lightboxChangeMedia(-1));
 });
 
 //------------------------------ form Verification/Submission --------------------------------
