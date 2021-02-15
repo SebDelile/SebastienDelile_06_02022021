@@ -37,11 +37,15 @@ export function mediaListGenerator(medias) {
         info.fullpath = `./public/img/media/${media.photographerId}/full/${media.video}`;
         info.title = media.video;
       }
-      //Formats the title and push in the list
+      //Formats the title
       info.title = info.title.slice(media.tags[0].length, info.title.length - 4); // delete the initial keyword and file extension
       while (info.title.indexOf("_") !== -1) {
         info.title = info.title.replace("_", " "); // replace all underscores with spaces
       }
+      if (info.title.charAt(0) === " ") {
+        info.title = info.title.slice(1) // remove whitespace if first character (some data within json have, but not all)
+      }
+      //push in the table
       mediaList.push(info);
     }
   }

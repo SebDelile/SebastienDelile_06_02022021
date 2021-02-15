@@ -3,6 +3,7 @@ common
 
 index
 - titre H1 dépasse sur keyword à résolution moyenne
+- active sur les keyword
 
 photographer
 - defaut alignement vertical légende de média
@@ -12,4 +13,4 @@ photographer
 - mettre une classe media__likes__liked
 - sort : class button n'existe plus
 - sort : ne pas déclaer les média (position absolute ?)
-
+- sort criteria ajouter minimum width 11.5rem et flex space between

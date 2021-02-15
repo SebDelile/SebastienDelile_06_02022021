@@ -25,6 +25,7 @@ export function profileGenerator(photographers) {
       profile.querySelector(".profile__picture").setAttribute("alt", `Portrait of ${photographer.name}`);
       profile.querySelector(".profile__price").textContent = `${photographer.price} €/j`;
       document.querySelector(".main__title").textContent = `Page de ${photographer.name}`;
+      document.title = `${photographer.name} - FishEye`
       break;
     }
   }
