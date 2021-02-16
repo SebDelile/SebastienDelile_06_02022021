@@ -79,7 +79,7 @@ export function incrementLikes(target) {
     if (media.id === mediaId) {
       media.likes++;
       //changing the innerHTML with new value as great effect to remove the event listener on the <img> !
-      target.parentNode.innerHTML = `${media.likes}<img class="media__likes__liked" src="public/img/icon/like.svg" /></p>`
+      target.parentNode.innerHTML = `${media.likes}<img class="media__likes__liked" src="public/img/icon/like-liked.svg" /></p>`
       break;
     }
   }

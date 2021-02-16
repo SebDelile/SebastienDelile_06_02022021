@@ -86,7 +86,7 @@
     padding: 0.75rem 0 1.25rem 0;
     font-size: 1.5rem;
     font-weight: 400;
-    color: map-get($color, tertiary);
+    color: map-get($color, primary);
   }
   &__command {
     height: 3rem;

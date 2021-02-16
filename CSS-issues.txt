@@ -2,15 +2,16 @@ common
 
 
 index
-- titre H1 dépasse sur keyword à résolution moyenne
-- active sur les keyword
+v titre H1 dépasse sur keyword à résolution moyenne
+v active sur les keyword
 
 photographer
-- defaut alignement vertical légende de média
-- ajouter un margin left au prix dans les média
+v defaut alignement vertical légende de média
+v ajouter un margin left au prix dans les média
 - lightbox : photo ouverte en petit sur chrome, titre non aligné avec photo
-- profile__likes : passer en inline-flex et whitespace pre
-- mettre une classe media__likes__liked
-- sort : class button n'existe plus
-- sort : ne pas déclaer les média (position absolute ?)
-- sort criteria ajouter minimum width 11.5rem et flex space between
+v profile__likes : passer en inline-flex et whitespace pre
+v mettre une classe media__likes__liked
+v sort : class button n'existe plus
+v sort : ne pas déclaer les média (position absolute ?)
+v sort criteria ajouter minimum width 11.5rem et flex space between
+- faire le tri des couleurs

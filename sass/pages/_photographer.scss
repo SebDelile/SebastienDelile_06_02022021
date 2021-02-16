@@ -17,12 +17,12 @@
   &__name {
     font-size: 4rem;
     font-weight: 400;
-    color: map-get($color, secondary);
+    color: map-get($color, tertiary);
   }
   &__location {
     font-size: 1.5rem;
     font-weight: 400;
-    color: map-get($color, tertiary);
+    color: map-get($color, primary);
   }
   &__quote {
     font-size: 1.125rem;
@@ -42,6 +42,7 @@
     justify-self: start;
     align-self: start;
     margin: 0.5rem 1rem;
+    z-index: 2;
   }
   &__picture {
     width: 12.5rem;
@@ -58,10 +59,12 @@
     background-color: map-get($color, secondary);
     border-radius: 0.3125rem 0.3125rem 0 0;
     white-space:nowrap;
+    z-index: 3;
   }
   &__likes,
   &__price {
-    display: inline-block;
+    display: inline-flex;
+    white-space: pre;
     font-size: 1.5rem;
     font-weight: 500;
     color: black;
@@ -93,16 +96,12 @@
           bottom: 2rem;
           left: 50%;
           transform: translateX(-50%);
-          z-index: 1;
         }
         &__moreinfo {
           position: absolute;
           left: 50%;
           right: unset;
           transform: translateX(-50%);
-          background-color: map-get($color, secondary);
-          border-radius: 0.3125rem 0.3125rem 0 0;
-          z-index: 2;
         }
       }
       }
@@ -151,6 +150,8 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
+  height: 4.6525rem;
+  
   &__label {
     font-size: 1.125rem;
     font-weight: 700;
@@ -158,13 +159,7 @@
     padding-right: 1.5rem;
     margin-top: 0.75rem;
   }
-  &__button {
-    img {
-      padding-left: 1.5rem;
-    }
-  }
   &__criterialist {
-    /*display: none;*/
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: repeat(3, auto);
@@ -173,12 +168,19 @@
     align-items: center;
     border-radius: 0.3125rem;
     background-color: map-get($color, primary);
+    z-index: 2;
   }
   &__criteria {
     color: white;
     font-size: 1.25rem;
     position: relative;
-    padding: 1.5rem 1.25rem;
+    height : 4.625rem;
+    width: 12rem;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
     &:first-child::after {
       content: url("../img/icon/menu-closed.svg");
       padding-left: 2rem;
@@ -220,19 +222,23 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
   }
   &__title {
     flex: 1;
     font-size: 1.5rem;
     font-weight: 400;
-    color: map-get($color, tertiary);
+    color: map-get($color, primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   &__price {
     flex: none;
-    padding-right: 0.9rem;
+    padding: 0 0.9rem;
     font-size: 1.5rem;
     font-weight: 500;
-    color: map-get($color, tertiary);
+    color: map-get($color, primary);
   }
   &__likes {
     flex: none;
@@ -242,9 +248,18 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    position: relative;
+    padding-right : 1.5rem;
+    height: 1.75rem;
     img {
-      height: 1.14rem;
-      padding-left: 0.3rem;
+      /*absolute position to avoid shift during the frame when the liked icon is loaded*/
+      height: 1.25rem;
+      position: absolute;
+      right: 0;
+      top : calc((1.75rem - 1.25rem) / 2); /*(height of parent - height of img / 2)*/
+    }
+    &__liked {
+      animation: liked 0.6s both;
     }
   }
 }

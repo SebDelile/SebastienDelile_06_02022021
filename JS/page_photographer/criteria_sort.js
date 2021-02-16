@@ -18,7 +18,7 @@ export function openCloseCriteriaSort() {
   if (criteriaButton.getAttribute("aria-expanded") === "false") {
     criteriaButton.setAttribute("aria-expanded", "true");
     for (let criteria of criterias) {
-      criteria.style.display = "block";
+      criteria.style.display = "flex";
     }
   } else {
     criteriaButton.setAttribute("aria-expanded", "false");
