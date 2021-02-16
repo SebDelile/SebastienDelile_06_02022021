@@ -10,19 +10,19 @@
 
   <body>
     <header class="header">
-      <a href="index.html"><img class="header__logo" src="public/img/logo-Fisheye.svg" alt="logo FishEye" /></a>
+      <a class="header__homepagelink" href="index.html"><img class="header__logo" src="public/img/logo-Fisheye.svg" alt="Page d'accueil de FishEye" /></a>
     </header>
 
     <main class="main">
-      <h1 class="main__title sr-only"></h1>
       <section class="profile">
-        <h2 class="Profile__title sr-only">Profil</h2>
+        <h1 class="profile__title hidden">Profil</h1>
         <article class="profile__info">
-          <h3 class="profile__name"></h3>
-          <p class="profile__location"></p>
-          <p class="profile__quote"></p>
-          <ul class="profile__taglist">
-          </ul>
+          <h2 class="profile__name"></h2>
+          <div class="profile__text">
+            <p class="profile__location"></p>
+            <p class="profile__quote"></p>
+          </div>
+          <ul class="profile__taglist"></ul>
         </article>
         <button class="profile__contact" type="button">Contactez-moi</button>
         <img class="profile__picture" src="" alt="" />
@@ -36,9 +36,10 @@
         <aside class="sort">
           <p class="sort__label">Trier par</p>
           <ul class="sort__criterialist" aria-expanded="false">
-            <li class="sort__criteria">Popularité</li>
-            <li class="sort__criteria">Date</li>
-            <li class="sort__criteria">Titre</li>
+            <li class="sort__criteria" tabindex="0">Popularité<img class="sort__icon" src="public/img/icon/menu-closed.svg"></li>
+            <li class="sort__criteria" tabindex="0">Date</li>
+            <li class="sort__criteria" tabindex="0">Titre</li>
+            
           </ul>
         </aside>
         <article class="portfolio__grid">
@@ -47,45 +48,47 @@
       </section>
     </main>
     <dialog class="modal form__modal">
-      <h2 class="modal__title sr-only">Formulaire de contact</h2>
+      <h2 class="modal__title hidden">Formulaire de contact</h2>
       <form class="form">
-        <h3 class="form__title">Contactez-moi</h3>
-        <h3 class="form__subtitle">Ellen-Rose Wilkens</h3>
+        <div class="form__head">
+          <h3 class="form__title">Contactez-moi</h3>
+          <h3 class="form__subtitle">Ellen-Rose Wilkens</h3>
+        </div>
         <div class="form__field">
           <label class="form__label" for="firstname">Prénom</label>
           <input class="form__input" type="text" id="firstname" name="firstname" required minlength="2" />
-          <img class="form__validity" src="public/img/icon/warning.svg">
+          <img class="form__validity" src="public/img/icon/warning.svg" />
         </div>
         <div class="form__field">
           <label class="form__label" for="lastname">Nom</label>
           <input class="form__input" type="text" id="lastname" name="lastname" required minlength="2" />
-          <img class="form__validity" src="public/img/icon/warning.svg">
+          <img class="form__validity" src="public/img/icon/warning.svg" />
         </div>
         <div class="form__field">
           <label class="form__label" for="email">Email</label>
           <input class="form__input" type="email" id="email" name="email" required />
-          <img class="form__validity" src="public/img/icon/warning.svg">
+          <img class="form__validity" src="public/img/icon/warning.svg" />
         </div>
         <div class="form__field">
           <label class="form__label" for="message">Votre message</label>
           <textarea class="form__input form__input--area" id="message" name="message" required minlength="10"></textarea>
-          <img class="form__validity" src="public/img/icon/warning.svg">
+          <img class="form__validity" src="public/img/icon/warning.svg" />
         </div>
         <button class="form__submit" type="submit">Envoyer</button>
-        <img class="form__close" src="public/img/icon/modal-close-button-alt.svg" />
+        <img class="form__close" src="public/img/icon/modal-close-button-alt.svg" tabindex="0"/>
         <div class="form__submitted">
           <p>Votre message a bien été envoyé</p>
         </div>
       </form>
     </dialog>
     <dialog class="modal lightbox__modal">
-      <h2 class="modal__title sr-only">Aperçu des média</h2>
+      <h2 class="modal__title hidden">Aperçu des média</h2>
       <div class="lightbox">
         <img class="lightbox__media" src="public/img/media/243/full/Animals_Rainbow.jpg" />
         <h3 class="lightbox__title">Arc-en-ciel</h3>
         <img class="lightbox__command lightbox__command__backward" src="public/img/icon/modal-left-button.svg" />
         <img class="lightbox__command lightbox__command__foreward" src="public/img/icon/modal-right-button.svg" />
-        <img class="lightbox__close" src="public/img/icon/modal-close-button.svg" />
+        <img class="lightbox__close" src="public/img/icon/modal-close-button.svg" tabindex="0" />
       </div>
     </dialog>
     <script type="module" src="./JS/main_photographer.js"></script>

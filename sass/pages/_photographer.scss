@@ -19,15 +19,23 @@
     font-weight: 400;
     color: map-get($color, tertiary);
   }
+  &__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
   &__location {
     font-size: 1.5rem;
     font-weight: 400;
     color: map-get($color, primary);
+    margin-bottom: 0.5rem;
   }
   &__quote {
     font-size: 1.125rem;
     font-weight: 400;
     color: map-get($color, contrastFore);
+    margin-bottom: 0.5rem;
   }
   &__taglist {
     display: flex;
@@ -43,6 +51,7 @@
     align-self: start;
     margin: 0.5rem 1rem;
     z-index: 2;
+    cursor: pointer;
   }
   &__picture {
     width: 12.5rem;
@@ -58,7 +67,7 @@
     right: 2.25rem;
     background-color: map-get($color, secondary);
     border-radius: 0.3125rem 0.3125rem 0 0;
-    white-space:nowrap;
+    white-space: nowrap;
     z-index: 3;
   }
   &__likes,
@@ -74,6 +83,9 @@
     &__name {
       font-size: 2.25rem;
     }
+    &__location {
+      margin-bottom: 1rem;
+    }
     @media only screen and (max-width: 62.5rem) {
       &__location,
       &__quote,
@@ -86,26 +98,29 @@
           height: 9rem;
         }
         @media only screen and (max-width: 57rem) {
-        background-color: white;
-        padding: 0;
-        grid-template-columns: auto auto;
-        &__contact {
-          padding: 0.35rem 1rem;
-          margin: 0;
-          position: fixed;
-          bottom: 2rem;
-          left: 50%;
-          transform: translateX(-50%);
+          background-color: white;
+          padding: 0;
+          grid-template-columns: auto auto;
+          &__contact {
+            padding: 0.35rem 1rem;
+            margin: 0;
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+          }
+          &__moreinfo {
+            position: absolute;
+            left: 50%;
+            right: unset;
+            transform: translateX(-50%);
+          }
         }
-        &__moreinfo {
-          position: absolute;
-          left: 50%;
-          right: unset;
-          transform: translateX(-50%);
-        }
-      }
       }
       @media only screen and (max-width: 35rem) {
+        &__location {
+          margin-bottom: 0.5rem;
+        }
         &__taglist {
           flex-wrap: wrap;
           justify-content: flex-start;
@@ -151,7 +166,6 @@
   justify-content: flex-start;
   align-items: flex-start;
   height: 4.6525rem;
-  
   &__label {
     font-size: 1.125rem;
     font-weight: 700;
@@ -174,16 +188,33 @@
     color: white;
     font-size: 1.25rem;
     position: relative;
-    height : 4.625rem;
+    height: 4.625rem;
     width: 12rem;
     padding: 0 1.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    &:first-child::after {
-      content: url("../img/icon/menu-closed.svg");
-      padding-left: 2rem;
+    cursor: pointer;
+    &__icon {
+      position: absolute;
+      right: 2rem;
+      top: calc((4.625rem - 0.75rem) / 2); /*verically centred (height of criteria - height of icon) / 2*/
+      height: 0.75rem;
+    }
+    &:hover,
+    &:focus {
+      color: black;
+      background-color: map-get($color, secondary);
+      outline: none;
+      img {
+        filter: invert(100%);
+      }
+    }
+    &:first-child {
+      border-radius: 0.3125rem 0.3125rem 0 0;
+    }
+    &:last-child {
+      border-radius: 0 0 0.3125rem 0.3125rem;
     }
     &:not(:first-child) {
       display: none;
@@ -210,6 +241,11 @@
     object-fit: cover;
     border-radius: 0.3125rem;
     height: 18.75rem;
+    cursor: pointer;
+    &:hover, &:focus {
+      filter: drop-shadow( 0 0 0.5rem map-get($color, primary));
+      outline: none;
+    }
     @media only screen and (max-width: 44rem) {
       height: calc(0.567 * 0.9 * 100vw); /*ratio * width taking into account body margin*/
       @media only screen and (max-width: 20rem) {
@@ -249,17 +285,26 @@
     justify-content: flex-start;
     align-items: center;
     position: relative;
-    padding-right : 1.5rem;
+    padding-right: 1.5rem;
     height: 1.75rem;
     img {
       /*absolute position to avoid shift during the frame when the liked icon is loaded*/
       height: 1.25rem;
       position: absolute;
       right: 0;
-      top : calc((1.75rem - 1.25rem) / 2); /*(height of parent - height of img / 2)*/
+      top: calc((1.75rem - 1.25rem) / 2); /*(height of parent - height of img / 2)*/
+      cursor: pointer;
+      &:hover, &:focus {
+        filter: drop-shadow( 0 0 0.5rem map-get($color, primary));
+        outline: none;
+      }
     }
-    &__liked {
+    .media__likes &__liked { /*.media__likes is here to enhance specificity for cursor property*/
       animation: liked 0.6s both;
+      cursor: default;
+      &:hover, &:focus {
+        filter: unset;
+      }
     }
   }
 }

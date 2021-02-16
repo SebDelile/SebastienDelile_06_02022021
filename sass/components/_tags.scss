@@ -9,9 +9,19 @@
     font-size: 0.75rem;
     font-weight: 500;
     color: map-get($color, primary);
+    &:hover, &:focus {
+      color: white;
+      background-color: map-get($color, primary);
+      outline: none;
+    }
   }
 
   .tagON {
     color:black;
     background-color: map-get($color, secondary);
+    &:hover, &:focus {
+      color: white;
+      background-color: map-get($color, secondary);
+      outline: none;
+    }
   }

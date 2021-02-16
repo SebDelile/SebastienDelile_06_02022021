@@ -8,6 +8,14 @@ import { sortCriterias, mediaList } from "../main_photographer.js";
 //------------------------------- Intermediate stages ----------------------------------------
 //--------------------------------------------------------------------------------------------
 
+function reorganizeCriteriaList(target) {
+  target.parentNode.prepend(target); // Selected criteria is now first of the list
+  for (let criteria of sortCriterias) {
+    criteria.innerHTML = criteria.textContent; //delete icon for the one who had it
+  }
+  target.innerHTML = `${target.textContent}<img class="sort__icon" src="public/img/icon/menu-closed.svg">`; //give the icon to the new first of the list
+}
+
 //--------------------------------------------------------------------------------------------
 //----------------------------------- Export(s) ----------------------------------------------
 //--------------------------------------------------------------------------------------------
@@ -15,13 +23,16 @@ import { sortCriterias, mediaList } from "../main_photographer.js";
 export function openCloseCriteriaSort() {
   const criteriaButton = document.querySelector(".sort__criterialist");
   const criterias = criteriaButton.getElementsByClassName("sort__criteria");
+  let icon = criteriaButton.querySelector(".sort__icon");
   if (criteriaButton.getAttribute("aria-expanded") === "false") {
     criteriaButton.setAttribute("aria-expanded", "true");
+    icon.setAttribute("src", "public/img/icon/menu-opened.svg");
     for (let criteria of criterias) {
       criteria.style.display = "flex";
     }
   } else {
     criteriaButton.setAttribute("aria-expanded", "false");
+    icon.setAttribute("src", "public/img/icon/menu-closed.svg");
     for (let criteria of criterias) {
       criteria.style.display = "";
     }
@@ -61,7 +72,6 @@ export function sortAction(target) {
       // sort the media object according to the table
       document.getElementById(mediaList[i].id).style.order = i;
     }
-    target.parentNode.prepend(target); // Selected criteria is now first of the list
-    console.log(mediaList);
+    reorganizeCriteriaList(target);
   }
 }

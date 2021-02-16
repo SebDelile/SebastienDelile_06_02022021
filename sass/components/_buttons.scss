@@ -6,4 +6,9 @@ button {
     color: white;
     font-size: 1.25rem;
     white-space:nowrap;
+    &:hover, &:focus {
+        color : black;
+        background-color: map-get($color, secondary);
+        cursor: pointer;
+    }
 }

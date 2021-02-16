@@ -58,12 +58,12 @@ export function portfolioGenerator() {
     let element = document.createElement("div");
     element.classList.add("media");
     element.setAttribute("id", media.id);
-    element.innerHTML = `<img class="media__img" src="${media.minipath}" alt="" />
+    element.innerHTML = `<img class="media__img" src="${media.minipath}" alt="" tabindex="0" />
         <p class="media__description sr-only"></p>
         <div class="media__legend">
           <h3 class="media__title">${media.title}</h3>
           <p class="media__price">${media.price} €</p>
-          <p class="media__likes">${media.likes}<img src="public/img/icon/like.svg" /></p>
+          <p class="media__likes">${media.likes}<img src="public/img/icon/like.svg" alt="likes"/></p>
           <p class="media__date hidden">${media.date}</p>
         </div>`;
 
@@ -79,7 +79,7 @@ export function incrementLikes(target) {
     if (media.id === mediaId) {
       media.likes++;
       //changing the innerHTML with new value as great effect to remove the event listener on the <img> !
-      target.parentNode.innerHTML = `${media.likes}<img class="media__likes__liked" src="public/img/icon/like-liked.svg" /></p>`
+      target.parentNode.innerHTML = `${media.likes}<img class="media__likes__liked" src="public/img/icon/like-liked.svg" alt="likes - liked" /></p>`
       break;
     }
   }

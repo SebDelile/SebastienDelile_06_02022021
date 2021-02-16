@@ -28,11 +28,11 @@ fetch("./public/FishEyeDataFR.json")
   })
   //Adding event listener on the tags
   .then(function () {
-    const tags = document.querySelectorAll(".tag a");
+    const tags = document.getElementsByClassName("tag");
     for (let tag of tags) {
       tag.addEventListener("click", function (event) {
         event.preventDefault();
-        tagSort(event.target.parentNode);
+        tagSort(event.target);
       });
     }
   })

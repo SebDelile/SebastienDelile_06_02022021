@@ -102,6 +102,11 @@ button {
   font-size: 1.25rem;
   white-space: nowrap;
 }
+button:hover, button:focus {
+  color: black;
+  background-color: #DB8876;
+  cursor: pointer;
+}
 
 .modal {
   display: none;
@@ -137,6 +142,25 @@ button {
   animation: fade-shift 600ms reverse both;
 }
 
+.quicklink:focus {
+  position: fixed;
+  display: block;
+  top: 0.375rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.375rem;
+  background-color: #DB8876;
+  border-radius: 0.3125rem;
+  font-size: 1.125rem;
+  /*to remove sr-only properties*/
+  width: unset;
+  height: unset;
+  clip: unset;
+  margin: unset;
+  overflow: unset;
+  outline: none;
+}
+
 .tag {
   display: flex;
   justify-content: center;
@@ -149,10 +173,20 @@ button {
   font-weight: 500;
   color: #901C1C;
 }
+.tag:hover, .tag:focus {
+  color: white;
+  background-color: #901C1C;
+  outline: none;
+}
 
 .tagON {
   color: black;
   background-color: #DB8876;
+}
+.tagON:hover, .tagON:focus {
+  color: white;
+  background-color: #DB8876;
+  outline: none;
 }
 
 .header {
@@ -166,6 +200,10 @@ button {
   justify-content: space-between;
   align-items: center;
   min-height: calc(2* (1.3325 *0.75rem + 2 * (1px + 0.1rem + 0.1rem)));
+}
+.header__homepagelink:hover, .header__homepagelink:focus {
+  filter: drop-shadow(0 0 0.5rem black);
+  outline: none;
 }
 .header__logo {
   width: 12.5rem;
@@ -275,12 +313,22 @@ button {
   padding: 1rem;
   resize: vertical;
 }
+.form__input:hover, .form__input:focus {
+  outline: none;
+  box-shadow: inset 0 0 0.5rem 0.25rem #757575;
+}
 .form__submit {
   margin: 1.5rem 0.25rem;
   /*0.25rem is to compensate input border*/
   padding: 1.5rem 3rem;
   font-size: 1.125rem;
   font-weight: 700;
+}
+.form__submit:hover, .form__submit:focus {
+  /*due to background color, the default hover of button is not suitable*/
+  background-color: #901C1C;
+  color: white;
+  box-shadow: 0 0 0.5rem 0.25rem black;
 }
 .form__close {
   position: absolute;
@@ -289,6 +337,11 @@ button {
   width: 2.625rem;
   height: 2.625rem;
   z-index: 1000;
+}
+.form__close:hover, .form__close:focus {
+  filter: drop-shadow(0 0 0.75rem black);
+  outline: none;
+  cursor: pointer;
 }
 .form__submitted {
   display: none;
@@ -331,7 +384,7 @@ button {
   }
   .form__input {
     height: 3.25rem;
-    padding: 0 3 0 0.75rem;
+    padding: 0 3rem 0 0.75rem;
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
   }
@@ -465,12 +518,22 @@ button {
   grid-area: right;
   justify-self: right;
 }
+.lightbox__command:hover, .lightbox__command:focus {
+  filter: drop-shadow(0 0 0.75rem black);
+  outline: none;
+  cursor: pointer;
+}
 .lightbox__close {
   position: absolute;
   top: 2.25rem;
   right: 2.5rem;
   width: 2.625rem;
   height: 2.625rem;
+}
+.lightbox__close:hover, .lightbox__close:focus {
+  filter: drop-shadow(0 0 0.75rem black);
+  outline: none;
+  cursor: pointer;
 }
 @media only screen and (max-width: 45rem) {
   .lightbox__title {
@@ -570,12 +633,20 @@ button {
 .card {
   width: 100%;
   padding: 2rem 0;
-}
-.card a {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+}
+.card__link, .card__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.card__link:hover, .card__link:focus {
+  filter: drop-shadow(0 0 0.5rem #901C1C);
+  outline: none;
 }
 .card__picture {
   width: 16rem;
@@ -632,15 +703,23 @@ button {
   font-weight: 400;
   color: #D3573C;
 }
+.profile__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
 .profile__location {
   font-size: 1.5rem;
   font-weight: 400;
   color: #901C1C;
+  margin-bottom: 0.5rem;
 }
 .profile__quote {
   font-size: 1.125rem;
   font-weight: 400;
   color: #525252;
+  margin-bottom: 0.5rem;
 }
 .profile__taglist {
   display: flex;
@@ -656,6 +735,7 @@ button {
   align-self: start;
   margin: 0.5rem 1rem;
   z-index: 2;
+  cursor: pointer;
 }
 .profile__picture {
   width: 12.5rem;
@@ -685,6 +765,9 @@ button {
 @media only screen and (max-width: 75rem) {
   .profile__name {
     font-size: 2.25rem;
+  }
+  .profile__location {
+    margin-bottom: 1rem;
   }
 }
 @media only screen and (max-width: 75rem) and (max-width: 62.5rem) {
@@ -720,6 +803,9 @@ button {
   }
 }
 @media only screen and (max-width: 75rem) and (max-width: 62.5rem) and (max-width: 35rem) {
+  .profile__location {
+    margin-bottom: 0.5rem;
+  }
   .profile__taglist {
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -797,10 +883,28 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
 }
-.sort__criteria:first-child::after {
-  content: url("../img/icon/menu-closed.svg");
-  padding-left: 2rem;
+.sort__criteria__icon {
+  position: absolute;
+  right: 2rem;
+  top: calc((4.625rem - 0.75rem) / 2);
+  /*verically centred (height of criteria - height of icon) / 2*/
+  height: 0.75rem;
+}
+.sort__criteria:hover, .sort__criteria:focus {
+  color: black;
+  background-color: #DB8876;
+  outline: none;
+}
+.sort__criteria:hover img, .sort__criteria:focus img {
+  filter: invert(100%);
+}
+.sort__criteria:first-child {
+  border-radius: 0.3125rem 0.3125rem 0 0;
+}
+.sort__criteria:last-child {
+  border-radius: 0 0 0.3125rem 0.3125rem;
 }
 .sort__criteria:not(:first-child) {
   display: none;
@@ -828,6 +932,11 @@ button {
   object-fit: cover;
   border-radius: 0.3125rem;
   height: 18.75rem;
+  cursor: pointer;
+}
+.media__img:hover, .media__img:focus {
+  filter: drop-shadow(0 0 0.5rem #901C1C);
+  outline: none;
 }
 @media only screen and (max-width: 44rem) {
   .media__img {
@@ -883,9 +992,19 @@ button {
   right: 0;
   top: calc((1.75rem - 1.25rem) / 2);
   /*(height of parent - height of img / 2)*/
+  cursor: pointer;
 }
-.media__likes__liked {
+.media__likes img:hover, .media__likes img:focus {
+  filter: drop-shadow(0 0 0.5rem #901C1C);
+  outline: none;
+}
+.media__likes .media__likes__liked {
+  /*.media__likes is here to enhance specificity for cursor property*/
   animation: liked 0.6s both;
+  cursor: default;
+}
+.media__likes .media__likes__liked:hover, .media__likes .media__likes__liked:focus {
+  filter: unset;
 }
 
 /*# sourceMappingURL=style.css.map */

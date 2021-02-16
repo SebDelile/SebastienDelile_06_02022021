@@ -19,12 +19,13 @@ export function profileGenerator(photographers) {
       profile.querySelector(".profile__quote").textContent = photographer.tagline;
       for (let tag of photographer.tags) {
         let Tag = tag.charAt(0).toUpperCase() + tag.substr(1); //1st letter uppercase
-        profile.querySelector(".profile__taglist").insertAdjacentHTML("beforeend", `<li class="profile__tag tag"><a href="index.html?${tag}">#${Tag}</a></li>`);
+        profile.querySelector(".profile__taglist").insertAdjacentHTML("beforeend", `<li class="profile__tag"><a class="tag" href="index.html?${tag}">#${Tag}</a></li>`);
       }
       profile.querySelector(".profile__picture").setAttribute("src", `./public/img/photographer-portraits/${photographer.portrait}`);
       profile.querySelector(".profile__picture").setAttribute("alt", `Portrait of ${photographer.name}`);
       profile.querySelector(".profile__price").textContent = `${photographer.price} €/j`;
-      document.querySelector(".main__title").textContent = `Page de ${photographer.name}`;
+      document.querySelector(".profile__title").textContent = `Page de ${photographer.name}`;
+      document.querySelector(".form__subtitle").textContent = photographer.name;
       document.title = `${photographer.name} - FishEye`
       break;
     }
