@@ -6,7 +6,7 @@ import { formValidity, formSubmission, submissionConfirmation } from "./page_pho
 import { profileGenerator, sumLikes } from "./page_photographer/profile_generator.js";
 import { portfolioGenerator, mediaListGenerator, incrementLikes } from "./page_photographer/portfolio_generator.js";
 import { lightboxMediaDisplay, lightboxChangeMedia } from "./page_photographer/lightbox.js";
-import {openCloseCriteriaSort, sortMedia} from "./page_photographer/criteria_sort.js"
+import {openCloseCriteriaSort, sortMedia, sortAction} from "./page_photographer/criteria_sort.js"
 
 //--------------------------------------------------------------------------------------------
 //----------------------------------- DOM elements -------------------------------------------
@@ -60,7 +60,6 @@ fetch("./public/FishEyeDataFR.json")
   .then(function (json) {
     mediaListGenerator(json.media);
     sortMedia(sortCriterias[0]);
-    console.log(sortCriterias[0].textcontent);
   })
   .then(function () {
     portfolioGenerator();
@@ -94,7 +93,7 @@ sortButton.addEventListener("click", function () {
 })
 for (let criteria of sortCriterias) {
   criteria.addEventListener("click", function(event){
-    sortMedia(event.target);
+    sortAction(event.target);
   })
 }
 

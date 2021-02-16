@@ -21,21 +21,33 @@ function Factory() {
   };
 }
 
-function IsImage (media) {
+function IsImage(media) {
   let imageElement = document.createElement("img");
   imageElement.classList.add("lightbox__media");
   imageElement.setAttribute("src", media.fullpath);
   imageElement.setAttribute("alt", "");
   return imageElement;
-};
-function IsVideo (media) {
+}
+function IsVideo(media) {
   let videoElement = document.createElement("video");
   videoElement.classList.add("lightbox__media");
   videoElement.setAttribute("src", media.fullpath);
   videoElement.setAttribute("controls", "");
   videoElement.textContent = `Votre navigateur ne permet pas de lire la vidéo. Mais vous pouvez toujours <a href="${media.fullpath}">la télécharger</a> !`;
   return videoElement;
-};
+}
+
+function titleAlignement() {
+  let lightbox = document.querySelector(".lightbox");
+  let mediaDisplayed = lightbox.querySelector(".lightbox__media");
+  let mediaTitle = lightbox.querySelector(".lightbox__title");
+  const mediaWidth = parseFloat(window.getComputedStyle(mediaDisplayed).width);
+  const lightboxWidth = parseFloat(window.getComputedStyle(lightbox).width);
+  const lightboxPadding = parseFloat(window.getComputedStyle(lightbox).paddingLeft);
+  let margin = (lightboxWidth - mediaWidth) / 2 - lightboxPadding;
+  mediaTitle.style.width = `${mediaWidth}px`;
+  mediaTitle.style.margin = `0 ${margin}px`;
+}
 
 //--------------------------------------------------------------------------------------------
 //----------------------------------- Export(s) ----------------------------------------------
@@ -48,8 +60,27 @@ export function lightboxMediaDisplay(mediaId) {
     let factory = new Factory();
     if (media.id === mediaId) {
       let mediaElement = factory.createMedia(media);
-      lightbox.querySelector(".lightbox__media").replaceWith(mediaElement);
-      lightbox.querySelector(".lightbox__title").textContent = media.title;
+      let mediaDisplayed = lightbox.querySelector(".lightbox__media");
+      let mediaTitle = lightbox.querySelector(".lightbox__title");
+      mediaDisplayed.replaceWith(mediaElement);
+      mediaTitle.textContent = media.title;
+      //alignement media/title :
+      mediaDisplayed = lightbox.querySelector(".lightbox__media"); // re affect the variable because replaceWith do not update
+      switch (mediaDisplayed.tagName) {
+        case "IMG":
+          mediaDisplayed.addEventListener("load", function () {
+            titleAlignement();
+          });
+          break;
+        case "VIDEO":
+          mediaDisplayed.addEventListener("loadeddata", function () {
+            titleAlignement();
+          });
+          break;
+      }
+      window.addEventListener("resize", function () {
+        titleAlignement();
+      });
       break;
     }
   }
@@ -65,7 +96,7 @@ export function lightboxChangeMedia(indexChange) {
     }
   }
   //determines the new media to display and return the corresponding ID
-  i = parseInt(i,10);
+  i = parseInt(i, 10);
   indexChange = parseInt(indexChange, 10);
   let newMedia;
   switch (i + indexChange) {

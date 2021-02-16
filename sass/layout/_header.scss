@@ -28,12 +28,13 @@
     padding-right: 14.5rem; /*need space for title main>h1* : 13.5rem + 1rem padding*/
     &__logo {
       width: 9.375rem;
+      margin : calc((3.048125rem - 2.34375rem) / 2) 0;// (height of H1 - height of logo) / 2
     }
     &__nav {
       padding: 0 0.5rem;
     }
     @media only screen and (max-width: 51rem) {
-      padding: 0 0; /*tag menu down to second line*/
+      padding: 0 1rem; /*tag menu down to second line*/
       flex-wrap: wrap;
       min-height: unset;
       margin-bottom: 0.5rem;

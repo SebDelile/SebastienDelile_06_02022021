@@ -18,6 +18,17 @@
     top: 0;
   }
 }
+@keyframes liked {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 *,
 *::after,
 *::before {
@@ -178,6 +189,7 @@ button {
   }
   .header__logo {
     width: 9.375rem;
+    margin: calc((3.048125rem - 2.34375rem) / 2) 0;
   }
   .header__nav {
     padding: 0 0.5rem;
@@ -185,7 +197,7 @@ button {
 }
 @media only screen and (max-width: 70rem) and (max-width: 51rem) {
   .header {
-    padding: 0 0;
+    padding: 0 1rem;
     /*tag menu down to second line*/
     flex-wrap: wrap;
     min-height: unset;
@@ -415,20 +427,18 @@ button {
   padding: 1.375rem;
   background-color: white;
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: auto 1fr auto;
   grid-template-rows: 1fr auto;
-  grid-template-areas: "left media right" ". title .";
+  grid-template-areas: "left media right" "title title title";
   justify-items: center;
   align-items: center;
-  justify-content: stretch;
+  justify-content: center;
   align-content: center;
   border-radius: 0.3125rem 0.3125rem 0 0;
 }
 .lightbox__media {
   grid-area: media;
   object-fit: contain;
-  justify-self: stretch;
-  align-self: stretch;
   min-width: 0;
   min-height: 0;
   max-width: 100%;
@@ -515,12 +525,8 @@ button {
 }
 @media only screen and (max-width: 70rem) {
   .index__title {
-    height: calc(2* (1.3325 *0.75rem + 2 * (1px + 0.1rem + 0.1rem)));
+    min-height: calc(2* (1.3325 *0.75rem + 2 * (1px + 0.1rem + 0.1rem)));
     /*2-lines nav height*/
-  }
-}
-@media only screen and (max-width: 70rem) and (max-width: 51rem) {
-  .index__title {
     right: 1rem;
     height: 2.34375rem;
     /*logo's height*/
@@ -580,7 +586,7 @@ button {
 .card__name {
   font-size: 2.25rem;
   font-weight: 400;
-  color: #DB8876;
+  color: #D3573C;
 }
 .card__location {
   font-size: 0.8125rem;
@@ -624,7 +630,7 @@ button {
 .profile__name {
   font-size: 4rem;
   font-weight: 400;
-  color: #DB8876;
+  color: #D3573C;
 }
 .profile__location {
   font-size: 1.5rem;
@@ -649,6 +655,7 @@ button {
   justify-self: start;
   align-self: start;
   margin: 0.5rem 1rem;
+  z-index: 2;
 }
 .profile__picture {
   width: 12.5rem;
@@ -665,9 +672,11 @@ button {
   background-color: #DB8876;
   border-radius: 0.3125rem 0.3125rem 0 0;
   white-space: nowrap;
+  z-index: 3;
 }
 .profile__likes, .profile__price {
-  display: inline-block;
+  display: inline-flex;
+  white-space: pre;
   font-size: 1.5rem;
   font-weight: 500;
   color: black;
@@ -702,16 +711,12 @@ button {
     bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 1;
   }
   .profile__moreinfo {
     position: absolute;
     left: 50%;
     right: unset;
     transform: translateX(-50%);
-    background-color: #DB8876;
-    border-radius: 0.3125rem 0.3125rem 0 0;
-    z-index: 2;
   }
 }
 @media only screen and (max-width: 75rem) and (max-width: 62.5rem) and (max-width: 35rem) {
@@ -762,6 +767,7 @@ button {
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
+  height: 4.6525rem;
 }
 .sort__label {
   font-size: 1.125rem;
@@ -770,11 +776,7 @@ button {
   padding-right: 1.5rem;
   margin-top: 0.75rem;
 }
-.sort__button img {
-  padding-left: 1.5rem;
-}
 .sort__criterialist {
-  /*display: none;*/
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: repeat(3, auto);
@@ -783,12 +785,18 @@ button {
   align-items: center;
   border-radius: 0.3125rem;
   background-color: #901C1C;
+  z-index: 2;
 }
 .sort__criteria {
   color: white;
   font-size: 1.25rem;
   position: relative;
-  padding: 1.5rem 1.25rem;
+  height: 4.625rem;
+  width: 12rem;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .sort__criteria:first-child::after {
   content: url("../img/icon/menu-closed.svg");
@@ -838,16 +846,20 @@ button {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 .media__title {
   flex: 1;
   font-size: 1.5rem;
   font-weight: 400;
   color: #901C1C;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .media__price {
   flex: none;
-  padding-right: 0.9rem;
+  padding: 0 0.9rem;
   font-size: 1.5rem;
   font-weight: 500;
   color: #901C1C;
@@ -860,10 +872,20 @@ button {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  position: relative;
+  padding-right: 1.5rem;
+  height: 1.75rem;
 }
 .media__likes img {
-  height: 1.14rem;
-  padding-left: 0.3rem;
+  /*absolute position to avoid shift during the frame when the liked icon is loaded*/
+  height: 1.25rem;
+  position: absolute;
+  right: 0;
+  top: calc((1.75rem - 1.25rem) / 2);
+  /*(height of parent - height of img / 2)*/
+}
+.media__likes__liked {
+  animation: liked 0.6s both;
 }
 
 /*# sourceMappingURL=style.css.map */

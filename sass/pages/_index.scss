@@ -13,12 +13,13 @@
     font-weight: 400;
     color: map-get($color, primary);
     @media only screen and (max-width: 70rem) {
-      height: $header-minheight; /*2-lines nav height*/
+      min-height: $header-minheight; /*2-lines nav height*/
+      right: 1rem;
+      height: 2.34375rem; /*logo's height*/
+      width: 13.5rem;
+      font-size: 1.5rem;
       @media only screen and (max-width: 51rem) {
-        right: 1rem;
-        height: 2.34375rem; /*logo's height*/
-        width: 13.5rem;
-        font-size: 1.5rem;
+
         @media only screen and (max-width: 30rem) {
           right: 0rem;
           width: 8rem;
@@ -66,12 +67,12 @@
   &__name {
     font-size: 2.25rem;
     font-weight: 400;
-    color: map-get($color, secondary);
+    color: map-get($color, tertiary);
   }
   &__location {
     font-size: 0.8125rem;
     font-weight: 400;
-    color: map-get($color, tertiary);
+    color: map-get($color, primary);
   }
   &__quote {
     font-size: 0.625rem;

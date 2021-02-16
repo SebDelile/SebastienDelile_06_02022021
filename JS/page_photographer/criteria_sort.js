@@ -18,7 +18,7 @@ export function openCloseCriteriaSort() {
   if (criteriaButton.getAttribute("aria-expanded") === "false") {
     criteriaButton.setAttribute("aria-expanded", "true");
     for (let criteria of criterias) {
-      criteria.style.display = "block";
+      criteria.style.display = "flex";
     }
   } else {
     criteriaButton.setAttribute("aria-expanded", "false");
@@ -29,62 +29,39 @@ export function openCloseCriteriaSort() {
 }
 
 export function sortMedia(target) {
-    if (target === sortCriterias[0]) {
-    //nothing : no sort to do, the event on the parent will close the menu
+  switch (target.textContent) {
+    case "Popularité":
+      mediaList.sort((a, b) => b.likes - a.likes); // sort from the more liked to the less liked
+      break;
+    case "Date":
+      mediaList.sort((a, b) => new Date(b.date) - new Date(a.date)); //sort form newest to oldest
+      break;
+    case "Titre":
+      mediaList.sort(function (a, b) {
+        // sort form 1st to last in alphabetical order
+        if (a.title.toLowerCase() < b.title.toLowerCase()) {
+          return -1;
+        }
+        if (a.title.toLowerCase() > b.title.toLowerCase()) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      break;
+  }
+}
+
+export function sortAction(target) {
+  if (target === sortCriterias[0]) {
+    //this criteria is already selected, no sort to do
   } else {
-    let sortedArray = [];
-    //need to sort mediaList according to criteria
-    switch (target.textContent) {
-      case "Popularité":
-        while (mediaList.length !== 0) {
-          let max = 0;
-          let maxIndex = 0;
-          for (let i in mediaList) {
-            if (mediaList[i].likes > max) {
-              max = mediaList[i].likes;
-              maxIndex = i;
-            }
-            console.log(mediaList[i].likes +", max:" + max)
-          }
-          console.log("end loop");
-          sortedArray.push(mediaList[maxIndex]);
-          mediaList.splice(maxIndex, 1);
-        }
-        break;
-      case "Date":
-        while (mediaList.length !== 0) {
-          let min = "2050-01-01";
-          let minIndex = 0;
-          for (let i in mediaList) {
-            if (mediaList[i].date.localeCompare(min) < 0) {
-              min = mediaList[i].date;
-              minIndex = i;
-            }
-            console.log(mediaList[i].date +", min:" + min)
-          }
-          console.log("end loop")
-          sortedArray.push(mediaList[minIndex]);
-          mediaList.splice(minIndex, 1);
-        }
-        break;
-      case "Titre":
-        while (mediaList.length !== 0) {
-          let min = "zzz";
-          let minIndex = 0;
-          for (let i in mediaList) {
-            if (mediaList[i].title.localeCompare(min) < 0) {
-              min = mediaList[i].title;
-              minIndex = i;
-            }
-          }
-          sortedArray.push(mediaList[minIndex]);
-          mediaList.splice(minIndex, 1);
-        }
-        break;
+    sortMedia(target); //sort the table mediaList
+    for (let i in mediaList) {
+      // sort the media object according to the table
+      document.getElementById(mediaList[i].id).style.order = i;
     }
-    for (let media of sortedArray) {
-        mediaList.push(media)
-    }
+    target.parentNode.prepend(target); // Selected criteria is now first of the list
     console.log(mediaList);
   }
 }
