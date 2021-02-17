@@ -56,8 +56,8 @@ function titleAlignement() {
 //Builds the media then inserts in replacement with old one and updates the title
 export function lightboxMediaDisplay(mediaId) {
   let lightbox = document.querySelector(".lightbox");
+  let factory = new Factory();
   for (let media of mediaList) {
-    let factory = new Factory();
     if (media.id === mediaId) {
       let mediaElement = factory.createMedia(media);
       let mediaDisplayed = lightbox.querySelector(".lightbox__media");

@@ -24,7 +24,7 @@
           </div>
           <ul class="profile__taglist"></ul>
         </article>
-        <button class="profile__contact" type="button">Contactez-moi</button>
+        <button class="profile__contact button" type="button">Contactez-moi</button>
         <img class="profile__picture" src="" alt="" />
         <aside class="profile__moreinfo">
           <p class="profile__likes"><img src="public/img/icon/like-alt.svg" /></p>
@@ -35,11 +35,12 @@
         <h2 class="porfolio__title sr-only">Portfolio</h2>
         <aside class="sort">
           <p class="sort__label">Trier par</p>
-          <ul class="sort__criterialist" aria-expanded="false">
-            <li class="sort__criteria" tabindex="0">Popularité<img class="sort__icon" src="public/img/icon/menu-closed.svg"></li>
-            <li class="sort__criteria" tabindex="0">Date</li>
-            <li class="sort__criteria" tabindex="0">Titre</li>
-            
+          <ul class="sort__criterialist" role="menu" aria-expanded="false">
+            <li class="sort__li">
+              <button class="sort__criteria" role="menuitemcheckbox" aria-checked="true">Popularité<img class="sort__icon" src="public/img/icon/menu-closed.svg" /></button>
+            </li>
+            <li class="sort__li"><button class="sort__criteria" role="menuitemcheckbox" aria-checked="false">Date</button></li>
+            <li class="sort__li"><button class="sort__criteria" role="menuitemcheckbox" aria-checked="false">Titre</button></li>
           </ul>
         </aside>
         <article class="portfolio__grid">
@@ -74,8 +75,8 @@
           <textarea class="form__input form__input--area" id="message" name="message" required minlength="10"></textarea>
           <img class="form__validity" src="public/img/icon/warning.svg" />
         </div>
-        <button class="form__submit" type="submit">Envoyer</button>
-        <img class="form__close" src="public/img/icon/modal-close-button-alt.svg" tabindex="0"/>
+        <button class="form__submit button" type="submit">Envoyer</button>
+        <button class="form__close" type="button"><img class="form__close__img" src="public/img/icon/modal-close-button-alt.svg" /></button>
         <div class="form__submitted">
           <p>Votre message a bien été envoyé</p>
         </div>
@@ -86,9 +87,9 @@
       <div class="lightbox">
         <img class="lightbox__media" src="public/img/media/243/full/Animals_Rainbow.jpg" />
         <h3 class="lightbox__title">Arc-en-ciel</h3>
-        <img class="lightbox__command lightbox__command__backward" src="public/img/icon/modal-left-button.svg" />
-        <img class="lightbox__command lightbox__command__foreward" src="public/img/icon/modal-right-button.svg" />
-        <img class="lightbox__close" src="public/img/icon/modal-close-button.svg" tabindex="0" />
+        <button class="lightbox__command lightbox__command__backward" type="button"><img class="lightbox__command__img" src="public/img/icon/modal-left-button.svg" /></button>
+        <button class="lightbox__command lightbox__command__foreward" type="button"><img class="lightbox__command__img" src="public/img/icon/modal-right-button.svg" /></button>
+        <button class="lightbox__close" type="button"><img class="lightbox__close__img" src="public/img/icon/modal-close-button.svg" /></button>
       </div>
     </dialog>
     <script type="module" src="./JS/main_photographer.js"></script>

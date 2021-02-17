@@ -6,7 +6,7 @@ import { formValidity, formSubmission, submissionConfirmation } from "./page_pho
 import { profileGenerator, sumLikes } from "./page_photographer/profile_generator.js";
 import { portfolioGenerator, mediaListGenerator, incrementLikes } from "./page_photographer/portfolio_generator.js";
 import { lightboxMediaDisplay, lightboxChangeMedia } from "./page_photographer/lightbox.js";
-import {openCloseCriteriaSort, sortMedia, sortAction} from "./page_photographer/criteria_sort.js"
+import {openCloseCriteriaSort, sortMediaList, sortAction} from "./page_photographer/criteria_sort.js"
 
 //--------------------------------------------------------------------------------------------
 //----------------------------------- DOM elements -------------------------------------------
@@ -59,18 +59,18 @@ fetch("./public/FishEyeDataFR.json")
   //Creation of the mediaList of the photographer
   .then(function (json) {
     mediaListGenerator(json.media);
-    sortMedia(sortCriterias[0]);
+    sortMediaList(sortCriterias[0]);
   })
   .then(function () {
     portfolioGenerator();
     sumLikes();
   })
   .then(function () {
-    const medias = document.getElementsByClassName("media__img");
+    const medias = document.getElementsByClassName("media__button");
     for (let media of medias) {
       media.addEventListener("click", function (event) {
         openModal(lightboxModal);
-        lightboxMediaDisplay(event.target.parentNode.getAttribute("id"));
+        lightboxMediaDisplay(this.parentNode.getAttribute("id"));
       });
     }
     const likes = document.getElementsByClassName("media__likes");

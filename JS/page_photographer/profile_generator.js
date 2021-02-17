@@ -19,7 +19,7 @@ export function profileGenerator(photographers) {
       profile.querySelector(".profile__quote").textContent = photographer.tagline;
       for (let tag of photographer.tags) {
         let Tag = tag.charAt(0).toUpperCase() + tag.substr(1); //1st letter uppercase
-        profile.querySelector(".profile__taglist").insertAdjacentHTML("beforeend", `<li class="profile__tag"><a class="tag" href="index.html?${tag}">#${Tag}</a></li>`);
+        profile.querySelector(".profile__taglist").insertAdjacentHTML("beforeend", `<li class="profile__tag"><a class="tag" href="index.html?tag=${tag}">#${Tag}</a></li>`);
       }
       profile.querySelector(".profile__picture").setAttribute("src", `./public/img/photographer-portraits/${photographer.portrait}`);
       profile.querySelector(".profile__picture").setAttribute("alt", `Portrait of ${photographer.name}`);

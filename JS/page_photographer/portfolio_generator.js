@@ -58,7 +58,9 @@ export function portfolioGenerator() {
     let element = document.createElement("div");
     element.classList.add("media");
     element.setAttribute("id", media.id);
-    element.innerHTML = `<img class="media__img" src="${media.minipath}" alt="" tabindex="0" />
+    element.innerHTML = `<button class="media__button" type="button">
+        <img class="media__img" src="${media.minipath}" alt="" />
+        </button>
         <p class="media__description sr-only"></p>
         <div class="media__legend">
           <h3 class="media__title">${media.title}</h3>

@@ -1,27 +1,28 @@
 .tag {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid map-get($color, border-tag);
-    margin: 0.1rem;
-    padding: 0.1rem 0.25rem;
-    border-radius: 1.5rem;
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: map-get($color, primary);
-    &:hover, &:focus {
-      color: white;
-      background-color: map-get($color, primary);
-      outline: none;
-    }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid map-get($color, border-tag);
+  margin: 0.1rem;
+  padding: 0.1rem 0.25rem;
+  border-radius: 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: map-get($color, primary);
+  &:hover,
+  &:focus {
+    color: white;
+    background-color: map-get($color, primary);
+    outline: none;
   }
-
-  .tagON {
-    color:black;
+  &[aria-checked="true"] {
+    color: black;
     background-color: map-get($color, secondary);
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       color: white;
       background-color: map-get($color, secondary);
       outline: none;
     }
   }
+}

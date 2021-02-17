@@ -10,7 +10,7 @@
   min-height: $header-minheight;
   &__homepagelink {
     &:hover, &:focus {
-      filter: drop-shadow( 0 0 0.5rem black);
+      filter: drop-shadow( 0 0 0.5rem map-get($color, primary));
       outline: none;
     }
   }

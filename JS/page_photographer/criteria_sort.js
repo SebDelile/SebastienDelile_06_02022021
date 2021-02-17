@@ -8,8 +8,25 @@ import { sortCriterias, mediaList } from "../main_photographer.js";
 //------------------------------- Intermediate stages ----------------------------------------
 //--------------------------------------------------------------------------------------------
 
+//take each media of mediaList and put the corresponding element at the end of portfolio. thus the first that was put at the end finishes at first place after loop is completed
+function sortMedia() {
+  const portfolio = document.querySelector(".portfolio__grid");
+  const mediaElements = document.getElementsByClassName("media");
+  for (let media of mediaList) {
+    for (let mediaElement of mediaElements) {
+      if (mediaElement.getAttribute("id") === media.id) {
+        portfolio.append(mediaElement);
+        break;
+      }
+    }
+  }
+}
+
+
 function reorganizeCriteriaList(target) {
-  target.parentNode.prepend(target); // Selected criteria is now first of the list
+  const liTarget = target.parentNode;
+  const ul = liTarget.parentNode;
+  ul.prepend(liTarget); // Selected criteria is now first of the list
   for (let criteria of sortCriterias) {
     criteria.innerHTML = criteria.textContent; //delete icon for the one who had it
   }
@@ -22,7 +39,7 @@ function reorganizeCriteriaList(target) {
 
 export function openCloseCriteriaSort() {
   const criteriaButton = document.querySelector(".sort__criterialist");
-  const criterias = criteriaButton.getElementsByClassName("sort__criteria");
+  const criterias = criteriaButton.getElementsByClassName("sort__li");
   let icon = criteriaButton.querySelector(".sort__icon");
   if (criteriaButton.getAttribute("aria-expanded") === "false") {
     criteriaButton.setAttribute("aria-expanded", "true");
@@ -39,7 +56,7 @@ export function openCloseCriteriaSort() {
   }
 }
 
-export function sortMedia(target) {
+export function sortMediaList(target) {
   switch (target.textContent) {
     case "Popularité":
       mediaList.sort((a, b) => b.likes - a.likes); // sort from the more liked to the less liked
@@ -67,11 +84,8 @@ export function sortAction(target) {
   if (target === sortCriterias[0]) {
     //this criteria is already selected, no sort to do
   } else {
-    sortMedia(target); //sort the table mediaList
-    for (let i in mediaList) {
-      // sort the media object according to the table
-      document.getElementById(mediaList[i].id).style.order = i;
-    }
+    sortMediaList(target); //sort the table mediaList
+    sortMedia(); // sort the media according to mediaList
     reorganizeCriteriaList(target);
   }
 }

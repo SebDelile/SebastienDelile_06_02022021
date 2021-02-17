@@ -9,20 +9,44 @@
   </head>
 
   <body>
-    <a class="quicklink sr-only" href="#main">Passer au contenu</a>
+    <a class="skiplink sr-only" href="#main">Passer au contenu</a>
     <header class="header">
       <a class="header__homepagelink" href="index.html"><img class="header__logo" src="public/img/logo-Fisheye.svg" alt="Page d'accueil de FishEye" /></a>
       <nav class="header__nav">
         <span class="header__nav__title sr-only">Tags</span>
-        <ul class="header__nav__taglist">
-          <li class="header__nav__tag"><a class="tag" href="#portrait">#Portrait</a></li>
-          <li class="header__nav__tag"><a class="tag" href="#art">#Art</a></li>
-          <li class="header__nav__tag"><a class="tag" href="#fashion">#Fashion</a></li>
-          <li class="header__nav__tag"><a class="tag" href="#architecture">#Architecture</a></li>
-          <li class="header__nav__tag"><a class="tag" href="#travel">#Travel</a></li>
-          <li class="header__nav__tag"><a class="tag" href="#sport">#Sport</a></li>
-          <li class="header__nav__tag"><a class="tag" href="#animals">#Animals</a></li>
-          <li class="header__nav__tag"><a class="tag" href="#events">#Events</a></li>
+        <ul class="header__nav__taglist" role="menubar">
+          <li>
+            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-portrait" type="button">#Portrait</button>
+            <span class="hidden" id="tagLabel-portrait">Filtrer la catégorie Portrait</span>
+          </li>
+          <li>
+            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-art" type="button">#Art</button>
+            <span class="hidden" id="tagLabel-art">Filtrer la catégorie Art</span>
+          </li>
+          <li>
+            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-fashion" type="button">#Fashion</button>
+            <span class="hidden" id="tagLabel-fashion">Filtrer la catégorie Fashion</span>
+          </li>
+          <li>
+            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-architecture" type="button">#Architecture</button>
+            <span class="hidden" id="tagLabel-architecture">Filtrer la catégorie Architecture</span>
+          </li>
+          <li>
+            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-travel" type="button">#Travel</button>
+            <span class="hidden" id="tagLabel-travel">Filtrer la catégorie Travel</span>
+          </li>
+          <li>
+            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-sport" type="button">#Sport</button>
+            <span class="hidden" id="tagLabel-sport">Filtrer la catégorie Sport</span>
+          </li>
+          <li>
+            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-animals" type="button">#Animals</button>
+            <span class="hidden" id="tagLabel-animals">Filtrer la catégorie Animals</span>
+          </li>
+          <li>
+            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-events" type="button">#Events</button>
+            <span class="hidden" id="tagLabel-events">Filtrer la catégorie Events</span>
+          </li>
         </ul>
       </nav>
     </header>

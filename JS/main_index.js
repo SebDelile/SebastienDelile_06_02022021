@@ -38,11 +38,11 @@ fetch("./public/FishEyeDataFR.json")
   })
   //if coming from photograph page via tag link : activate the tag
   .then(function(){
-    const url = "#" + window.location.search.slice(1);
+    const url = "#" + window.location.search.slice(5); //remove "?tag=" and add the "#"
     const taglist = document.querySelectorAll(".header__nav__tag");
     for (let tag of taglist) {
         if (tag.textContent.toUpperCase() === url.toUpperCase()) {
-            tag.querySelector("a").click();
+            tag.click();
             break;
         }
     }
