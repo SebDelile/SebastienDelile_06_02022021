@@ -22,16 +22,16 @@ export function createCard(photographer) {
     <div class="card__text" tabindex="0">
      <p class="card__location">${photographer.city}, ${photographer.country}</p>
      <p class="card__quote">${photographer.tagline}</p>
-     <p class="card__price">${photographer.price} €/j</p>
+     <p class="card__price">${photographer.price} <span aria-hidden="true">€/j</span><span class="sr-only">euros par jour</span></p>
     </div>
-    <ul class="card__taglist" role="menu">
-     <span class="card__taglist__title sr-only">Tags</span>
+    <button class="card__taglist__button tag__button sr-only" aria-labeledby="taglist-button-label" aria-checked="false" type="button"></button>
+    <ul class="card__taglist taglist" role="menu">
     </ul>`;
   for (let tag of photographer.tags) {
     let Tag = tag.charAt(0).toUpperCase() + tag.substr(1); //1st letter uppercase
     element.querySelector(".card__taglist").insertAdjacentHTML("beforeend", 
     `<li class="card__tag">
-      <button class="tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-${tag}" type="button">#${Tag}</button>
+      <button class="tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-${tag}" type="button" tabindex="-1">#${Tag}</button>
     </li>`);
   };
   document.querySelector(".main__grid").append(element);

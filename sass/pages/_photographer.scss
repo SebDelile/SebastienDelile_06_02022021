@@ -18,12 +18,14 @@
     font-size: 4rem;
     font-weight: 400;
     color: map-get($color, tertiary);
+    @include dropshadow(black);
   }
   &__text {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
+    @include dropshadow(black);
   }
   &__location {
     font-size: 1.5rem;
@@ -42,9 +44,20 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    @include dropshadow(black);
   }
   &__tag {
     font-size: 1.125rem;
+    .tag {
+      background-color: map-get($color, contrastBack);
+      &:hover,
+      &:focus {
+        color: white;
+        background-color: map-get($color, primary);
+        border-color: map-get($color, primary);
+        outline: none;
+      }
+    }
   }
   &__contact {
     justify-self: start;
@@ -60,6 +73,9 @@
     clip-path: circle(50%);
     align-self: start;
     justify-self: end;
+    &__wrapper {
+      @include dropshadow(black);
+    }
   }
   &__moreinfo {
     position: fixed;
@@ -69,6 +85,7 @@
     border-radius: 0.3125rem 0.3125rem 0 0;
     white-space: nowrap;
     z-index: 3;
+    @include dropshadow(black);
   }
   &__likes,
   &__price {
@@ -114,6 +131,9 @@
             left: 50%;
             right: unset;
             transform: translateX(-50%);
+          }
+          &__tag .tag {
+            background-color: white;
           }
         }
       }
@@ -172,6 +192,7 @@
     color: black;
     padding-right: 1.5rem;
     margin-top: 0.75rem;
+    @include dropshadow(primary);
   }
   &__criterialist {
     display: grid;
@@ -183,16 +204,16 @@
     border-radius: 0.3125rem;
     background-color: map-get($color, primary);
     z-index: 2;
-    &[aria-expanded=false] .sort__li:first-child .sort__criteria{
+    &[aria-expanded="false"] .sort__li:first-child .sort__criteria {
       border-radius: 0.3125rem;
     }
   }
   &__li {
     position: relative;
-    &:first-child .sort__criteria{
+    &:first-child .sort__criteria {
       border-radius: 0.3125rem 0.3125rem 0 0;
     }
-    &:last-child .sort__criteria{
+    &:last-child .sort__criteria {
       border-radius: 0 0 0.3125rem 0.3125rem;
     }
     &:not(:first-child) {
@@ -237,6 +258,8 @@
   margin: 1rem 0;
   &__button {
     width: 100%;
+    cursor: pointer;
+    @include dropshadow(primary);
   }
   &__img {
     display: block;
@@ -244,11 +267,6 @@
     object-fit: cover;
     border-radius: 0.3125rem;
     height: 18.75rem;
-    cursor: pointer;
-    &:hover, &:focus {
-      filter: drop-shadow( 0 0 0.5rem map-get($color, primary));
-      outline: none;
-    }
     @media only screen and (max-width: 44rem) {
       height: calc(0.567 * 0.9 * 100vw); /*ratio * width taking into account body margin*/
       @media only screen and (max-width: 20rem) {
@@ -271,6 +289,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    @include dropshadow(black);
   }
   &__price {
     flex: none;
@@ -278,6 +297,7 @@
     font-size: 1.5rem;
     font-weight: 500;
     color: map-get($color, primary);
+    @include dropshadow(black);
   }
   &__likes {
     flex: none;
@@ -290,22 +310,21 @@
     position: relative;
     padding-right: 1.5rem;
     height: 1.75rem;
+    @include dropshadow(primary);
+    cursor: pointer;
     img {
       /*absolute position to avoid shift during the frame when the liked icon is loaded*/
       height: 1.25rem;
       position: absolute;
       right: 0;
       top: calc((1.75rem - 1.25rem) / 2); /*(height of parent - height of img / 2)*/
-      cursor: pointer;
-      &:hover, &:focus {
-        filter: drop-shadow( 0 0 0.5rem map-get($color, primary));
-        outline: none;
-      }
     }
-    .media__likes &__liked { /*.media__likes is here to enhance specificity for cursor property*/
+    .media__likes &__liked {
+      /*.media__likes is here to enhance specificity for cursor property*/
       animation: liked 0.6s both;
       cursor: default;
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         filter: unset;
       }
     }

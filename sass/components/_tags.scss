@@ -9,20 +9,29 @@
   font-size: 0.75rem;
   font-weight: 500;
   color: map-get($color, primary);
+  background-color: white;
   &:hover,
   &:focus {
     color: white;
     background-color: map-get($color, primary);
+    border-color: map-get($color, primary);
     outline: none;
   }
   &[aria-checked="true"] {
     color: black;
     background-color: map-get($color, secondary);
+    border-color: map-get($color, secondary);
     &:hover,
     &:focus {
       color: white;
-      background-color: map-get($color, secondary);
       outline: none;
     }
   }
+  &__button {
+    &:focus + ul {
+      filter: drop-shadow( 0 0 0.5rem map-get($color, primary));
+    }
+  }
 }
+
+

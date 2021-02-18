@@ -22,10 +22,11 @@
             <p class="profile__location"></p>
             <p class="profile__quote"></p>
           </div>
-          <ul class="profile__taglist" tabindex="0"></ul>
+          <button class="profile__taglist__button tag__button sr-only" aria-label="Trouver les autres photographes selon la catégorie," type="button"></button>
+          <ul class="profile__taglist taglist" role="menubar"></ul>
         </article>
         <button class="profile__contact button" type="button">Contactez-moi</button>
-        <img class="profile__picture" src="" alt="" tabindex="0" />
+        <span class="profile__picture__wrapper" tabindex="0"><img class="profile__picture" src="" alt="" /></span>
         <aside class="profile__moreinfo" tabindex="0">
           <p class="profile__likes"></p>
           <p class="profile__price"></p>
@@ -45,6 +46,21 @@
         </aside>
         <article class="portfolio__grid">
           <!--Media are generated with JS-->
+          <!-- Example of media
+            <div class="media" id="id623534343">
+              <button class="media__button" type="button" aria-labelledby="id623534343-label">
+                <img class="media__img" src="./public/img/media/243/mini/Travel_Lonesome.jpg" alt="">
+              </button>
+              <p class="media__description sr-only"></p>
+              <div class="media__legend">
+                <h3 class="media__title" tabindex="0">Lonesome</h3>
+                <p class="media__price" tabindex="0">45 €</p>
+                <button class="media__likes" aria-label="88 mentions j'aime, ajouter mention j'aime">88<img src="public/img/icon/like.svg" alt="mentions j'aime"></button>
+                <p class="media__date hidden">2019-02-03</p>
+                <p class="media__description hidden" id="id623534343-label">personne sur le sommet d'un pic d'une montagne verdoyante en vue aérienne, ouvrir média</p>
+              </div>
+            </div>
+          -->
         </article>
       </section>
     </main>

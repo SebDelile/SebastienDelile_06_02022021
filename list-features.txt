@@ -24,10 +24,18 @@ ARIA:
 v passer les élément en button plutot que tab index (media, comman modale, tag
 v tagON via attribut plutot que class
 v span de label pour les tags
-- faire un groupe de tag pour entrer dans la liste ou la passer en 1 tab
-- form différente couleur pour hover/focus
-- all controls with keyboard
+v faire un groupe de tag pour entrer dans la liste ou la passer en 1 tab
+v form différente couleur pour hover/focus
+v all controls with keyboard
 - video controls avec keyboard
 - criteria : faire un input select
-- hover/focus du like et autres éléments
+v hover/focus du like et autres éléments
+- gestion de focus et parole nvda des 2 modales
+- balise langue pour les mots anglais
+- check des aria-label pour mettre une ponctuation.
 
+
+FINALISATION
+- réorganiser le JS
+- check de tous affichage sur chrome et firefox
+- check des fonctions (attention suppr les console.log)

@@ -11,50 +11,82 @@
   <body>
     <a class="skiplink sr-only" href="#main">Passer au contenu</a>
     <header class="header">
-      <a class="header__homepagelink" href="index.html" aria-label="Page d'accueil de FishEye" aria-current="page"><img class="header__logo" role="img" src="public/img/logo-Fisheye.svg" alt="logo FishEye" /></a>
-      <nav class="header__nav">
-        <span class="header__nav__title sr-only">Tags</span>
-        <ul class="header__nav__taglist" role="menubar">
+      <a class="header__homepagelink" href="index.html" aria-label="Page d'accueil de FishEye" aria-current="page"
+        ><img class="header__logo" role="img" src="public/img/logo-Fisheye.svg" alt="logo FishEye"
+      /></a>
+      <nav class="header__nav" role="navigation">
+        <span class="hidden" id="taglist-button-label">Filtrer par catégorie</span>
+        <button class="header__nav__button tag__button sr-only" aria-labeledby="taglist-button-label" aria-checked="false" type="button"></button>
+        <ul class="header__nav__taglist taglist" role="menubar">
           <li>
-            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-portrait" type="button">#Portrait</button>
-            <span class="hidden" id="tagLabel-portrait">Filtrer la catégorie Portrait</span>
+            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-portrait" type="button" tabindex="-1">#Portrait</button>
+            <span class="hidden" id="tagLabel-portrait">Portrait</span>
           </li>
           <li>
-            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-art" type="button">#Art</button>
-            <span class="hidden" id="tagLabel-art">Filtrer la catégorie Art</span>
+            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-art" type="button" tabindex="-1">#Art</button>
+            <span class="hidden" id="tagLabel-art">Art</span>
           </li>
           <li>
-            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-fashion" type="button">#Fashion</button>
-            <span class="hidden" id="tagLabel-fashion">Filtrer la catégorie Fashion</span>
+            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-fashion" type="button" tabindex="-1">#Fashion</button>
+            <span class="hidden" id="tagLabel-fashion">Fashion</span>
           </li>
           <li>
-            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-architecture" type="button">#Architecture</button>
-            <span class="hidden" id="tagLabel-architecture">Filtrer la catégorie Architecture</span>
+            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-architecture" type="button" tabindex="-1">#Architecture</button>
+            <span class="hidden" id="tagLabel-architecture">Architecture</span>
           </li>
           <li>
-            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-travel" type="button">#Travel</button>
-            <span class="hidden" id="tagLabel-travel">Filtrer la catégorie Travel</span>
+            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-travel" type="button" tabindex="-1">#Travel</button>
+            <span class="hidden" id="tagLabel-travel">Travel</span>
           </li>
           <li>
-            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-sport" type="button">#Sport</button>
-            <span class="hidden" id="tagLabel-sport">Filtrer la catégorie Sport</span>
+            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-sport" type="button" tabindex="-1">#Sport</button>
+            <span class="hidden" id="tagLabel-sport">Sport</span>
           </li>
           <li>
-            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-animals" type="button">#Animals</button>
-            <span class="hidden" id="tagLabel-animals">Filtrer la catégorie Animals</span>
+            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-animals" type="button" tabindex="-1">#Animals</button>
+            <span class="hidden" id="tagLabel-animals">Animals</span>
           </li>
           <li>
-            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-events" type="button">#Events</button>
-            <span class="hidden" id="tagLabel-events">Filtrer la catégorie Events</span>
+            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-events" type="button" tabindex="-1">#Events</button>
+            <span class="hidden" id="tagLabel-events">Events</span>
           </li>
         </ul>
       </nav>
     </header>
 
     <main class="index" id="main">
-      <h1 class="index__title">Nos photographes</h1>
+      <h1 class="index__title" tabindex="0">Nos photographes</h1>
       <section class="main__grid">
         <h2 class="main__grid__title sr-only">Liste des photographes</h2>
+        <!--article for each photographer are generated with JS-->
+        <!-- Example of an article
+          <article class="card" id="id243">
+            <a class="card__link" aria-label="Page de Mimi Keel" href="photographer.html?id243">
+              <img class="card__picture" src="./public/img/photographer-portraits/MimiKeel.jpg" alt="photographer profile picture">
+              <h3 class="card__name">Mimi Keel</h3>
+            </a>
+            <div class="card__text" tabindex="0">
+              <p class="card__location">London, UK</p>
+              <p class="card__quote">Voir le beau dans le quotidien</p>
+              <p class="card__price">400 €/j</p>
+            </div>
+            <ul class="card__taglist" role="menu">
+              <span class="card__taglist__title sr-only">Tags</span>
+              <li class="card__tag">
+                <button class="tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-portrait" type="button">#Portrait</button>
+              </li>
+              <li class="card__tag">
+                <button class="tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-events" type="button">#Events</button>
+              </li>
+              <li class="card__tag">
+                <button class="tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-travel" type="button">#Travel</button>
+              </li>
+              <li class="card__tag">
+                <button class="tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-animals" type="button">#Animals</button>
+              </li>
+            </ul>
+          </article>
+        -->
       </section>
     </main>
     <script type="module" src="./JS/main_index.js"></script>

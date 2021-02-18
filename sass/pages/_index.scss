@@ -12,6 +12,7 @@
     font-size: 2.25rem;
     font-weight: 400;
     color: map-get($color, primary);
+    @include dropshadow(tertiary);
     @media only screen and (max-width: 70rem) {
       min-height: $header-minheight; /*2-lines nav height*/
       right: 1rem;
@@ -63,10 +64,7 @@
     justify-content: flex-start;
   }
   &__link{
-    &:hover, &:focus {
-      filter: drop-shadow( 0 0 0.5rem map-get($color, primary));
-      outline: none;
-    }
+    @include dropshadow(primary);
   }
   &__picture {
     width: 16rem;
@@ -78,6 +76,9 @@
     font-size: 2.25rem;
     font-weight: 400;
     color: map-get($color, tertiary);
+  }
+  &__text{
+    @include dropshadow(primary);
   }
   &__location {
     font-size: 0.8125rem;
@@ -99,5 +100,6 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    @include dropshadow(primary);
   }
 }

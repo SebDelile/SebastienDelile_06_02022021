@@ -1,58 +1,3 @@
-/*.lightbox {
-  position: absolute;
-  width: 90%;
-  max-width: 81rem;
-  height: 96%;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 0;
-  background-color: white;
-  padding: 1.375rem 6.8125rem 3.5rem 5.875rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  &__wrapper {
-    min-width: 0;
-    max-width: 100%;
-    min-height: 0;
-    max-height: 100%;
-    position: relative;
-  }
-  &__media {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 0.3125rem;
-    margin: auto;
-  }
-  &__title {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    padding-top: 0.75rem;
-  }
-  &__command {
-    width: 1.85rem;
-    position: absolute;
-    top: 50%;
-  &__backward {
-    left: 0;
-    transform: translate(-3.85rem, -50%);
-  }
-  &__foreward {
-    left: 100%;
-    transform: translate(2rem, -50%);
-  }
-}
-  &__close {
-    position: absolute;
-    top: 1rem;
-    right: -4.375rem;
-    width: 2.625rem;
-    height: 2.625rem;
-  }
-}*/
-
 .lightbox {
   position: relative;
   width: 92%;
@@ -100,10 +45,7 @@
     &__img {
       width: 100%;
       height: 100%;
-      &:hover,
-      &:focus {
-        filter: drop-shadow(0 0 0.75rem black);
-      }
+      @include dropshadow (black)
     }
     &:hover,
     &:focus {
@@ -120,10 +62,7 @@
     &__img {
       width: 100%;
       height: 100%;
-      &:hover,
-      &:focus {
-        filter: drop-shadow(0 0 0.75rem black);
-      }
+      @include dropshadow (black)
     }
     &:hover,
     &:focus {

@@ -6,7 +6,8 @@ import { formValidity, formSubmission, submissionConfirmation } from "./page_pho
 import { profileGenerator, sumLikes } from "./page_photographer/profile_generator.js";
 import { portfolioGenerator, mediaListGenerator, incrementLikes } from "./page_photographer/portfolio_generator.js";
 import { lightboxMediaDisplay, lightboxChangeMedia } from "./page_photographer/lightbox.js";
-import {openCloseCriteriaSort, sortMediaList, sortAction} from "./page_photographer/criteria_sort.js"
+import { openCloseCriteriaSort, sortMediaList, sortAction } from "./page_photographer/criteria_sort.js";
+import { tagTabAcces, tagTabForbid } from "./common/tag_sort.js";
 
 //--------------------------------------------------------------------------------------------
 //----------------------------------- DOM elements -------------------------------------------
@@ -21,6 +22,8 @@ const lightboxModal = document.querySelector(".lightbox__modal");
 const lightboxModalClose = lightboxModal.querySelector(".lightbox__close");
 const lightboxBackward = lightboxModal.querySelector(".lightbox__command__backward");
 const lightboxForeward = lightboxModal.querySelector(".lightbox__command__foreward");
+const taglistButton = document.querySelector(".tag__button");
+const taglist = document.querySelector(".taglist");
 
 //--------------------------------------------------------------------------------------------
 //--------------------------------- On page loading ------------------------------------------
@@ -79,24 +82,34 @@ fetch("./public/FishEyeDataFR.json")
         incrementLikes(this);
         sumLikes();
       });
-    };
+    }
   });
 
 //--------------------------------------------------------------------------------------------
 //--------------------------------- Event listeners ------------------------------------------
 //--------------------------------------------------------------------------------------------
 
+//-------------------------------- tag access/forbide tab nav --------------------------------------------
+
+taglistButton.addEventListener("click", function (event) {
+  tagTabAcces(event.target);
+});
+
+taglist.addEventListener("focusout", function (event) {
+  if (!this.contains(event.relatedTarget)) {
+    tagTabForbid(this);
+  }
+});
 //-------------------------------- sort the media --------------------------------------------
 
 sortButton.addEventListener("click", function () {
   openCloseCriteriaSort();
-})
+});
 for (let criteria of sortCriterias) {
-  criteria.addEventListener("click", function(event){
+  criteria.addEventListener("click", function (event) {
     sortAction(event.target);
-  })
+  });
 }
-
 
 //------------------------------ Open/Close the modale ---------------------------------------
 contactButton.addEventListener("click", function () {

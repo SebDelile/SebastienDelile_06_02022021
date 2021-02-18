@@ -10,6 +10,21 @@
 //----------------------------------- Export(s) ----------------------------------------------
 //--------------------------------------------------------------------------------------------
 
+export function tagTabAcces(target) { //target is a button next to the taglist
+  const tags = target.parentNode.getElementsByClassName("tag");
+  for (let tag of tags) {
+    tag.removeAttribute("tabindex");
+  }
+  tags[0].focus();
+}
+
+export function tagTabForbid(target) {//target is the taglist
+  const tags = target.getElementsByClassName("tag");
+  for (let tag of tags) {
+    tag.setAttribute("tabindex", "-1");
+  }
+}
+
 export function tagSort(activatedTag) {
   const tags = document.getElementsByClassName("tag");
   const cards = document.getElementsByClassName("card");
@@ -20,7 +35,6 @@ export function tagSort(activatedTag) {
     if (tag.textContent.toUpperCase() === activatedTag.textContent.toUpperCase()) {
       if (sortMode === "true") {
         tag.setAttribute("aria-checked", "false");
-        console.log("is true");
       } else {
         tag.setAttribute("aria-checked", "true");
       }

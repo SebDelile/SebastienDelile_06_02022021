@@ -70,7 +70,6 @@ export function portfolioGenerator() {
           <p class="media__description hidden" id="${media.id}-label">${media.description}, ouvrir média</p>
         </div>`;
     portfolio.append(element);
-    console.log(media.description);
   }
 }
 

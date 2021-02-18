@@ -60,7 +60,11 @@
       padding: 1rem;
       resize: vertical;
     }
-    &:hover, &:focus {
+    &:hover {
+      outline: none;
+      box-shadow: inset 0 0 0.5rem 0.25rem map-get($color, tertiary);
+    }
+    &:focus {
       outline: none;
       box-shadow: inset 0 0 0.5rem 0.25rem map-get($color, quaternary);
     }
@@ -88,9 +92,7 @@
     &__img {
       width: 100%;
       height: 100%;
-      &:hover, &:focus {
-        filter: drop-shadow( 0 0 0.75rem black);
-      }
+      @include dropshadow (black);
     }
     &:hover, &:focus {
       outline: none;
