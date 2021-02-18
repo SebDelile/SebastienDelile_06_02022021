@@ -22,7 +22,7 @@ export function mediaListGenerator(medias) {
         price: media.price,
         date: media.date,
         likes: media.likes,
-        description: "string", //wait before json is filled with description
+        description: media.description,
       };
       //two possibilities whereas media is image or video
       if (media.image != null) {
@@ -67,9 +67,10 @@ export function portfolioGenerator() {
           <p class="media__price" tabindex="0">${media.price} €</p>
           <button class="media__likes" aria-label="${media.likes} mentions j'aime, ajouter mention j'aime">${media.likes}<img src="public/img/icon/like.svg" alt="mentions j'aime"/></button>
           <p class="media__date hidden">${media.date}</p>
-          <p class="media__description hidden" id="${media.id}-label">${media.description}</p>
+          <p class="media__description hidden" id="${media.id}-label">${media.description}, ouvrir média</p>
         </div>`;
     portfolio.append(element);
+    console.log(media.description);
   }
 }
 

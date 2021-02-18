@@ -21,11 +21,13 @@ v mouvement gauche/droite ligthbox
 v activation video avec controles ?
 
 ARIA:
-- passer les élément en button plutot que tab index (media, comman modale, tag
-- tagON via attribut plutot que class
-- span de label pour les tags
-- pour les tags passer le # en invisible pour les SR (soit en CSS before, soit dans une span avec une class not SR)
+v passer les élément en button plutot que tab index (media, comman modale, tag
+v tagON via attribut plutot que class
+v span de label pour les tags
+- faire un groupe de tag pour entrer dans la liste ou la passer en 1 tab
 - form différente couleur pour hover/focus
 - all controls with keyboard
 - video controls avec keyboard
+- criteria : faire un input select
+- hover/focus du like et autres éléments
 

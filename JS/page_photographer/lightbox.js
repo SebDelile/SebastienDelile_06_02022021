@@ -25,7 +25,7 @@ function IsImage(media) {
   let imageElement = document.createElement("img");
   imageElement.classList.add("lightbox__media");
   imageElement.setAttribute("src", media.fullpath);
-  imageElement.setAttribute("alt", "");
+  imageElement.setAttribute("alt", media.description);
   return imageElement;
 }
 function IsVideo(media) {
