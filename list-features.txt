@@ -22,6 +22,7 @@ v activation video avec controles ?
 
 ARIA:
 - passer les élément en button plutot que tab index (media, comman modale, tag
+- tagON via attribut plutot que class
 - span de label pour les tags
 - pour les tags passer le # en invisible pour les SR (soit en CSS before, soit dans une span avec une class not SR)
 - form différente couleur pour hover/focus

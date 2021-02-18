@@ -10,31 +10,31 @@
 
   <body>
     <header class="header">
-      <a class="header__homepagelink" href="index.html"><img class="header__logo" src="public/img/logo-Fisheye.svg" alt="Page d'accueil de FishEye" /></a>
+      <a class="header__homepagelink" href="index.html" aria-label="Page d'accueil de FishEye"><img class="header__logo" role="img" src="public/img/logo-Fisheye.svg" alt="logo FishEye" /></a>
     </header>
 
     <main class="main">
       <section class="profile">
         <h1 class="profile__title hidden">Profil</h1>
         <article class="profile__info">
-          <h2 class="profile__name"></h2>
-          <div class="profile__text">
+          <h2 class="profile__name" tabindex="0"></h2>
+          <div class="profile__text" tabindex="0">
             <p class="profile__location"></p>
             <p class="profile__quote"></p>
           </div>
-          <ul class="profile__taglist"></ul>
+          <ul class="profile__taglist" tabindex="0"></ul>
         </article>
         <button class="profile__contact button" type="button">Contactez-moi</button>
-        <img class="profile__picture" src="" alt="" />
-        <aside class="profile__moreinfo">
-          <p class="profile__likes"><img src="public/img/icon/like-alt.svg" /></p>
+        <img class="profile__picture" src="" alt="" tabindex="0" />
+        <aside class="profile__moreinfo" tabindex="0">
+          <p class="profile__likes"></p>
           <p class="profile__price"></p>
         </aside>
       </section>
       <section class="portfolio">
         <h2 class="porfolio__title sr-only">Portfolio</h2>
         <aside class="sort">
-          <p class="sort__label">Trier par</p>
+          <p class="sort__label" tabindex="0">Trier par</p>
           <ul class="sort__criterialist" role="menu" aria-expanded="false">
             <li class="sort__li">
               <button class="sort__criteria" role="menuitemcheckbox" aria-checked="true">Popularité<img class="sort__icon" src="public/img/icon/menu-closed.svg" /></button>

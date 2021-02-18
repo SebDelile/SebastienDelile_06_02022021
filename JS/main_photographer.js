@@ -75,8 +75,8 @@ fetch("./public/FishEyeDataFR.json")
     }
     const likes = document.getElementsByClassName("media__likes");
     for (let like of likes) {
-      like.querySelector("img").addEventListener("click", function (event) {
-        incrementLikes(event.target);
+      like.addEventListener("click", function (event) {
+        incrementLikes(this);
         sumLikes();
       });
     };

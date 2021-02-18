@@ -48,6 +48,7 @@ body {
   width: 90%;
   margin: 0 auto;
   position: relative;
+  overflow-x: hidden;
 }
 
 ul {
@@ -944,6 +945,9 @@ body * {
 
 .media {
   margin: 1rem 0;
+}
+.media__button {
+  width: 100%;
 }
 .media__img {
   display: block;

@@ -15,11 +15,11 @@ export function createCard(photographer) {
   element.classList.add("card");
   element.setAttribute("id", `id${photographer.id}`);
   element.innerHTML = `
-    <a class="card__link" href="photographer.html?id${photographer.id}">
+    <a class="card__link" aria-label="Page de ${photographer.name}" href="photographer.html?id${photographer.id}">
      <img class="card__picture" src="./public/img/photographer-portraits/${photographer.portrait}" alt="photographer profile picture" />
      <h3 class="card__name">${photographer.name}</h3>
     </a>
-    <div class="card__text">
+    <div class="card__text" tabindex="0">
      <p class="card__location">${photographer.city}, ${photographer.country}</p>
      <p class="card__quote">${photographer.tagline}</p>
      <p class="card__price">${photographer.price} €/j</p>
