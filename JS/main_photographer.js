@@ -102,8 +102,12 @@ taglist.addEventListener("focusout", function (event) {
 });
 //-------------------------------- sort the media --------------------------------------------
 
-sortButton.addEventListener("click", function () {
+sortButton.addEventListener("click", function (event) {
   openCloseCriteriaSort();
+  //for keybord navigation, focus stay on 1st element of the list (both on opening and closing)
+  if (event.detail === 0) {
+    sortCriterias[0].focus();
+  }
 });
 for (let criteria of sortCriterias) {
   criteria.addEventListener("click", function (event) {

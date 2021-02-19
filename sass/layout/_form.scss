@@ -60,14 +60,7 @@
       padding: 1rem;
       resize: vertical;
     }
-    &:hover {
-      outline: none;
-      box-shadow: inset 0 0 0.5rem 0.25rem map-get($color, tertiary);
-    }
-    &:focus {
-      outline: none;
-      box-shadow: inset 0 0 0.5rem 0.25rem map-get($color, quaternary);
-    }
+    @include insetboxshadow;
   }
   &__submit {
     margin: 1.5rem 0.25rem; /*0.25rem is to compensate input border*/
