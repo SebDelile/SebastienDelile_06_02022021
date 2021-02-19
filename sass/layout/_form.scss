@@ -60,12 +60,20 @@
       padding: 1rem;
       resize: vertical;
     }
+    @include insetboxshadow;
   }
   &__submit {
     margin: 1.5rem 0.25rem; /*0.25rem is to compensate input border*/
     padding: 1.5rem 3rem;
     font-size: 1.125rem;
     font-weight: 700;
+    &:hover, &:focus {
+      /*due to background color, the default hover of button is not suitable*/
+      background-color: map-get($color, primary);
+      color: white;
+      box-shadow: 0 0 0.5rem 0.25rem black;
+    }
+    
   }
   &__close {
     position: absolute;
@@ -74,6 +82,16 @@
     width: 2.625rem;
     height: 2.625rem;
     z-index: 1000;
+    &__img {
+      width: 100%;
+      height: 100%;
+      @include dropshadow (black);
+    }
+    &:hover, &:focus {
+      outline: none;
+      cursor: pointer;
+    }
+    
   }
   &__submitted {
     display: none;
@@ -114,7 +132,7 @@
     }
     &__input {
       height: 3.25rem;
-      padding: 0 3 0 0.75rem;
+      padding: 0 3rem 0 0.75rem;
       font-size: 1.25rem;
       margin-bottom: 0.5rem;
       &--area {

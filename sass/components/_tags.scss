@@ -1,17 +1,37 @@
 .tag {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid map-get($color, border-tag);
-    margin: 0.1rem;
-    padding: 0.1rem 0.25rem;
-    border-radius: 1.5rem;
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: map-get($color, primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid map-get($color, border-tag);
+  margin: 0.1rem;
+  padding: 0.1rem 0.25rem;
+  border-radius: 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: map-get($color, primary);
+  background-color: white;
+  &:hover,
+  &:focus {
+    color: white;
+    background-color: map-get($color, primary);
+    border-color: map-get($color, primary);
+    outline: none;
   }
-
-  .tagON {
-    color:black;
+  &[aria-checked="true"] {
+    color: black;
     background-color: map-get($color, secondary);
+    border-color: map-get($color, secondary);
+    &:hover,
+    &:focus {
+      color: white;
+      outline: none;
+    }
   }
+  &__button {
+    &:focus + ul {
+      filter: drop-shadow( 0 0 0.5rem map-get($color, primary));
+    }
+  }
+}
+
+

@@ -6,7 +6,8 @@ import { formValidity, formSubmission, submissionConfirmation } from "./page_pho
 import { profileGenerator, sumLikes } from "./page_photographer/profile_generator.js";
 import { portfolioGenerator, mediaListGenerator, incrementLikes } from "./page_photographer/portfolio_generator.js";
 import { lightboxMediaDisplay, lightboxChangeMedia } from "./page_photographer/lightbox.js";
-import {openCloseCriteriaSort, sortMedia, sortAction} from "./page_photographer/criteria_sort.js"
+import { openCloseCriteriaSort, sortMediaList, sortAction } from "./page_photographer/criteria_sort.js";
+import { tagTabAcces, tagTabForbid } from "./common/tag_sort.js";
 
 //--------------------------------------------------------------------------------------------
 //----------------------------------- DOM elements -------------------------------------------
@@ -21,6 +22,8 @@ const lightboxModal = document.querySelector(".lightbox__modal");
 const lightboxModalClose = lightboxModal.querySelector(".lightbox__close");
 const lightboxBackward = lightboxModal.querySelector(".lightbox__command__backward");
 const lightboxForeward = lightboxModal.querySelector(".lightbox__command__foreward");
+const taglistButton = document.querySelector(".tag__button");
+const taglist = document.querySelector(".taglist");
 
 //--------------------------------------------------------------------------------------------
 //--------------------------------- On page loading ------------------------------------------
@@ -59,44 +62,58 @@ fetch("./public/FishEyeDataFR.json")
   //Creation of the mediaList of the photographer
   .then(function (json) {
     mediaListGenerator(json.media);
-    sortMedia(sortCriterias[0]);
+    sortMediaList(sortCriterias[0]);
   })
   .then(function () {
     portfolioGenerator();
     sumLikes();
   })
   .then(function () {
-    const medias = document.getElementsByClassName("media__img");
+    const medias = document.getElementsByClassName("media__button");
     for (let media of medias) {
       media.addEventListener("click", function (event) {
         openModal(lightboxModal);
-        lightboxMediaDisplay(event.target.parentNode.getAttribute("id"));
+        lightboxMediaDisplay(this.parentNode.getAttribute("id"));
       });
     }
     const likes = document.getElementsByClassName("media__likes");
     for (let like of likes) {
-      like.querySelector("img").addEventListener("click", function (event) {
-        incrementLikes(event.target);
+      like.addEventListener("click", function (event) {
+        incrementLikes(this);
         sumLikes();
       });
-    };
+    }
   });
 
 //--------------------------------------------------------------------------------------------
 //--------------------------------- Event listeners ------------------------------------------
 //--------------------------------------------------------------------------------------------
 
+//-------------------------------- tag access/forbide tab nav --------------------------------------------
+
+taglistButton.addEventListener("click", function (event) {
+  tagTabAcces(event.target);
+});
+
+taglist.addEventListener("focusout", function (event) {
+  if (!this.contains(event.relatedTarget)) {
+    tagTabForbid(this);
+  }
+});
 //-------------------------------- sort the media --------------------------------------------
 
-sortButton.addEventListener("click", function () {
+sortButton.addEventListener("click", function (event) {
   openCloseCriteriaSort();
-})
+  //for keybord navigation, focus stay on 1st element of the list (both on opening and closing)
+  if (event.detail === 0) {
+    sortCriterias[0].focus();
+  }
+});
 for (let criteria of sortCriterias) {
-  criteria.addEventListener("click", function(event){
+  criteria.addEventListener("click", function (event) {
     sortAction(event.target);
-  })
+  });
 }
-
 
 //------------------------------ Open/Close the modale ---------------------------------------
 contactButton.addEventListener("click", function () {

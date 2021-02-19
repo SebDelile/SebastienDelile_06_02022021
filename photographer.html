@@ -10,82 +10,117 @@
 
   <body>
     <header class="header">
-      <a href="index.html"><img class="header__logo" src="public/img/logo-Fisheye.svg" alt="logo FishEye" /></a>
+      <a class="header__homepagelink" href="index.html" aria-label="Page d'accueil de FishEye"><img class="header__logo" role="img" src="public/img/logo-Fisheye.svg" alt="logo FishEye" /></a>
     </header>
 
     <main class="main">
-      <h1 class="main__title sr-only"></h1>
       <section class="profile">
-        <h2 class="Profile__title sr-only">Profil</h2>
+        <h1 class="profile__title hidden">Profil</h1>
         <article class="profile__info">
-          <h3 class="profile__name"></h3>
-          <p class="profile__location"></p>
-          <p class="profile__quote"></p>
-          <ul class="profile__taglist">
-          </ul>
+          <h2 class="profile__name" tabindex="0"></h2>
+          <div class="profile__text" tabindex="0">
+            <p class="profile__location"></p>
+            <p class="profile__quote"></p>
+          </div>
+          <button class="profile__taglist__button tag__button sr-only" aria-label="Trouver les autres photographes selon la catégorie," type="button"></button>
+          <ul class="profile__taglist taglist" role="menubar"></ul>
         </article>
-        <button class="profile__contact" type="button">Contactez-moi</button>
-        <img class="profile__picture" src="" alt="" />
-        <aside class="profile__moreinfo">
-          <p class="profile__likes"><img src="public/img/icon/like-alt.svg" /></p>
+        <button class="profile__contact button" type="button">Contactez-moi</button>
+        <span class="profile__picture__wrapper" tabindex="0"><img class="profile__picture" src="" alt="" /></span>
+        <aside class="profile__moreinfo" tabindex="0">
+          <p class="profile__likes"></p>
           <p class="profile__price"></p>
         </aside>
       </section>
       <section class="portfolio">
         <h2 class="porfolio__title sr-only">Portfolio</h2>
         <aside class="sort">
-          <p class="sort__label">Trier par</p>
-          <ul class="sort__criterialist" aria-expanded="false">
-            <li class="sort__criteria">Popularité</li>
-            <li class="sort__criteria">Date</li>
-            <li class="sort__criteria">Titre</li>
+          <p class="sort__label" tabindex="0">Trier par</p>
+          <ul class="sort__criterialist" role="menu" aria-expanded="false">
+            <li class="sort__li">
+              <button class="sort__criteria" role="menuitemcheckbox" aria-checked="true">Popularité<img class="sort__icon" src="public/img/icon/menu-closed.svg" /></button>
+            </li>
+            <li class="sort__li"><button class="sort__criteria" role="menuitemcheckbox" aria-checked="false">Date</button></li>
+            <li class="sort__li"><button class="sort__criteria" role="menuitemcheckbox" aria-checked="false">Titre</button></li>
           </ul>
         </aside>
         <article class="portfolio__grid">
           <!--Media are generated with JS-->
+          <!-- Example of media
+            <div class="media" id="id623534343">
+              <button class="media__button" type="button" aria-labelledby="id623534343-label">
+                <img class="media__img" src="./public/img/media/243/mini/Travel_Lonesome.jpg" alt="">
+              </button>
+              <p class="media__description sr-only"></p>
+              <div class="media__legend">
+                <h3 class="media__title" tabindex="0">Lonesome</h3>
+                <p class="media__price" tabindex="0">45 €</p>
+                <button class="media__likes" aria-label="88 mentions j'aime, ajouter mention j'aime">88<img src="public/img/icon/like.svg" alt="mentions j'aime"></button>
+                <p class="media__date hidden">2019-02-03</p>
+                <p class="media__description hidden" id="id623534343-label">personne sur le sommet d'un pic d'une montagne verdoyante en vue aérienne, ouvrir média</p>
+              </div>
+            </div>
+          -->
         </article>
       </section>
     </main>
     <dialog class="modal form__modal">
-      <h2 class="modal__title sr-only">Formulaire de contact</h2>
+      <h2 class="modal__title hidden">Formulaire de contact</h2>
       <form class="form">
-        <h3 class="form__title">Contactez-moi</h3>
-        <h3 class="form__subtitle">Ellen-Rose Wilkens</h3>
+        <div class="form__head">
+          <h3 class="form__title">Contactez-moi</h3>
+          <h3 class="form__subtitle">Ellen-Rose Wilkens</h3>
+        </div>
         <div class="form__field">
           <label class="form__label" for="firstname">Prénom</label>
           <input class="form__input" type="text" id="firstname" name="firstname" required minlength="2" />
-          <img class="form__validity" src="public/img/icon/warning.svg">
+          <img class="form__validity" src="public/img/icon/warning.svg" />
         </div>
         <div class="form__field">
           <label class="form__label" for="lastname">Nom</label>
           <input class="form__input" type="text" id="lastname" name="lastname" required minlength="2" />
-          <img class="form__validity" src="public/img/icon/warning.svg">
+          <img class="form__validity" src="public/img/icon/warning.svg" />
         </div>
         <div class="form__field">
           <label class="form__label" for="email">Email</label>
           <input class="form__input" type="email" id="email" name="email" required />
-          <img class="form__validity" src="public/img/icon/warning.svg">
+          <img class="form__validity" src="public/img/icon/warning.svg" />
         </div>
         <div class="form__field">
           <label class="form__label" for="message">Votre message</label>
           <textarea class="form__input form__input--area" id="message" name="message" required minlength="10"></textarea>
-          <img class="form__validity" src="public/img/icon/warning.svg">
+          <img class="form__validity" src="public/img/icon/warning.svg" />
         </div>
-        <button class="form__submit" type="submit">Envoyer</button>
-        <img class="form__close" src="public/img/icon/modal-close-button-alt.svg" />
+        <button class="form__submit button" type="submit">Envoyer</button>
+        <button class="form__close" type="button"><img class="form__close__img" src="public/img/icon/modal-close-button-alt.svg" /></button>
         <div class="form__submitted">
           <p>Votre message a bien été envoyé</p>
         </div>
       </form>
     </dialog>
     <dialog class="modal lightbox__modal">
-      <h2 class="modal__title sr-only">Aperçu des média</h2>
+      <h2 class="modal__title hidden">Aperçu des média</h2>
       <div class="lightbox">
         <img class="lightbox__media" src="public/img/media/243/full/Animals_Rainbow.jpg" />
         <h3 class="lightbox__title">Arc-en-ciel</h3>
-        <img class="lightbox__command lightbox__command__backward" src="public/img/icon/modal-left-button.svg" />
-        <img class="lightbox__command lightbox__command__foreward" src="public/img/icon/modal-right-button.svg" />
-        <img class="lightbox__close" src="public/img/icon/modal-close-button.svg" />
+        <button class="lightbox__command lightbox__command__backward" type="button"><img class="lightbox__command__img" src="public/img/icon/modal-left-button.svg" /></button>
+        <button class="lightbox__command lightbox__command__foreward" type="button"><img class="lightbox__command__img" src="public/img/icon/modal-right-button.svg" /></button>
+        <button class="lightbox__close" type="button"><img class="lightbox__close__img" src="public/img/icon/modal-close-button.svg" /></button>
+        <div class="lightbox__videocontrols">
+          <button class="lightbox__videocontrols__playpause lightbox__videocontrols__button" aria-label="Lecture.">
+            <img src="public/img/icon/play.svg" alt="Lecture"/>
+          </button>
+          <button class="lightbox__videocontrols__stop lightbox__videocontrols__button" aria-label="Arrêt.">
+            <img src="public/img/icon/stop.svg" alt="Arrêt"/>
+          </button>
+          <button class="lightbox__videocontrols__rwd lightbox__videocontrols__button" aria-label="Recule de 3 secondes.">
+            <img src="public/img/icon/reverse.svg" alt="Avance 3 secondes"/>
+          </button>
+          <button class="lightbox__videocontrols__fwd lightbox__videocontrols__button" aria-label="Avance de 3 secondes">
+            <img src="public/img/icon/forward.svg" alt="Retour 3 secondes"/>
+          </button>
+          <div class="lightbox__videocontrols__time lightbox__videocontrols__button" tabindex="0" role ="status">00:00</div>
+        </div>
       </div>
     </dialog>
     <script type="module" src="./JS/main_photographer.js"></script>

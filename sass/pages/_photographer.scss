@@ -18,31 +18,53 @@
     font-size: 4rem;
     font-weight: 400;
     color: map-get($color, tertiary);
+    @include dropshadow(black);
+  }
+  &__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    @include dropshadow(black);
   }
   &__location {
     font-size: 1.5rem;
     font-weight: 400;
     color: map-get($color, primary);
+    margin-bottom: 0.5rem;
   }
   &__quote {
     font-size: 1.125rem;
     font-weight: 400;
     color: map-get($color, contrastFore);
+    margin-bottom: 0.5rem;
   }
   &__taglist {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    @include dropshadow(black);
   }
   &__tag {
     font-size: 1.125rem;
+    .tag {
+      background-color: map-get($color, contrastBack);
+      &:hover,
+      &:focus {
+        color: white;
+        background-color: map-get($color, primary);
+        border-color: map-get($color, primary);
+        outline: none;
+      }
+    }
   }
   &__contact {
     justify-self: start;
     align-self: start;
     margin: 0.5rem 1rem;
     z-index: 2;
+    cursor: pointer;
   }
   &__picture {
     width: 12.5rem;
@@ -51,6 +73,9 @@
     clip-path: circle(50%);
     align-self: start;
     justify-self: end;
+    &__wrapper {
+      @include dropshadow(black);
+    }
   }
   &__moreinfo {
     position: fixed;
@@ -58,8 +83,9 @@
     right: 2.25rem;
     background-color: map-get($color, secondary);
     border-radius: 0.3125rem 0.3125rem 0 0;
-    white-space:nowrap;
+    white-space: nowrap;
     z-index: 3;
+    @include dropshadow(black);
   }
   &__likes,
   &__price {
@@ -74,6 +100,9 @@
     &__name {
       font-size: 2.25rem;
     }
+    &__location {
+      margin-bottom: 1rem;
+    }
     @media only screen and (max-width: 62.5rem) {
       &__location,
       &__quote,
@@ -86,26 +115,32 @@
           height: 9rem;
         }
         @media only screen and (max-width: 57rem) {
-        background-color: white;
-        padding: 0;
-        grid-template-columns: auto auto;
-        &__contact {
-          padding: 0.35rem 1rem;
-          margin: 0;
-          position: fixed;
-          bottom: 2rem;
-          left: 50%;
-          transform: translateX(-50%);
+          background-color: white;
+          padding: 0;
+          grid-template-columns: auto auto;
+          &__contact {
+            padding: 0.35rem 1rem;
+            margin: 0;
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+          }
+          &__moreinfo {
+            position: absolute;
+            left: 50%;
+            right: unset;
+            transform: translateX(-50%);
+          }
+          &__tag .tag {
+            background-color: white;
+          }
         }
-        &__moreinfo {
-          position: absolute;
-          left: 50%;
-          right: unset;
-          transform: translateX(-50%);
-        }
-      }
       }
       @media only screen and (max-width: 35rem) {
+        &__location {
+          margin-bottom: 0.5rem;
+        }
         &__taglist {
           flex-wrap: wrap;
           justify-content: flex-start;
@@ -151,13 +186,13 @@
   justify-content: flex-start;
   align-items: flex-start;
   height: 4.6525rem;
-  
   &__label {
     font-size: 1.125rem;
     font-weight: 700;
     color: black;
     padding-right: 1.5rem;
     margin-top: 0.75rem;
+    @include dropshadow(primary);
   }
   &__criterialist {
     display: grid;
@@ -169,21 +204,17 @@
     border-radius: 0.3125rem;
     background-color: map-get($color, primary);
     z-index: 2;
+    &[aria-expanded="false"] .sort__li:first-child .sort__criteria {
+      border-radius: 0.3125rem;
+    }
   }
-  &__criteria {
-    color: white;
-    font-size: 1.25rem;
+  &__li {
     position: relative;
-    height : 4.625rem;
-    width: 12rem;
-    padding: 0 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    &:first-child::after {
-      content: url("../img/icon/menu-closed.svg");
-      padding-left: 2rem;
+    &:first-child .sort__criteria {
+      border-radius: 0.3125rem 0.3125rem 0 0;
+    }
+    &:last-child .sort__criteria {
+      border-radius: 0 0 0.3125rem 0.3125rem;
     }
     &:not(:first-child) {
       display: none;
@@ -198,6 +229,26 @@
       }
     }
   }
+  &__criteria {
+    color: white;
+    font-size: 1.25rem;
+    height: 4.625rem;
+    width: 12rem;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    &:hover,
+    &:focus {
+      color: black;
+      background-color: map-get($color, secondary);
+      outline: none;
+      img {
+        filter: invert(100%);
+      }
+    }
+  }
   @media only screen and (max-width: 57rem) {
     display: none;
   }
@@ -205,7 +256,13 @@
 
 .media {
   margin: 1rem 0;
+  &__button {
+    width: 100%;
+    cursor: pointer;
+    @include dropshadow(primary);
+  }
   &__img {
+    display: block;
     width: 100%;
     object-fit: cover;
     border-radius: 0.3125rem;
@@ -232,6 +289,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    @include dropshadow(black);
   }
   &__price {
     flex: none;
@@ -239,6 +297,7 @@
     font-size: 1.5rem;
     font-weight: 500;
     color: map-get($color, primary);
+    @include dropshadow(black);
   }
   &__likes {
     flex: none;
@@ -249,17 +308,25 @@
     justify-content: flex-start;
     align-items: center;
     position: relative;
-    padding-right : 1.5rem;
+    padding-right: 1.5rem;
     height: 1.75rem;
+    @include dropshadow(primary);
+    cursor: pointer;
     img {
       /*absolute position to avoid shift during the frame when the liked icon is loaded*/
       height: 1.25rem;
       position: absolute;
       right: 0;
-      top : calc((1.75rem - 1.25rem) / 2); /*(height of parent - height of img / 2)*/
+      top: calc((1.75rem - 1.25rem) / 2); /*(height of parent - height of img / 2)*/
     }
-    &__liked {
+    .media__likes &__liked {
+      /*.media__likes is here to enhance specificity for cursor property*/
       animation: liked 0.6s both;
+      cursor: default;
+      &:hover,
+      &:focus {
+        filter: unset;
+      }
     }
   }
 }

@@ -17,6 +17,7 @@ body {
   width: 90%;
   margin: 0 auto;
   position: relative;
+  overflow-x: hidden;
 }
 
 ul {
@@ -30,6 +31,11 @@ a {
 
 button {
   font-family: inherit;
+  background-color: inherit;
+  border: none;
+  color : inherit;
+  font: inherit;
+  cursor: pointer;
 }
 
 input {
