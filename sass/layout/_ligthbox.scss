@@ -21,6 +21,7 @@
     max-width: 100%;
     max-height: 100%;
     border-radius: 0.3125rem;
+    @include dropshadow (black);
   }
   &__title {
     grid-area: title;
@@ -29,10 +30,13 @@
     font-size: 1.5rem;
     font-weight: 400;
     color: map-get($color, primary);
+    @include dropshadow (black);
   }
   &__command {
     height: 3rem;
     margin: 0 2rem;
+    @include dropshadow (black);
+    background-color: unset;
     &__backward {
       grid-area: left;
       justify-self: left;
@@ -43,7 +47,7 @@
     }
     &__img {
       height: 100%;
-      @include dropshadow (black)
+      
     }
     &:hover,
     &:focus {
@@ -57,10 +61,12 @@
     right: 1.75rem;
     width: 2.625rem;
     height: 2.625rem;
+    background-color: unset;
+    @include dropshadow (black);
     &__img {
       width: 100%;
       height: 100%;
-      @include dropshadow (black)
+      
     }
     &:hover,
     &:focus {

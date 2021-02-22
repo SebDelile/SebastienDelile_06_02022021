@@ -11,6 +11,9 @@
   * {
     flex-shrink: 0;
   }
+  &__head {
+    @include dropshadow(black);
+  }
   &__title,
   &__subtitle {
     font-size: 4rem;

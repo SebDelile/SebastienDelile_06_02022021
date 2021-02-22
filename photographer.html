@@ -64,10 +64,10 @@
         </article>
       </section>
     </main>
-    <dialog class="modal form__modal">
+    <dialog class="modal form__modal" id="form__modal">
       <h2 class="modal__title hidden">Formulaire de contact</h2>
       <form class="form">
-        <div class="form__head">
+        <div class="form__head" tabindex="0">
           <h3 class="form__title">Contactez-moi</h3>
           <h3 class="form__subtitle">Ellen-Rose Wilkens</h3>
         </div>
@@ -98,14 +98,15 @@
         </div>
       </form>
     </dialog>
-    <dialog class="modal lightbox__modal">
+    <div class="modal lightbox__modal" id="lightbox__modal" role="dialog" aria-modal="true" aria-label="vue rapprochée de l'image" aria-hidden="true" tabindex="-1">
       <h2 class="modal__title hidden">Aperçu des média</h2>
       <div class="lightbox">
         <img class="lightbox__media" src="public/img/media/243/full/Animals_Rainbow.jpg" />
         <h3 class="lightbox__title">Arc-en-ciel</h3>
         <button class="lightbox__command lightbox__command__backward" type="button"><img class="lightbox__command__img" src="public/img/icon/modal-left-button.svg" /></button>
         <button class="lightbox__command lightbox__command__foreward" type="button"><img class="lightbox__command__img" src="public/img/icon/modal-right-button.svg" /></button>
-        <button class="lightbox__close" type="button"><img class="lightbox__close__img" src="public/img/icon/modal-close-button.svg" /></button>
+        <button class="lightbox__close" type="button"><img class="lightbox__close__img" src="public/img/icon/modal-close-button.svg" aria-label="Fermer"
+          title="Fermer la fenêtre"/></button>
         <div class="lightbox__videocontrols">
           <button class="lightbox__videocontrols__playpause lightbox__videocontrols__button" aria-label="Lecture.">
             <img src="public/img/icon/play.svg" alt="Lecture"/>
@@ -122,7 +123,7 @@
           <div class="lightbox__videocontrols__time lightbox__videocontrols__button" tabindex="0" role ="status">00:00</div>
         </div>
       </div>
-    </dialog>
+    </div>
     <script type="module" src="./JS/main_photographer.js"></script>
   </body>
 </html>

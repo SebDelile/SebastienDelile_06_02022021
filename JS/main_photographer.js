@@ -119,14 +119,43 @@ for (let criteria of sortCriterias) {
 contactButton.addEventListener("click", function () {
   openModal(formModal);
 });
-//for the lightbox modal, the eventlistener is set within the fetch method (needs to wait for the media to be generated)
+
+//for the lightbox modal opening, the eventlistener is set within the fetch method (needs to wait for the media to be generated)
+
+
+
 formModalClose.addEventListener("click", function () {
   closeModal(formModal);
 });
+formModal.addEventListener("click", function (event) {
+  if (event.target === formModal) {
+    closeModal(formModal);
+  }
+});
+//ESC => close modale
+formModal.addEventListener("keydown", function (event) {
+  if (event.which == 27) {
+    closeModal(formModal);
+  }
+});
+
 lightboxModalClose.addEventListener("click", function () {
   closeModal(lightboxModal);
 });
+lightboxModal.addEventListener("click", function (event) {
+  if (event.target === lightboxModal) {
+    closeModal(lightboxModal);
+  }
+});
+//ESC => close modale
+lightboxModal.addEventListener("keydown", function (event) {
+  if (event.which == 27) {
+    closeModal(lightboxModal);
+  }
+});
 
+
+//------------------------------ Lightbox Navigation ---------------------------------------
 lightboxForeward.addEventListener("click", function () {
   lightboxMediaDisplay(lightboxChangeMedia(1));
 });

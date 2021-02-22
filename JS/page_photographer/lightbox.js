@@ -3,6 +3,7 @@
 //--------------------------------------------------------------------------------------------
 
 import { mediaList } from "../main_photographer.js";
+import { modaleKeyboardNavigation } from "../common/openCloseModal.js";
 
 //--------------------------------------------------------------------------------------------
 //------------------------------ DOM static elements -----------------------------------------
@@ -212,12 +213,27 @@ function isActive() {
   if (!videoElement.controlsDisplay) {
     showVideoControls();
   }
-};
+}
 
 let stopMouseTracking = function () {
   clearInterval(timer);
   document.removeEventListener("mousemove", mouseTracking);
 };
+
+function videoControlsEnabling(keyword) {
+  if (keyword === "disable") {
+    for (let button of videoButtons) {
+      button.setAttribute("disabled","");
+    }
+    timeLabel.removeAttribute("tabindex");
+  }
+  if (keyword === "enable") {
+    for (let button of videoButtons) {
+      button.removeAttribute("disabled");
+    }
+    timeLabel.setAttribute("tabindex", 0);
+  }
+}
 
 //--------------------------------------------------------------------------------------------
 //----------------------------------- Export(s) ----------------------------------------------
@@ -233,6 +249,9 @@ export function lightboxMediaDisplay(mediaId) {
       let mediaDisplayed = lightbox.querySelector(".lightbox__media");
       let mediaTitle = lightbox.querySelector(".lightbox__title");
       mediaDisplayed.replaceWith(mediaElement);
+      mediaDisplayed = lightbox.querySelector(".lightbox__media"); // re affect the variable because replaceWith do not update
+      mediaDisplayed.setAttribute("tabindex", "0");
+      mediaDisplayed.setAttribute("id", `${mediaId}-lightbox`);
       mediaTitle.textContent = media.title;
       //alignement media/title and display/hide of controls :
       mediaDisplayed = lightbox.querySelector(".lightbox__media"); // re affect the variable because replaceWith do not update
@@ -242,6 +261,7 @@ export function lightboxMediaDisplay(mediaId) {
             titleAlignement();
             videoControls.style.display = "none";
           });
+          videoControlsEnabling("disable");
           break;
         case "VIDEO":
           mediaDisplayed.addEventListener("loadeddata", function () {
@@ -251,6 +271,7 @@ export function lightboxMediaDisplay(mediaId) {
             setVideoControls();
             videoControlsDisplay();
           });
+          videoControlsEnabling("enable");
           break;
       }
       window.addEventListener("resize", function () {
@@ -259,6 +280,7 @@ export function lightboxMediaDisplay(mediaId) {
           videoControlsAlignement();
         }
       });
+      modaleKeyboardNavigation(document.getElementById("lightbox__modal"));
       break;
     }
   }
