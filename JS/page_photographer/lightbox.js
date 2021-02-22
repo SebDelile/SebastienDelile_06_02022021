@@ -21,7 +21,14 @@ const timeLabel = document.querySelector(".lightbox__videocontrols__time");
 //---------------------------------- variables -----------------------------------------------
 //--------------------------------------------------------------------------------------------
 
-var controlsTimeout = null;
+//set of variable used for the display status of the video controls
+let controlsDisplayUpdate;
+let mouseX = 0;
+let mouseY = 0;
+let instantMouseX = 0;
+let instantMouseY = 0;
+let mouseCount = 0;
+
 
 //--------------------------------------------------------------------------------------------
 //------------------------------- Intermediate stages ----------------------------------------
@@ -53,6 +60,7 @@ function IsVideo(media) {
   videoElement.setAttribute("src", media.fullpath);
   videoElement.setAttribute("controls", "");
   videoElement.textContent = `Votre navigateur ne permet pas de lire la vidéo. Mais vous pouvez toujours <a href="${media.fullpath}">la télécharger</a> !`;
+  videoElement.controlsDisplay = true; // used to manage the display of the video controls
   return videoElement;
 }
 
@@ -133,73 +141,71 @@ function setVideoControls() {
     let mediaTime = mediaMinutes + ":" + mediaSeconds;
     timeLabel.textContent = mediaTime + "/" + totalTime;
   });
-  // show/hide controls for mouse users
-  /*videoElement.addEventListener("mouseleave", function () {
-    hideVideoControls();
-    if (controlsTimeout) {
-      clearTimeout(controlsTimeout);
-      controlsTimeout = null;
-    }
-    console.log("videoElement mouseleave");
-  });
-  videoControls.addEventListener("mouseleave", function () {
-    hideVideoControls();
-    if (controlsTimeout) {
-      clearTimeout(controlsTimeout);
-      controlsTimeout = null;
-    }
-    console.log("videoControls mouseleave");
-  });
-  videoElement.addEventListener("mouseover", function () {
-    showVideoControls();
-    resetTimeout();
-    console.log("videoElement mouseover");
-    videoElement.addEventListener ("mousemove", function () {
-      showVideoControls();
-      resetTimeout();
-      console.log("videoElement mousemove");
-    });
-  });
-  videoControls.addEventListener("mouseover", function () {
-    showVideoControls();
-    resetTimeout();
-    console.log("videoControls mouseover");
-    videoControls.addEventListener ("mousemove", function () {
-      showVideoControls();
-      resetTimeout();
-      console.log("videoControls mousemove");
-    });
-  });
-  //show/hide controls for keyboard users
-  for (let videoButton of videoButtons) {
-    videoButton.addEventListener("focus", function () {
-      resetTimeout()
-      console.log(this.classList[0] + " focus");
-    });
-    videoButton.addEventListener("click", function () {
-      resetTimeout();
-      console.log(this.classList[0] + " click");
-    });
-  }*/
 }
 
+function videoControlsDisplay() {
+  // show/hide controls for mouse users
+  document.addEventListener("mousemove", mouseTracking);
+  controlsDisplayUpdate = setInterval(checkMouse, 100);
+  document.querySelector(".lightbox__close").addEventListener("click", stopMouseTracking);
+  document.querySelector(".lightbox__command__backward").addEventListener("click", stopMouseTracking);
+  document.querySelector(".lightbox__command__foreward").addEventListener("click", stopMouseTracking);
+}
+
+
+let mouseTracking = function(e) {
+  instantMouseX = e.clientX;
+  instantMouseY = e.clientY;
+}
+
+//check position of the mouse, and update the display status of the videocontrols if needed
+let checkMouse = function () {
+  const videoElement = document.querySelector(".lightbox__media");
+  const videoArea = videoElement.getBoundingClientRect();
+  //if the mouse hasn't moved or if the mouse isn't in the video area, increments the counter
+  if (
+    (mouseX === instantMouseX && mouseY === instantMouseY) ||
+    instantMouseX < videoArea.left ||
+    instantMouseX > videoArea.right ||
+    instantMouseY < videoArea.top ||
+    instantMouseY > videoArea.bottom
+  ) {
+    mouseCount += 1;
+  }
+  //there is a move in the video area : update mouse position, reset counter and display controls if needed
+  else {
+    mouseX = instantMouseX;
+    mouseY = instantMouseY;
+    mouseCount = 0;
+    if (!videoElement.controlsDisplay) {
+      showVideoControls();
+    }
+  }
+  //if the counter is 30, controls can be hidden because there is no interaction for 3 seconds (30x0.1s)
+  if (mouseCount === 30) {
+    hideVideoControls();
+  };
+  //console.log(mouseCount);
+};
+
 function showVideoControls() {
+  const videoElement = document.querySelector(".lightbox__media");
   videoControls.style.opacity = 1;
   videoControls.style.zIndex = 100;
+  videoElement.controlsDisplay = true;
 }
 function hideVideoControls() {
+  const videoElement = document.querySelector(".lightbox__media");
   videoControls.style.opacity = 0;
   setTimeout(function () {
     videoControls.style.zIndex = -1;
   }, 400); // after opacitiy transition
+  videoElement.controlsDisplay = false;
 }
 
-function resetTimeout() {
-  if (controlsTimeout) {
-    clearTimeout(controlsTimeout);
-    controlsTimeout = null;
-  }
-  controlsTimeout = setTimeout(hideVideoControls, 3000);
+let stopMouseTracking = function() {
+  clearInterval(controlsDisplayUpdate);
+  document.removeEventListener("mousemove", mouseTracking);
 }
 
 //--------------------------------------------------------------------------------------------
@@ -232,6 +238,7 @@ export function lightboxMediaDisplay(mediaId) {
             videoControlsAlignement();
             videoControls.style.display = "flex";
             setVideoControls();
+            videoControlsDisplay();
           });
           break;
       }
