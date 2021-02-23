@@ -47,7 +47,7 @@ export function modaleKeyboardNavigation(modal) {
   // on TAB and MAJ+TAB : trapping focus inside the dialog
   for (let focusableElement of focusableElementsArray) {
     focusableElement.addEventListener("keydown", keyLog);
-  };
+  }
 }
 
 // open the modal with an animation
@@ -76,11 +76,11 @@ export function closeModal(element) {
   element.classList.add("modal__disappear");
   //gives the focus back to the button which launch the modale
   switch (element.id) {
-    case "lightbox__modal":
+    case "lightbox__modal": {
       let id = element.querySelector(".lightbox__media").id;
       id = id.slice(0, id.indexOf("-lightbox")); // remove the extrapart
       document.querySelector(`#${id} .media__button`).focus();
-      break;
+      break;}
     case "form__modal":
       document.querySelector(".profile__contact").focus();
       break;

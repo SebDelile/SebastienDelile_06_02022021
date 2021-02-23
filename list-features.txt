@@ -30,15 +30,15 @@ v all controls with keyboard
 v video controls avec keyboard
 x criteria : faire un input select
 v hover/focus du like et autres éléments
-- gestion de focus et parole nvda des 2 modales
+v gestion de focus et parole nvda des 2 modales
 
 
 FINALISATION
-- check des aria-label pour mettre une ponctuation.
-- balise langue pour les mots anglais
-- check ESLint
-- check W3C
-- check AChecker
+x check des aria-label pour mettre une ponctuation.
+v balise langue pour les mots anglais
+v check ESLint
+v check W3C
+v check AChecker
 - réorganiser le JS
 - commenter le JS, voire le SCSS
 - check de tous affichage sur chrome et firefox

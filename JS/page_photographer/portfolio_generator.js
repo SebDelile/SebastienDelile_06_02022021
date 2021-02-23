@@ -62,7 +62,7 @@ export function portfolioGenerator() {
         <img class="media__img" src="${media.minipath}" alt="" />
         </button>
         <div class="media__legend">
-          <h3 class="media__title" tabindex="0">${media.title}</h3>
+          <h3 class="media__title" tabindex="0" lang="en">${media.title}</h3>
           <p class="media__price" tabindex="0">${media.price} €</p>
           <button class="media__likes" aria-label="${media.likes} mentions j'aime, ajouter mention j'aime">${media.likes}<img src="public/img/icon/like.svg" alt="mentions j'aime"/></button>
           <p class="media__date hidden">${media.date}</p>

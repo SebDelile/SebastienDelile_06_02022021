@@ -29,7 +29,6 @@ let mouseY = 0;
 let instantMouseX = 0;
 let instantMouseY = 0;
 let mouseCount = 0;
-let activeButton = null;
 
 //--------------------------------------------------------------------------------------------
 //------------------------------- Intermediate stages ----------------------------------------

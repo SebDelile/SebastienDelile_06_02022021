@@ -38,13 +38,13 @@ fetch("./public/FishEyeDataFR.json")
       tag.addEventListener("click", function (event) {
         tagSort(event.target);
       });
-    };
+    }
     const taglistButtons = document.getElementsByClassName("tag__button");
     for (let taglistButton of taglistButtons) {
       taglistButton.addEventListener("click", function (event) {
         tagTabAcces(event.target);
       });
-    };
+    }
     const taglists = document.getElementsByClassName("taglist");
     for (let taglist of taglists) {
       taglist.addEventListener("focusout", function (event) {

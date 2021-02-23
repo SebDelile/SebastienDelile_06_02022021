@@ -71,14 +71,14 @@ fetch("./public/FishEyeDataFR.json")
   .then(function () {
     const medias = document.getElementsByClassName("media__button");
     for (let media of medias) {
-      media.addEventListener("click", function (event) {
+      media.addEventListener("click", function () {
         openModal(lightboxModal);
         lightboxMediaDisplay(this.parentNode.getAttribute("id"));
       });
     }
     const likes = document.getElementsByClassName("media__likes");
     for (let like of likes) {
-      like.addEventListener("click", function (event) {
+      like.addEventListener("click", function () {
         incrementLikes(this);
         sumLikes();
       });

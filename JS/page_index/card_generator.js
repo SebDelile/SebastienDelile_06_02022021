@@ -33,6 +33,6 @@ export function createCard(photographer) {
     `<li class="card__tag">
       <button class="tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-${tag}" type="button" tabindex="-1">#${Tag}</button>
     </li>`);
-  };
+  }
   document.querySelector(".main__grid").append(element);
 }

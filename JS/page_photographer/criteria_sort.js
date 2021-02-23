@@ -30,7 +30,7 @@ function reorganizeCriteriaList(target) {
     criteria.innerHTML = criteria.textContent; //delete icon for the one who had it
     criteria.setAttribute("aria-label", `trier par ${criteria.textContent}`); //remove the aria label of the old first item
   }
-  sortCriterias[0].innerHTML = `${target.textContent}<img class="sort__icon" src="public/img/icon/menu-closed.svg">`; //give the icon to the new first of the list
+  sortCriterias[0].innerHTML = `${target.textContent}<img class="sort__icon" src="public/img/icon/menu-closed.svg"  alt="icone menu déroulant">`; //give the icon to the new first of the list
   sortCriterias[0].setAttribute("aria-label", `Actuellement trié par ${sortCriterias[0].textContent}`);//change the aria label of the first item of the list
 }
 
