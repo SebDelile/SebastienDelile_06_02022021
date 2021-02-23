@@ -111,6 +111,7 @@ body * {
   color: black;
   background-color: #DB8876;
   cursor: pointer;
+  outline: none;
 }
 
 .modal {
@@ -276,6 +277,10 @@ body * {
 .form * {
   flex-shrink: 0;
 }
+.form__head:hover, .form__head:focus {
+  filter: drop-shadow(0 0 0.5rem #000000);
+  outline: none;
+}
 .form__title, .form__subtitle {
   font-size: 4rem;
   font-weight: 400;
@@ -303,6 +308,11 @@ body * {
   font-weight: 400;
   color: #312E2E;
   padding: 0 0.25rem;
+  /*compensate the border of input*/
+}
+.form__label:hover, .form__label:focus {
+  filter: drop-shadow(0 0 0.5rem #000000);
+  outline: none;
 }
 .form__input {
   width: 100%;
@@ -354,18 +364,15 @@ body * {
   width: 2.625rem;
   height: 2.625rem;
   z-index: 1000;
+  background-color: unset;
 }
 .form__close__img {
   width: 100%;
   height: 100%;
 }
-.form__close__img:hover, .form__close__img:focus {
+.form__close:hover, .form__close:focus {
   filter: drop-shadow(0 0 0.5rem #000000);
   outline: none;
-}
-.form__close:hover, .form__close:focus {
-  outline: none;
-  cursor: pointer;
 }
 .form__submitted {
   display: none;
@@ -385,6 +392,10 @@ body * {
   color: #312E2E;
   text-align: center;
   position: relative;
+}
+.form__submitted p:hover, .form__submitted p:focus {
+  filter: drop-shadow(0 0 0.5rem #000000);
+  outline: none;
 }
 @media only screen and (max-width: 45rem) {
   .form {
@@ -467,6 +478,10 @@ body * {
   max-height: 100%;
   border-radius: 0.3125rem;
 }
+.lightbox__media:hover, .lightbox__media:focus {
+  filter: drop-shadow(0 0 0.5rem #000000);
+  outline: none;
+}
 .lightbox__title {
   grid-area: title;
   justify-self: start;
@@ -475,9 +490,18 @@ body * {
   font-weight: 400;
   color: #901C1C;
 }
+.lightbox__title:hover, .lightbox__title:focus {
+  filter: drop-shadow(0 0 0.5rem #000000);
+  outline: none;
+}
 .lightbox__command {
   height: 3rem;
   margin: 0 2rem;
+  background-color: unset;
+}
+.lightbox__command:hover, .lightbox__command:focus {
+  filter: drop-shadow(0 0 0.5rem #000000);
+  outline: none;
 }
 .lightbox__command__backward {
   grid-area: left;
@@ -490,10 +514,6 @@ body * {
 .lightbox__command__img {
   height: 100%;
 }
-.lightbox__command__img:hover, .lightbox__command__img:focus {
-  filter: drop-shadow(0 0 0.5rem #000000);
-  outline: none;
-}
 .lightbox__command:hover, .lightbox__command:focus {
   outline: none;
   cursor: pointer;
@@ -504,14 +524,15 @@ body * {
   right: 1.75rem;
   width: 2.625rem;
   height: 2.625rem;
+  background-color: unset;
+}
+.lightbox__close:hover, .lightbox__close:focus {
+  filter: drop-shadow(0 0 0.5rem #000000);
+  outline: none;
 }
 .lightbox__close__img {
   width: 100%;
   height: 100%;
-}
-.lightbox__close__img:hover, .lightbox__close__img:focus {
-  filter: drop-shadow(0 0 0.5rem #000000);
-  outline: none;
 }
 .lightbox__close:hover, .lightbox__close:focus {
   outline: none;

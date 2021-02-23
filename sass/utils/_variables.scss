@@ -8,7 +8,7 @@ $color: (
     border-tag: #C4C4C4,
     modal-bg : rgba(196, 196, 196, 0.4),
     form-text: #312E2E,
-    black: #000000
+    black: #000000,
 );
 
 $header-minheight: calc(2* (1.3325 *0.75rem + 2 * (1px + 0.1rem + 0.1rem))); /*height when nav breaks line : 2x (tag-line height + 2 * (border + padding + margin))*/

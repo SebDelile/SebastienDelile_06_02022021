@@ -9,5 +9,6 @@
         color : black;
         background-color: map-get($color, secondary);
         cursor: pointer;
+        outline:none;
     }
 }

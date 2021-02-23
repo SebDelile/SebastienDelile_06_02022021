@@ -3,6 +3,7 @@
 //--------------------------------------------------------------------------------------------
 
 import { mediaList } from "../main_photographer.js";
+import { modaleKeyboardNavigation } from "../common/openCloseModal.js";
 
 //--------------------------------------------------------------------------------------------
 //------------------------------ DOM static elements -----------------------------------------
@@ -21,7 +22,13 @@ const timeLabel = document.querySelector(".lightbox__videocontrols__time");
 //---------------------------------- variables -----------------------------------------------
 //--------------------------------------------------------------------------------------------
 
-var controlsTimeout = null;
+//set of variable used for the display status of the video controls
+let timer;
+let mouseX = 0;
+let mouseY = 0;
+let instantMouseX = 0;
+let instantMouseY = 0;
+let mouseCount = 0;
 
 //--------------------------------------------------------------------------------------------
 //------------------------------- Intermediate stages ----------------------------------------
@@ -44,7 +51,7 @@ function IsImage(media) {
   let imageElement = document.createElement("img");
   imageElement.classList.add("lightbox__media");
   imageElement.setAttribute("src", media.fullpath);
-  imageElement.setAttribute("alt", media.description);
+  imageElement.setAttribute("aria-label", media.description);
   return imageElement;
 }
 function IsVideo(media) {
@@ -53,6 +60,8 @@ function IsVideo(media) {
   videoElement.setAttribute("src", media.fullpath);
   videoElement.setAttribute("controls", "");
   videoElement.textContent = `Votre navigateur ne permet pas de lire la vidéo. Mais vous pouvez toujours <a href="${media.fullpath}">la télécharger</a> !`;
+  videoElement.controlsDisplay = true; // used to manage the display of the video controls
+  videoElement.setAttribute("aria-label", media.description + ", lire video?");
   return videoElement;
 }
 
@@ -96,6 +105,26 @@ function setVideoControls() {
   }
   let totalTime = totalMinutes + ":" + totalSeconds;
   timeLabel.textContent = "0:00/" + totalTime;
+  videoElement.addEventListener("keydown", function (event) {
+    //ENTER =>play the video
+    if (event.which === 13) {
+      videoElement.play();
+      //add eventlistener to play/pause with SPACE
+      videoElement.addEventListener("keydown", function (event) {
+        if (event.which === 32) {
+          event.preventDefault();
+          if (videoElement.paused) {
+            videoElement.play();
+          } else {
+            videoElement.pause();
+          }
+        }
+      });
+    }
+  });
+  videoElement.addEventListener("pause", function () {
+    playPauseButton.innerHTML = `<img src="public/img/icon/play.svg" alt="Lecture"/>`;
+  });
   //Event Listener for button features
   playPauseButton.addEventListener("click", function () {
     if (videoElement.paused) {
@@ -133,73 +162,103 @@ function setVideoControls() {
     let mediaTime = mediaMinutes + ":" + mediaSeconds;
     timeLabel.textContent = mediaTime + "/" + totalTime;
   });
-  // show/hide controls for mouse users
-  /*videoElement.addEventListener("mouseleave", function () {
-    hideVideoControls();
-    if (controlsTimeout) {
-      clearTimeout(controlsTimeout);
-      controlsTimeout = null;
+}
+
+function videoControlsDisplay() {
+  document.addEventListener("mousemove", mouseTracking);
+  for (let button of videoButtons) {
+    button.addEventListener("focus", isActive);
+    button.addEventListener("click", isActive);
+  }
+  timer = setInterval(checkActivity, 100);
+
+  document.querySelector(".lightbox__close").addEventListener("click", stopMouseTracking);
+  document.querySelector(".lightbox__command__backward").addEventListener("click", stopMouseTracking);
+  document.querySelector(".lightbox__command__foreward").addEventListener("click", stopMouseTracking);
+  document.querySelector(".lightbox__modal").addEventListener("keydown", function (event) {
+    // right arrow(39) and left arrow (37)
+    if (event.which === 39 || event.which === 37) {
+      stopMouseTracking();
     }
-    console.log("videoElement mouseleave");
   });
-  videoControls.addEventListener("mouseleave", function () {
+}
+
+let mouseTracking = function (e) {
+  instantMouseX = e.clientX;
+  instantMouseY = e.clientY;
+};
+
+//check position of the mouse, and update the display status of the videocontrols if needed
+let checkActivity = function () {
+  //if the mouse hasn't moved or if the mouse isn't in the video area, increments the counter
+  if (mouseDoesntMoved() || mouseIsOut()) {
+    mouseCount += 1;
+  }
+  //there is a move in the video area : update mouse position, reset counter and display controls if needed
+  else {
+    mouseX = instantMouseX;
+    mouseY = instantMouseY;
+    isActive();
+  }
+  //if the counter is 30, controls can be hidden because there is no interaction for 3 seconds (30x0.1s)
+  if (mouseCount === 30) {
     hideVideoControls();
-    if (controlsTimeout) {
-      clearTimeout(controlsTimeout);
-      controlsTimeout = null;
-    }
-    console.log("videoControls mouseleave");
-  });
-  videoElement.addEventListener("mouseover", function () {
-    showVideoControls();
-    resetTimeout();
-    console.log("videoElement mouseover");
-    videoElement.addEventListener ("mousemove", function () {
-      showVideoControls();
-      resetTimeout();
-      console.log("videoElement mousemove");
-    });
-  });
-  videoControls.addEventListener("mouseover", function () {
-    showVideoControls();
-    resetTimeout();
-    console.log("videoControls mouseover");
-    videoControls.addEventListener ("mousemove", function () {
-      showVideoControls();
-      resetTimeout();
-      console.log("videoControls mousemove");
-    });
-  });
-  //show/hide controls for keyboard users
-  for (let videoButton of videoButtons) {
-    videoButton.addEventListener("focus", function () {
-      resetTimeout()
-      console.log(this.classList[0] + " focus");
-    });
-    videoButton.addEventListener("click", function () {
-      resetTimeout();
-      console.log(this.classList[0] + " click");
-    });
-  }*/
+  }
+  console.log(mouseCount);
+};
+
+function mouseIsOut() {
+  const videoArea = document.querySelector(".lightbox__media").getBoundingClientRect();
+  return instantMouseX < videoArea.left || instantMouseX > videoArea.right || instantMouseY < videoArea.top || instantMouseY > videoArea.bottom;
+}
+
+function mouseDoesntMoved() {
+  return mouseX === instantMouseX && mouseY === instantMouseY;
 }
 
 function showVideoControls() {
+  const videoElement = document.querySelector(".lightbox__media");
   videoControls.style.opacity = 1;
   videoControls.style.zIndex = 100;
+  videoElement.controlsDisplay = true;
 }
 function hideVideoControls() {
+  const videoElement = document.querySelector(".lightbox__media");
   videoControls.style.opacity = 0;
   setTimeout(function () {
     videoControls.style.zIndex = -1;
   }, 400); // after opacitiy transition
+  videoElement.controlsDisplay = false;
 }
 
-function resetTimeout() {
-  if (controlsTimeout) {
-    clearTimeout(controlsTimeout);
-    controlsTimeout = null;
+function isActive() {
+  //console.log("fire");
+  const videoElement = document.querySelector(".lightbox__media");
+  mouseCount = 0;
+  if (!videoElement.controlsDisplay) {
+    showVideoControls();
   }
-  controlsTimeout = setTimeout(hideVideoControls, 3000);
+}
+
+let stopMouseTracking = function () {
+  clearInterval(timer);
+  mouseCount = 0;
+  document.removeEventListener("mousemove", mouseTracking);
+};
+
+function videoControlsEnabling(keyword) {
+  if (keyword === "disable") {
+    for (let button of videoButtons) {
+      button.setAttribute("disabled", "");
+    }
+    timeLabel.removeAttribute("tabindex");
+  }
+  if (keyword === "enable") {
+    for (let button of videoButtons) {
+      button.removeAttribute("disabled");
+    }
+    timeLabel.setAttribute("tabindex", 0);
+  }
 }
 
 //--------------------------------------------------------------------------------------------
@@ -216,6 +275,9 @@ export function lightboxMediaDisplay(mediaId) {
       let mediaDisplayed = lightbox.querySelector(".lightbox__media");
       let mediaTitle = lightbox.querySelector(".lightbox__title");
       mediaDisplayed.replaceWith(mediaElement);
+      mediaDisplayed = lightbox.querySelector(".lightbox__media"); // re affect the variable because replaceWith do not update
+      mediaDisplayed.setAttribute("tabindex", "0");
+      mediaDisplayed.setAttribute("id", `${mediaId}-lightbox`);
       mediaTitle.textContent = media.title;
       //alignement media/title and display/hide of controls :
       mediaDisplayed = lightbox.querySelector(".lightbox__media"); // re affect the variable because replaceWith do not update
@@ -225,6 +287,7 @@ export function lightboxMediaDisplay(mediaId) {
             titleAlignement();
             videoControls.style.display = "none";
           });
+          videoControlsEnabling("disable");
           break;
         case "VIDEO":
           mediaDisplayed.addEventListener("loadeddata", function () {
@@ -232,7 +295,9 @@ export function lightboxMediaDisplay(mediaId) {
             videoControlsAlignement();
             videoControls.style.display = "flex";
             setVideoControls();
+            videoControlsDisplay();
           });
+          videoControlsEnabling("enable");
           break;
       }
       window.addEventListener("resize", function () {
@@ -241,6 +306,9 @@ export function lightboxMediaDisplay(mediaId) {
           videoControlsAlignement();
         }
       });
+      modaleKeyboardNavigation(document.getElementById("lightbox__modal"));
+      videoControls.style.opacity = "";
+      videoControls.style.zIndex = "";
       break;
     }
   }

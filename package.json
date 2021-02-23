@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "sass": "sass --watch ./sass/main.scss:./public/css/style.css",
-    "prefix": "postcss ./public/css/style.css --use autoprefixer -d ./public/css/prefixed/"
+    "prefix": "postcss ./public/css/style.css --use autoprefixer -d ./public/css/prefixed/",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -17,5 +18,9 @@
   "bugs": {
     "url": ""
   },
-  "homepage": ""
+  "homepage": "",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^7.20.0"
+  }
 }

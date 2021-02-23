@@ -71,14 +71,14 @@ fetch("./public/FishEyeDataFR.json")
   .then(function () {
     const medias = document.getElementsByClassName("media__button");
     for (let media of medias) {
-      media.addEventListener("click", function (event) {
+      media.addEventListener("click", function () {
         openModal(lightboxModal);
         lightboxMediaDisplay(this.parentNode.getAttribute("id"));
       });
     }
     const likes = document.getElementsByClassName("media__likes");
     for (let like of likes) {
-      like.addEventListener("click", function (event) {
+      like.addEventListener("click", function () {
         incrementLikes(this);
         sumLikes();
       });
@@ -103,11 +103,7 @@ taglist.addEventListener("focusout", function (event) {
 //-------------------------------- sort the media --------------------------------------------
 
 sortButton.addEventListener("click", function (event) {
-  openCloseCriteriaSort();
-  //for keybord navigation, focus stay on 1st element of the list (both on opening and closing)
-  if (event.detail === 0) {
-    sortCriterias[0].focus();
-  }
+  openCloseCriteriaSort(event);
 });
 for (let criteria of sortCriterias) {
   criteria.addEventListener("click", function (event) {
@@ -119,22 +115,59 @@ for (let criteria of sortCriterias) {
 contactButton.addEventListener("click", function () {
   openModal(formModal);
 });
-//for the lightbox modal, the eventlistener is set within the fetch method (needs to wait for the media to be generated)
+
+//for the lightbox modal opening, the eventlistener is set within the fetch method (needs to wait for the media to be generated)
+
 formModalClose.addEventListener("click", function () {
   closeModal(formModal);
 });
+formModal.addEventListener("click", function (event) {
+  if (event.target === formModal) {
+    closeModal(formModal);
+  }
+});
+//ESC => close modale
+formModal.addEventListener("keydown", function (event) {
+  if (event.which == 27) {
+    closeModal(formModal);
+  }
+});
+
 lightboxModalClose.addEventListener("click", function () {
   closeModal(lightboxModal);
 });
+lightboxModal.addEventListener("click", function (event) {
+  if (event.target === lightboxModal) {
+    closeModal(lightboxModal);
+  }
+});
+//ESC => close modale
+lightboxModal.addEventListener("keydown", function (event) {
+  if (event.which == 27) {
+    closeModal(lightboxModal);
+  }
+});
 
+//------------------------------ Lightbox Navigation ---------------------------------------
 lightboxForeward.addEventListener("click", function () {
   lightboxMediaDisplay(lightboxChangeMedia(1));
 });
 lightboxBackward.addEventListener("click", function () {
   lightboxMediaDisplay(lightboxChangeMedia(-1));
 });
+lightboxModal.addEventListener("keydown", function (event) {
+  // right arrow(39) and left arrow (37)
+  if (event.which === 39) {
+    lightboxMediaDisplay(lightboxChangeMedia(1));
+  }
+  if (event.which === 37) {
+    lightboxMediaDisplay(lightboxChangeMedia(-1));
+  }
+});
 
 //------------------------------ form Verification/Submission --------------------------------
+
+
 for (let field of form) {
   field.addEventListener("input", function (event) {
     formValidity(event.target);
