@@ -58,7 +58,7 @@ export function portfolioGenerator() {
     let element = document.createElement("div");
     element.classList.add("media");
     element.setAttribute("id", media.id);
-    element.innerHTML = `<button class="media__button" type="button" aria-labelledby="${media.id}-label" aria-haspopup="dialog" aria-controls="lightbox__modal">
+    element.innerHTML = `<button class="media__button" type="button" aria-labelledby="${media.id}-label">
         <img class="media__img" src="${media.minipath}" alt="" />
         </button>
         <div class="media__legend">

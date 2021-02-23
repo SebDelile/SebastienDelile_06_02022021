@@ -35,22 +35,19 @@ let focusableElementsArray =[];
 //----------------------------------- Export(s) ----------------------------------------------
 //--------------------------------------------------------------------------------------------
 
-export function modaleKeyboardNavigation(modale) {
-    
+export function modaleKeyboardNavigation(modal) {
   //collect all focusable elements and gives focus to first one
-  const focusableElements = modale.querySelectorAll(focusableElementsTemplate);
+  const focusableElements = modal.querySelectorAll(focusableElementsTemplate);
   focusableElementsArray =[];
   for (let focusableElement of focusableElements) {
     focusableElementsArray.push(focusableElement)
   }
-  console.log(focusableElementsArray);
   focusableElementsArray[0].focus();
 
   // on TAB and MAJ+TAB : trapping focus inside the dialog
   for (let focusableElement of focusableElementsArray) {
     focusableElement.addEventListener("keydown", keyLog);
   };
-
 }
 
 // open the modal with an animation
@@ -65,6 +62,10 @@ export function openModal(element) {
     element.querySelector(":last-child").classList.remove("modal__child__appear");
     element.classList.remove("modal__appear");
   }, 800);
+  //for the form the keyboard nav is started from opening, for the lightbox it needs to wait for the media loading, so it's started within the function lightboxMediaDisplay
+  if (element.id === "form__modal") {
+    modaleKeyboardNavigation(element);
+  }
 }
 
 //close the modal with an animation

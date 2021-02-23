@@ -52,7 +52,7 @@ function IsImage(media) {
   let imageElement = document.createElement("img");
   imageElement.classList.add("lightbox__media");
   imageElement.setAttribute("src", media.fullpath);
-  imageElement.setAttribute("alt", media.description);
+  imageElement.setAttribute("aria-label", media.description);
   return imageElement;
 }
 function IsVideo(media) {
@@ -62,6 +62,7 @@ function IsVideo(media) {
   videoElement.setAttribute("controls", "");
   videoElement.textContent = `Votre navigateur ne permet pas de lire la vidéo. Mais vous pouvez toujours <a href="${media.fullpath}">la télécharger</a> !`;
   videoElement.controlsDisplay = true; // used to manage the display of the video controls
+  videoElement.setAttribute("aria-label", media.description + ", lire video?");
   return videoElement;
 }
 
@@ -105,6 +106,26 @@ function setVideoControls() {
   }
   let totalTime = totalMinutes + ":" + totalSeconds;
   timeLabel.textContent = "0:00/" + totalTime;
+  videoElement.addEventListener("keydown", function (event) {
+    //ENTER =>play the video
+    if (event.which === 13) {
+      videoElement.play();
+      //add eventlistener to play/pause with SPACE
+      videoElement.addEventListener("keydown", function (event) {
+        if (event.which === 32) {
+          event.preventDefault();
+          if (videoElement.paused) {
+            videoElement.play();
+          } else {
+            videoElement.pause();
+          }
+        }
+      });
+    }
+  });
+  videoElement.addEventListener("pause", function () {
+    playPauseButton.innerHTML = `<img src="public/img/icon/play.svg" alt="Lecture"/>`;
+  });
   //Event Listener for button features
   playPauseButton.addEventListener("click", function () {
     if (videoElement.paused) {
@@ -155,6 +176,12 @@ function videoControlsDisplay() {
   document.querySelector(".lightbox__close").addEventListener("click", stopMouseTracking);
   document.querySelector(".lightbox__command__backward").addEventListener("click", stopMouseTracking);
   document.querySelector(".lightbox__command__foreward").addEventListener("click", stopMouseTracking);
+  document.querySelector(".lightbox__modal").addEventListener("keydown", function (event) {
+    // right arrow(39) and left arrow (37)
+    if (event.which === 39 || event.which === 37) {
+      stopMouseTracking();
+    }
+  });
 }
 
 let mouseTracking = function (e) {
@@ -164,7 +191,6 @@ let mouseTracking = function (e) {
 
 //check position of the mouse, and update the display status of the videocontrols if needed
 let checkActivity = function () {
-  const videoElement = document.querySelector(".lightbox__media");
   //if the mouse hasn't moved or if the mouse isn't in the video area, increments the counter
   if (mouseDoesntMoved() || mouseIsOut()) {
     mouseCount += 1;
@@ -179,7 +205,7 @@ let checkActivity = function () {
   if (mouseCount === 30) {
     hideVideoControls();
   }
-  //console.log(mouseCount);
+  console.log(mouseCount);
 };
 
 function mouseIsOut() {
@@ -217,13 +243,14 @@ function isActive() {
 
 let stopMouseTracking = function () {
   clearInterval(timer);
+  mouseCount = 0;
   document.removeEventListener("mousemove", mouseTracking);
 };
 
 function videoControlsEnabling(keyword) {
   if (keyword === "disable") {
     for (let button of videoButtons) {
-      button.setAttribute("disabled","");
+      button.setAttribute("disabled", "");
     }
     timeLabel.removeAttribute("tabindex");
   }
@@ -281,6 +308,8 @@ export function lightboxMediaDisplay(mediaId) {
         }
       });
       modaleKeyboardNavigation(document.getElementById("lightbox__modal"));
+      videoControls.style.opacity = "";
+      videoControls.style.zIndex = "";
       break;
     }
   }

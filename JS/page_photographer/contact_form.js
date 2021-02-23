@@ -1,7 +1,7 @@
 //--------------------------------------------------------------------------------------------
 //------------------------------ Import from modules -----------------------------------------
 //--------------------------------------------------------------------------------------------
-
+import {modaleKeyboardNavigation} from "../common/openCloseModal.js"
 
 //--------------------------------------------------------------------------------------------
 //------------------------------- Intermediate stages ----------------------------------------
@@ -36,6 +36,26 @@ export function formSubmission(form){
 }
 
 export function submissionConfirmation(form) {
-    form.querySelector(".form__submitted").style.display = "flex";
-    form.querySelector(".form__submitted p").style.animation = "fade-shift 600ms both";
+    const confirmationWrapper = form.querySelector(".form__submitted");
+    const confirmationMessage = form.querySelector(".form__submitted p");
+    const formElementsToDisable = form.querySelectorAll(".form__input, .form__label, .form__submit, .form__head" );
+    for (let element of formElementsToDisable) {
+        switch (element.tagName) {
+            case "INPUT":
+            case "TEXTAREA":
+            case "BUTTON":
+                element.setAttribute("disabled", "");
+                break;
+            case "DIV":
+            case "LABEL":
+                element.removeAttribute("tabindex");
+                break;
+        }
+    }
+        //disable them
+        //give focus to close and preventdefault on tab
+    confirmationWrapper.style.display = "flex";
+    confirmationMessage.style.animation = "fade-shift 600ms both";
+    confirmationMessage.setAttribute("tabindex", "0");
+    setTimeout(function(){(modaleKeyboardNavigation(document.getElementById("form__modal")))},800); //wait for the animation to end and update keyboard navigation
 }

@@ -103,11 +103,7 @@ taglist.addEventListener("focusout", function (event) {
 //-------------------------------- sort the media --------------------------------------------
 
 sortButton.addEventListener("click", function (event) {
-  openCloseCriteriaSort();
-  //for keybord navigation, focus stay on 1st element of the list (both on opening and closing)
-  if (event.detail === 0) {
-    sortCriterias[0].focus();
-  }
+  openCloseCriteriaSort(event);
 });
 for (let criteria of sortCriterias) {
   criteria.addEventListener("click", function (event) {
@@ -121,8 +117,6 @@ contactButton.addEventListener("click", function () {
 });
 
 //for the lightbox modal opening, the eventlistener is set within the fetch method (needs to wait for the media to be generated)
-
-
 
 formModalClose.addEventListener("click", function () {
   closeModal(formModal);
@@ -154,7 +148,6 @@ lightboxModal.addEventListener("keydown", function (event) {
   }
 });
 
-
 //------------------------------ Lightbox Navigation ---------------------------------------
 lightboxForeward.addEventListener("click", function () {
   lightboxMediaDisplay(lightboxChangeMedia(1));
@@ -162,8 +155,19 @@ lightboxForeward.addEventListener("click", function () {
 lightboxBackward.addEventListener("click", function () {
   lightboxMediaDisplay(lightboxChangeMedia(-1));
 });
+lightboxModal.addEventListener("keydown", function (event) {
+  // right arrow(39) and left arrow (37)
+  if (event.which === 39) {
+    lightboxMediaDisplay(lightboxChangeMedia(1));
+  }
+  if (event.which === 37) {
+    lightboxMediaDisplay(lightboxChangeMedia(-1));
+  }
+});
 
 //------------------------------ form Verification/Submission --------------------------------
+
+
 for (let field of form) {
   field.addEventListener("input", function (event) {
     formValidity(event.target);
