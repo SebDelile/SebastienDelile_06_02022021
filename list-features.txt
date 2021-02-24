@@ -40,6 +40,7 @@ v check ESLint
 v check W3C
 v check AChecker
 - réorganiser le JS
+(-modale keyboard nav)
 - commenter le JS, voire le SCSS
 - check de tous affichage sur chrome et firefox
 - check des fonctionnalités (attention suppr les console.log)

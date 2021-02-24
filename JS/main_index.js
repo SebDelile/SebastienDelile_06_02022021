@@ -2,21 +2,28 @@
 //------------------------------ Import from modules -----------------------------------------
 //--------------------------------------------------------------------------------------------
 
-import { tagSort, tagTabAcces, tagTabForbid } from "./common/tag_sort.js";
-import { createCard } from "./page_index/card_generator.js";
+import { tagSort } from "./modules/tag_sort.js";
+import { tagTabAcces, tagTabForbid } from "./modules/tag_keyboard_nav.js";
+import { createCard } from "./modules/card_generator.js";
 
 //--------------------------------------------------------------------------------------------
 //----------------------------------- DOM elements -------------------------------------------
 //--------------------------------------------------------------------------------------------
 
+const url = "#" + window.location.search.slice(5); //remove "?tag=" and add the "#" to format the url keyword suitable with the tags
+export const taglist = document.querySelectorAll(".header__nav__tag");
+
+//DOM elements depending on the JSON  data need to be declare inside the fetch
 
 //--------------------------------------------------------------------------------------------
 //--------------------------------- On page loading ------------------------------------------
 //--------------------------------------------------------------------------------------------
 
+//main feature of the page, to load the data from the JSON
+//all the features that need the data to be loaded must be included into ".then" brackets
 fetch("./public/FishEyeDataFR.json")
-  //import of the json file
-  .then((response) => {
+  //imports  the json file
+  .then(function (response) {
     if (!response.ok) {
       throw new Error("HTTP error " + response.status + " " + response.statusText);
     }
@@ -25,13 +32,13 @@ fetch("./public/FishEyeDataFR.json")
   .catch(function (error) {
     alert(error.message);
   })
-  //Creation of the main elements
-  .then((json) => {
+  //Creation of the main elements ie. the photographer list
+  .then(function (json) {
     for (let i in json.photographers) {
       createCard(json.photographers[i]);
     }
   })
-  //Adding event listener on the tags
+  //Adding event listener on the tags and manage the keyboard navigation on the tags
   .then(function () {
     const tags = document.getElementsByClassName("tag");
     for (let tag of tags) {
@@ -39,6 +46,9 @@ fetch("./public/FishEyeDataFR.json")
         tagSort(event.target);
       });
     }
+    //to enter the taglist with keyboard navigation it should press enter on a button
+    //it allows to pass the list with 1 tab if user doesnt want to go into it
+    //the button is invisible (access with tab) and when it is focussed it displayes a focus on the taglist witch CSS "":hover + ul" selector
     const taglistButtons = document.getElementsByClassName("tag__button");
     for (let taglistButton of taglistButtons) {
       taglistButton.addEventListener("click", function (event) {
@@ -56,8 +66,6 @@ fetch("./public/FishEyeDataFR.json")
   })
   //if coming from photograph page via tag link : activate the tag
   .then(function () {
-    const url = "#" + window.location.search.slice(5); //remove "?tag=" and add the "#"
-    const taglist = document.querySelectorAll(".header__nav__tag");
     for (let tag of taglist) {
       if (tag.textContent.toUpperCase() === url.toUpperCase()) {
         tag.click();

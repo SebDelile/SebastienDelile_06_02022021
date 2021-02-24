@@ -2,6 +2,8 @@
 //------------------------------ Import from modules -----------------------------------------
 //--------------------------------------------------------------------------------------------
 
+import { taglist } from "../main_index.js";
+
 //--------------------------------------------------------------------------------------------
 //------------------------------- Intermediate stages ----------------------------------------
 //--------------------------------------------------------------------------------------------
@@ -10,22 +12,9 @@
 //----------------------------------- Export(s) ----------------------------------------------
 //--------------------------------------------------------------------------------------------
 
-export function tagTabAcces(target) { //target is a button next to the taglist
-  const tags = target.parentNode.getElementsByClassName("tag");
-  for (let tag of tags) {
-    tag.removeAttribute("tabindex");
-  }
-  tags[0].focus();
-}
-
-export function tagTabForbid(target) {//target is the taglist
-  const tags = target.getElementsByClassName("tag");
-  for (let tag of tags) {
-    tag.setAttribute("tabindex", "-1");
-  }
-}
-
+//sort the photographer according to the selected tag
 export function tagSort(activatedTag) {
+  //activatedTag is the tag element selected by the user
   const tags = document.getElementsByClassName("tag");
   const cards = document.getElementsByClassName("card");
   //step 1 : check if it needs to sort or unsort
@@ -41,14 +30,13 @@ export function tagSort(activatedTag) {
     }
   }
   //step 3 : count how many tags are ON
-  const taglist = document.querySelectorAll(".header__nav__tag");
   let totalTagON = 0;
   for (let tag of taglist) {
     if (tag.getAttribute("aria-checked") === "true") {
       totalTagON++;
     }
   }
-  //there is at least one tag ON : display only card with as many tag ON as totaltagON
+  //there is at least one tag ON : display only the cards having as many tag ON as totaltagON
   if (totalTagON !== 0) {
     for (let card of cards) {
       let countTagON = 0;

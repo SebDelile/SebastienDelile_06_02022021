@@ -8,13 +8,13 @@
   display: grid;
   grid-template-columns: auto 1fr auto;
   grid-template-rows: 1fr auto;
-  grid-template-areas: "left media right" "title title title";
+  grid-template-areas: "left medium right" "title title title";
   justify-items: center;
   align-items: center;
   justify-content: center;
   align-content: center;
-  &__media {
-    grid-area: media;
+  &__medium {
+    grid-area: medium;
     object-fit: contain;
     min-width: 0;
     min-height: 0;

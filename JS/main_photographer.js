@@ -1,48 +1,68 @@
 //--------------------------------------------------------------------------------------------
 //------------------------------ Import from modules -----------------------------------------
 //--------------------------------------------------------------------------------------------
-import { openModal, closeModal } from "./common/openCloseModal.js";
-import { formValidity, formSubmission, submissionConfirmation } from "./page_photographer/contact_form.js";
-import { profileGenerator, sumLikes } from "./page_photographer/profile_generator.js";
-import { portfolioGenerator, mediaListGenerator, incrementLikes } from "./page_photographer/portfolio_generator.js";
-import { lightboxMediaDisplay, lightboxChangeMedia } from "./page_photographer/lightbox.js";
-import { openCloseCriteriaSort, sortMediaList, sortAction } from "./page_photographer/criteria_sort.js";
-import { tagTabAcces, tagTabForbid } from "./common/tag_sort.js";
+import { modalOpen, modalClose } from "./modules/modal_openclose.js";
+import { formValidity, formSubmission} from "./modules/form.js";
+import { profileGenerator } from "./modules/profile_generator.js";
+import { portfolioGenerator } from "./modules/portfolio_generator.js";
+import { mediaListGenerator } from "./modules/mediaList_generator.js";
+import { mediaListSort } from "./modules/mediaList_sort.js";
+import { lightboxDisplayMedium, lightboxChangeMedium } from "./modules/lightbox.js";
+import { criteriaSortOpenClose, criteriaSortAction } from "./modules/criteria_sort.js";
+import { tagTabAcces, tagTabForbid } from "./modules/tag_keyboard_nav.js";
+import { likesSum } from "./modules/likes_sum.js";
+import { likesIncrement } from "./modules/likes_increment.js";
 
 //--------------------------------------------------------------------------------------------
 //----------------------------------- DOM elements -------------------------------------------
 //--------------------------------------------------------------------------------------------
 
-const sortButton = document.querySelector(".sort__criterialist");
-const contactButton = document.querySelector(".profile__contact");
-const formModal = document.querySelector(".form__modal");
-const formModalClose = formModal.querySelector(".form__close");
-const form = document.querySelector("form");
-const lightboxModal = document.querySelector(".lightbox__modal");
-const lightboxModalClose = lightboxModal.querySelector(".lightbox__close");
-const lightboxBackward = lightboxModal.querySelector(".lightbox__command__backward");
-const lightboxForeward = lightboxModal.querySelector(".lightbox__command__foreward");
+//the id of the photographer picked from the url
+export const idNumber = window.location.search.slice(4); //remove "?id=" from url
+
+//section profile
+export const profile = document.querySelector(".profile");
 const taglistButton = document.querySelector(".tag__button");
 const taglist = document.querySelector(".taglist");
+const contactButton = document.querySelector(".profile__contact");
 
-//--------------------------------------------------------------------------------------------
-//--------------------------------- On page loading ------------------------------------------
-//--------------------------------------------------------------------------------------------
+//section portfolio aside sort
+export const criteriaList = document.querySelector(".sort__criterialist"); //ul element
+export const criteriaListItems = document.getElementsByClassName("sort__li"); //li
+export const criteriaButtons = document.getElementsByClassName("sort__criteria"); //button elements
 
-//the id of the photographer picked from the url
-export const idNumber = window.location.search.slice(3); //remove "?id" from url
+//section portfolio
+export const portfolio = document.querySelector(".portfolio__grid");
 
-export const sortCriterias = document.getElementsByClassName("sort__criteria");
+//lightbox modal
+export const lightboxModal = document.getElementById("lightbox__modal");
+export const lightbox = document.querySelector(".lightbox");
+export const lightboxModalClose = lightboxModal.querySelector(".lightbox__close");
+export const lightboxBackward = lightboxModal.querySelector(".lightbox__command__backward");
+export const lightboxForward = lightboxModal.querySelector(".lightbox__command__forward");
+
+//lightbox videocontrols
+export const videoControls = document.querySelector(".lightbox__videocontrols");
+export const videoButtons = document.getElementsByClassName("lightbox__videocontrols__button")
+
+//form modal
+const formModal = document.getElementById("form__modal");
+export const form = document.querySelector("form");
+const formModalClose = formModal.querySelector(".form__close");
 
 //the media corresponding to the photographer, with some data reorganization
 //will be filled during fetch json import method
 //usefull for the sort and the display in the lightbox
-export let mediaList = [];
+export var mediaList = [];
+
+//DOM elements depending on the JSON  data need to be declare inside the fetch
 
 //--------------------------------------------------------------------------------------------
 //--------------------------------- On page loading ------------------------------------------
 //--------------------------------------------------------------------------------------------
 
+//fisrt feature of the page, to load the data from the JSON (both profile and portfolio)
+//all the features that need the data to be loaded must be included into ".then" brackets
 fetch("./public/FishEyeDataFR.json")
   //import of the json file
   .then(function (response) {
@@ -59,28 +79,31 @@ fetch("./public/FishEyeDataFR.json")
     profileGenerator(json.photographers);
     return json;
   })
-  //Creation of the mediaList of the photographer
+  //Creation of the mediaList table of the photographer
+  //the mediaList table is sorted according to default criterion (popularité) to be consistent to the displayed sorting criterion
   .then(function (json) {
     mediaListGenerator(json.media);
-    sortMediaList(sortCriterias[0]);
+    mediaListSort(criteriaButtons[0]);
   })
+  //the media elements are created from the mediaList table, and the sum of the likes is displayed
   .then(function () {
     portfolioGenerator();
-    sumLikes();
+    likesSum();
   })
+  //adds an event listener on each medium to open the lightbox modal and to manage the like feature
   .then(function () {
-    const medias = document.getElementsByClassName("media__button");
-    for (let media of medias) {
-      media.addEventListener("click", function () {
-        openModal(lightboxModal);
-        lightboxMediaDisplay(this.parentNode.getAttribute("id"));
+    const media = document.getElementsByClassName("media__button");
+    for (let medium of media) {
+      medium.addEventListener("click", function () {
+        modalOpen(lightboxModal);
+        lightboxDisplayMedium(this.parentNode.getAttribute("id"));
       });
     }
     const likes = document.getElementsByClassName("media__likes");
     for (let like of likes) {
       like.addEventListener("click", function () {
-        incrementLikes(this);
-        sumLikes();
+        likesIncrement(this);
+        likesSum();
       });
     }
   });
@@ -89,12 +112,14 @@ fetch("./public/FishEyeDataFR.json")
 //--------------------------------- Event listeners ------------------------------------------
 //--------------------------------------------------------------------------------------------
 
-//-------------------------------- tag access/forbide tab nav --------------------------------------------
+//---------------------------- tag access/forbide tab nav ------------------------------------
 
+//to enter the taglist with keyboard navigation it should press enter on a button
+//it allows to pass the list with 1 tab if user doesnt want to go into it
+//the button is invisible (access with tab) and when it is focussed, it displayes a focus on the taglist witch CSS "":hover + ul" selector
 taglistButton.addEventListener("click", function (event) {
   tagTabAcces(event.target);
 });
-
 taglist.addEventListener("focusout", function (event) {
   if (!this.contains(event.relatedTarget)) {
     tagTabForbid(this);
@@ -102,71 +127,70 @@ taglist.addEventListener("focusout", function (event) {
 });
 //-------------------------------- sort the media --------------------------------------------
 
-sortButton.addEventListener("click", function (event) {
-  openCloseCriteriaSort(event);
+//manage the selection of the sorting criteria (popularité, date, titre)
+criteriaList.addEventListener("click", function (event) {
+  criteriaSortOpenClose(event);
 });
-for (let criteria of sortCriterias) {
-  criteria.addEventListener("click", function (event) {
-    sortAction(event.target);
+for (let criterionButton of criteriaButtons) {
+  criterionButton.addEventListener("click", function (event) {
+    criteriaSortAction(event.target);
   });
 }
 
-//------------------------------ Open/Close the modale ---------------------------------------
+//------------------------------ Open the modals ---------------------------------------
 contactButton.addEventListener("click", function () {
-  openModal(formModal);
+  modalOpen(formModal);
 });
-
 //for the lightbox modal opening, the eventlistener is set within the fetch method (needs to wait for the media to be generated)
 
+
+//------------------------------ Close the modals ---------------------------------------
+//modals are closed by click on close button, click on the background of the modal or by pressing ESC
 formModalClose.addEventListener("click", function () {
-  closeModal(formModal);
+  modalClose(formModal);
 });
 formModal.addEventListener("click", function (event) {
   if (event.target === formModal) {
-    closeModal(formModal);
+    modalClose(formModal);
   }
 });
-//ESC => close modale
 formModal.addEventListener("keydown", function (event) {
-  if (event.which == 27) {
-    closeModal(formModal);
+  if (event.which == 27) { //27 = ESC
+    modalClose(formModal);
   }
 });
 
 lightboxModalClose.addEventListener("click", function () {
-  closeModal(lightboxModal);
+  modalClose(lightboxModal);
 });
 lightboxModal.addEventListener("click", function (event) {
   if (event.target === lightboxModal) {
-    closeModal(lightboxModal);
+    modalClose(lightboxModal);
   }
 });
-//ESC => close modale
 lightboxModal.addEventListener("keydown", function (event) {
-  if (event.which == 27) {
-    closeModal(lightboxModal);
+  if (event.which == 27) { //27 = ESC
+    modalClose(lightboxModal);
   }
 });
 
 //------------------------------ Lightbox Navigation ---------------------------------------
-lightboxForeward.addEventListener("click", function () {
-  lightboxMediaDisplay(lightboxChangeMedia(1));
+lightboxForward.addEventListener("click", function () {
+  lightboxDisplayMedium(lightboxChangeMedium(1));
 });
 lightboxBackward.addEventListener("click", function () {
-  lightboxMediaDisplay(lightboxChangeMedia(-1));
+  lightboxDisplayMedium(lightboxChangeMedium(-1));
 });
 lightboxModal.addEventListener("keydown", function (event) {
-  // right arrow(39) and left arrow (37)
-  if (event.which === 39) {
-    lightboxMediaDisplay(lightboxChangeMedia(1));
+  if (event.which === 39) { // 39 = right arrow
+    lightboxDisplayMedium(lightboxChangeMedium(1));
   }
-  if (event.which === 37) {
-    lightboxMediaDisplay(lightboxChangeMedia(-1));
+  if (event.which === 37) { // 37 = left arrow
+    lightboxDisplayMedium(lightboxChangeMedium(-1));
   }
 });
 
-//------------------------------ form Verification/Submission --------------------------------
-
+//--------------------------- form Verification/Submission --------------------------------
 
 for (let field of form) {
   field.addEventListener("input", function (event) {
@@ -175,6 +199,5 @@ for (let field of form) {
 }
 form.addEventListener("submit", function (event) {
   event.preventDefault();
-  formSubmission(event.target);
-  submissionConfirmation(event.target);
+  formSubmission();
 });
