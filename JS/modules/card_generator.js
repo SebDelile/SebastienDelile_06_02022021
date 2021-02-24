@@ -10,12 +10,14 @@
 //----------------------------------- Export(s) ----------------------------------------------
 //--------------------------------------------------------------------------------------------
 
+//the fonction takes data from the json, creates an element and fills it with the info of the photographer, then adds it to the photographer list
 export function createCard(photographer) {
+  //photographer is the JSON.photographers table
   let element = document.createElement("article");
   element.classList.add("card");
   element.setAttribute("id", `id${photographer.id}`);
   element.innerHTML = `
-    <a class="card__link" aria-label="Page de ${photographer.name}" href="photographer.html?id${photographer.id}">
+    <a class="card__link" aria-label="Page de ${photographer.name}" href="photographer.html?id=${photographer.id}">
      <img class="card__picture" src="./public/img/photographer-portraits/${photographer.portrait}" alt="photographer profile picture" />
      <h3 class="card__name">${photographer.name}</h3>
     </a>
@@ -27,12 +29,15 @@ export function createCard(photographer) {
     <button class="card__taglist__button tag__button sr-only" aria-labeledby="taglist-button-label" aria-checked="false" type="button"></button>
     <ul class="card__taglist taglist" role="menu">
     </ul>`;
+  //creates and adds a li element for each tag
   for (let tag of photographer.tags) {
     let Tag = tag.charAt(0).toUpperCase() + tag.substr(1); //1st letter uppercase
-    element.querySelector(".card__taglist").insertAdjacentHTML("beforeend", 
-    `<li class="card__tag">
+    element.querySelector(".card__taglist").insertAdjacentHTML(
+      "beforeend",
+      `<li class="card__tag">
       <button class="tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-${tag}" type="button" tabindex="-1">#${Tag}</button>
-    </li>`);
+    </li>`
+    );
   }
   document.querySelector(".main__grid").append(element);
 }

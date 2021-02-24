@@ -26,7 +26,7 @@
           <ul class="profile__taglist taglist" role="menubar"></ul>
         </article>
         <button class="profile__contact button" type="button">Contactez-moi</button>
-        <span class="profile__picture__wrapper" tabindex="0"><img class="profile__picture" src="lien" alt="" /></span>
+        <span class="profile__picture__wrapper" tabindex="0"></span>
         <aside class="profile__moreinfo" tabindex="0">
           <p class="profile__likes"></p>
           <p class="profile__price"></p>
@@ -50,7 +50,6 @@
       </section>
     </main>
     <div class="modal form__modal" id="form__modal" role="dialog" aria-modal="true" aria-label="formulaire de contact" aria-hidden="true" tabindex="-1">
-      <h2 class="modal__title hidden">Formulaire de contact</h2>
       <form class="form">
         <div class="form__head" tabindex="0">
           <h3 class="form__title">Contactez-moi</h3>
@@ -84,12 +83,11 @@
       </form>
     </div>
     <div class="modal lightbox__modal" id="lightbox__modal" role="dialog" aria-modal="true" aria-label="vue rapprochée de l'image" aria-hidden="true" tabindex="-1">
-      <h2 class="modal__title hidden">Aperçu des média</h2>
       <div class="lightbox">
-        <img class="lightbox__media" src="public/img/media/243/full/Animals_Rainbow.jpg" alt="" tabindex="0"/>
+        <img class="lightbox__medium" src="public/img/media/243/full/Animals_Rainbow.jpg" alt="" tabindex="0"/>
         <h3 class="lightbox__title" tabindex="0" lang="en">Arc-en-ciel</h3>
         <button class="lightbox__command lightbox__command__backward" aria-label="Média précédent" type="button"><img class="lightbox__command__img" src="public/img/icon/modal-left-button.svg" alt="bouton flèche gauche"/></button>
-        <button class="lightbox__command lightbox__command__foreward" aria-label="Média suivant" type="button"><img class="lightbox__command__img" src="public/img/icon/modal-right-button.svg" alt="bouton flèche droite" /></button>
+        <button class="lightbox__command lightbox__command__forward" aria-label="Média suivant" type="button"><img class="lightbox__command__img" src="public/img/icon/modal-right-button.svg" alt="bouton flèche droite" /></button>
         <button class="lightbox__close" type="button" aria-label="Fermer" title="Fermer la fenêtre" ><img class="lightbox__close__img" src="public/img/icon/modal-close-button.svg" alt="bouton fermer"/></button>
         <div class="lightbox__videocontrols">
           <button class="lightbox__videocontrols__playpause lightbox__videocontrols__button" aria-label="Lecture">
