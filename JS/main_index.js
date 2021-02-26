@@ -2,7 +2,7 @@
 //------------------------------ Import from modules -----------------------------------------
 //--------------------------------------------------------------------------------------------
 
-import { tagSort } from "./modules/tag_sort.js";
+import { tagFilter } from "./modules/tag_sort.js";
 import { tagTabAcces, tagTabForbid } from "./modules/tag_keyboard_nav.js";
 import { createCard } from "./modules/card_generator.js";
 
@@ -43,7 +43,7 @@ fetch("./public/FishEyeDataFR.json")
     const tags = document.getElementsByClassName("tag");
     for (let tag of tags) {
       tag.addEventListener("click", function (event) {
-        tagSort(event.target);
+        tagFilter(event.target);
       });
     }
     //to enter the taglist with keyboard navigation it should press enter on a button
@@ -66,10 +66,12 @@ fetch("./public/FishEyeDataFR.json")
   })
   //if coming from photograph page via tag link : activate the tag
   .then(function () {
-    for (let tag of taglist) {
-      if (tag.textContent.toUpperCase() === url.toUpperCase()) {
-        tag.click();
-        break;
+    if (url) { // "?tag=***"
+      for (let tag of taglist) {
+        if (tag.textContent.toUpperCase() === url.toUpperCase()) {
+          tag.click();
+          break;
+        }
       }
     }
   });

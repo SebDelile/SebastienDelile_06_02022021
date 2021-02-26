@@ -113,6 +113,10 @@ export function videoControlsDisplay() {
     button.addEventListener("focus", isActive);
     button.addEventListener("click", isActive);
   }
+  //Sets listener on video status
+  const videoElement = document.querySelector(".lightbox__medium");
+  videoElement.addEventListener("play", isActive);
+  videoElement.addEventListener("pause", isActive);
   //launch the timer which acts as a countdown to hide the videocontrols after inactivity period
   timer = setInterval(checkActivity, 100);
   //remove all tracking when the video is undisplayed (whatever the way)

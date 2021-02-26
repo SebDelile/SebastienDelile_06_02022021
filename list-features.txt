@@ -39,8 +39,33 @@ v balise langue pour les mots anglais
 v check ESLint
 v check W3C
 v check AChecker
-- réorganiser le JS
-(-modale keyboard nav)
-- commenter le JS, voire le SCSS
+v réorganiser le JS
+v commenter le JS, voire le SCSS
 - check de tous affichage sur chrome et firefox
 - check des fonctionnalités (attention suppr les console.log)
+
+
+display issues:
+JS :
+v play/pause faire apparaitre les controles video
+
+Chrome
+v dropshadow à black pour etre plus visible + couleur texte pour trancher encore plus
+v bouton like liked pointeur reste main
+v section profile alignement photo bizarre
+v index header reso minimum logo et photographe se touchent
+- photographe reso min pas de scroll horiz (a cause du truc CSS pour le like)
+- photographe reso min contactez moi à fixer centré
+- modale reso min bug marge gauche
+- pas de Xscrollbar à reso min
+v form message confirmation dépasse
+
+v controle video décalage quand modale passe fond blanc
+
+Firefox
+- skiplink ne focus pas le titre
+
+mobile
+- lightbox padding haut bas sur petit écran + taille titre medium
+- cliquer sur like ramene en haut de page
+- time label depasse sur petit ecran 

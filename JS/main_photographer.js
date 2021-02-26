@@ -132,8 +132,8 @@ criteriaList.addEventListener("click", function (event) {
   criteriaSortOpenClose(event);
 });
 for (let criterionButton of criteriaButtons) {
-  criterionButton.addEventListener("click", function (event) {
-    criteriaSortAction(event.target);
+  criterionButton.addEventListener("click", function () {
+    criteriaSortAction(this);
   });
 }
 

@@ -27,7 +27,8 @@ export function profileGenerator(photographers) { //photographers is the JSON.ph
         </li>`
         );
       }
-      profile.querySelector(".profile__picture__wrapper").innerHTML = `<img class="profile__picture" src="./public/img/photographer-portraits/${photographer.portrait}" alt="Portrait de ${photographer.name}" />`
+      profile.querySelector(".profile__picture").setAttribute("src", `./public/img/photographer-portraits/${photographer.portrait}`);
+      profile.querySelector(".profile__picture").setAttribute("alt", `Portrait de ${photographer.name}`);
       profile.querySelector(".profile__price").innerHTML = `${photographer.price} <span aria-hidden="true">€/j</span><span class="sr-only">euros par jour...</span>`;
       profile.querySelector(".profile__title").textContent = `Page de ${photographer.name}`;
       //fills the info of the photographer on other area : form title and title of the page

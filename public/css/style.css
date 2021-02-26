@@ -202,9 +202,9 @@ body * {
 .header {
   margin: 2rem 0;
   width: 100%;
-  padding-left: 2rem;
-  padding-right: 22rem;
-  /*need space for title main>h1* : 20rem + 2rem padding*/
+  padding-left: 0rem;
+  padding-right: 20rem;
+  /*need space for title main>h1* : 20rem */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -212,7 +212,7 @@ body * {
   min-height: calc(2* (1.3325 *0.75rem + 2 * (1px + 0.1rem + 0.1rem)));
 }
 .header__homepagelink:hover, .header__homepagelink:focus {
-  filter: drop-shadow(0 0 0.5rem #901C1C);
+  filter: drop-shadow(0 0 0.5rem #000000);
   outline: none;
 }
 .header__logo {
@@ -230,14 +230,14 @@ body * {
   flex-wrap: wrap;
 }
 .header__nav__taglist:hover, .header__nav__taglist:focus {
-  filter: drop-shadow(0 0 0.5rem #901C1C);
+  filter: drop-shadow(0 0 0.5rem #000000);
   outline: none;
 }
 @media only screen and (max-width: 70rem) {
   .header {
     padding-left: 1rem;
-    padding-right: 14.5rem;
-    /*need space for title main>h1* : 13.5rem + 1rem padding*/
+    padding-right: 13.5rem;
+    /*need space for title main>h1* : 13.5rem*/
   }
   .header__logo {
     width: 9.375rem;
@@ -249,7 +249,7 @@ body * {
 }
 @media only screen and (max-width: 70rem) and (max-width: 51rem) {
   .header {
-    padding: 0 1rem;
+    padding: 0;
     /*tag menu down to second line*/
     flex-wrap: wrap;
     min-height: unset;
@@ -278,7 +278,13 @@ body * {
   flex-shrink: 0;
 }
 .form__head:hover, .form__head:focus {
-  filter: drop-shadow(0 0 0.5rem #000000);
+  color: black;
+  text-shadow: 0 0 0.5rem #000000;
+  outline: none;
+}
+.form__head:hover *, .form__head:focus * {
+  color: black;
+  text-shadow: 0 0 0.5rem #000000;
   outline: none;
 }
 .form__title, .form__subtitle {
@@ -311,7 +317,13 @@ body * {
   /*compensate the border of input*/
 }
 .form__label:hover, .form__label:focus {
-  filter: drop-shadow(0 0 0.5rem #000000);
+  color: black;
+  text-shadow: 0 0 0.5rem #000000;
+  outline: none;
+}
+.form__label:hover *, .form__label:focus * {
+  color: black;
+  text-shadow: 0 0 0.5rem #000000;
   outline: none;
 }
 .form__input {
@@ -355,7 +367,10 @@ body * {
   /*due to background color, the default hover of button is not suitable*/
   background-color: #901C1C;
   color: white;
-  box-shadow: 0 0 0.5rem 0.25rem black;
+}
+.form__submit:hover:hover, .form__submit:hover:focus, .form__submit:focus:hover, .form__submit:focus:focus {
+  box-shadow: 0 0 0.5rem 0.25rem #000000;
+  outline: none;
 }
 .form__close {
   position: absolute;
@@ -388,18 +403,26 @@ body * {
 }
 .form__submitted p {
   font-size: 2rem;
+  width: 100%;
+  padding: 5%;
   font-weight: 400;
   color: #312E2E;
   text-align: center;
   position: relative;
 }
 .form__submitted p:hover, .form__submitted p:focus {
-  filter: drop-shadow(0 0 0.5rem #000000);
+  color: black;
+  text-shadow: 0 0 0.5rem #000000;
+  outline: none;
+}
+.form__submitted p:hover *, .form__submitted p:focus * {
+  color: black;
+  text-shadow: 0 0 0.5rem #000000;
   outline: none;
 }
 @media only screen and (max-width: 45rem) {
   .form {
-    width: 90%;
+    width: 92%;
   }
   .form__title, .form__subtitle {
     font-size: 2.25rem;
@@ -479,7 +502,7 @@ body * {
   border-radius: 0.3125rem;
 }
 .lightbox__medium:hover, .lightbox__medium:focus {
-  filter: drop-shadow(0 0 0.5rem #000000);
+  box-shadow: 0 0 0.5rem 0.25rem #901C1C;
   outline: none;
 }
 .lightbox__title {
@@ -491,7 +514,13 @@ body * {
   color: #901C1C;
 }
 .lightbox__title:hover, .lightbox__title:focus {
-  filter: drop-shadow(0 0 0.5rem #000000);
+  color: black;
+  text-shadow: 0 0 0.5rem #000000;
+  outline: none;
+}
+.lightbox__title:hover *, .lightbox__title:focus * {
+  color: black;
+  text-shadow: 0 0 0.5rem #000000;
   outline: none;
 }
 .lightbox__command {
@@ -620,7 +649,7 @@ body * {
   .lightbox__command__backward {
     margin: 0 0.5rem 0 1.25rem;
   }
-  .lightbox__command__foreward {
+  .lightbox__command__forward {
     margin: 0 1.25rem 0 0.5rem;
   }
   .lightbox__close {
@@ -654,7 +683,13 @@ body * {
   color: #901C1C;
 }
 .index__title:hover, .index__title:focus {
-  filter: drop-shadow(0 0 0.5rem #D3573C);
+  color: black;
+  text-shadow: 0 0 0.5rem #000000;
+  outline: none;
+}
+.index__title:hover *, .index__title:focus * {
+  color: black;
+  text-shadow: 0 0 0.5rem #000000;
   outline: none;
 }
 @media only screen and (max-width: 70rem) {
@@ -680,13 +715,14 @@ body * {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 20rem);
-  justify-content: space-around;
+  justify-content: space-between;
   grid-auto-flow: row;
   align-items: start;
   justify-items: stretch;
 }
 @media only screen and (max-width: 70rem) {
   .main__grid {
+    justify-content: space-around;
     grid-template-columns: repeat(2, 20rem);
   }
 }
@@ -716,14 +752,27 @@ body * {
   justify-content: flex-start;
 }
 .card__link:hover, .card__link:focus {
-  filter: drop-shadow(0 0 0.5rem #901C1C);
+  /*Same as mixins boxshadow, but the mixin is not workable as it needs to be on the parent element*/
+}
+.card__link:hover:hover, .card__link:hover:focus, .card__link:focus:hover, .card__link:focus:focus {
+  color: black;
+  text-shadow: 0 0 0.5rem #000000;
+  outline: none;
+}
+.card__link:hover:hover *, .card__link:hover:focus *, .card__link:focus:hover *, .card__link:focus:focus * {
+  color: black;
+  text-shadow: 0 0 0.5rem #000000;
+  outline: none;
+}
+.card__link:hover img, .card__link:focus img {
+  box-shadow: 0 0 0.5rem 0.25rem black;
   outline: none;
 }
 .card__picture {
   width: 16rem;
   height: 16rem;
   object-fit: cover;
-  clip-path: circle(45%);
+  border-radius: 50%;
 }
 .card__name {
   font-size: 2.25rem;
@@ -731,7 +780,13 @@ body * {
   color: #D3573C;
 }
 .card__text:hover, .card__text:focus {
-  filter: drop-shadow(0 0 0.5rem #901C1C);
+  color: black;
+  text-shadow: 0 0 0.5rem #000000;
+  outline: none;
+}
+.card__text:hover *, .card__text:focus * {
+  color: black;
+  text-shadow: 0 0 0.5rem #000000;
   outline: none;
 }
 .card__location {
@@ -756,7 +811,7 @@ body * {
   align-items: center;
 }
 .card__taglist:hover, .card__taglist:focus {
-  filter: drop-shadow(0 0 0.5rem #901C1C);
+  filter: drop-shadow(0 0 0.5rem #000000);
   outline: none;
 }
 
@@ -783,7 +838,13 @@ body * {
   color: #D3573C;
 }
 .profile__name:hover, .profile__name:focus {
-  filter: drop-shadow(0 0 0.5rem #000000);
+  color: black;
+  text-shadow: 0 0 0.5rem #000000;
+  outline: none;
+}
+.profile__name:hover *, .profile__name:focus * {
+  color: black;
+  text-shadow: 0 0 0.5rem #000000;
   outline: none;
 }
 .profile__text {
@@ -793,7 +854,13 @@ body * {
   align-items: flex-start;
 }
 .profile__text:hover, .profile__text:focus {
-  filter: drop-shadow(0 0 0.5rem #000000);
+  color: black;
+  text-shadow: 0 0 0.5rem #000000;
+  outline: none;
+}
+.profile__text:hover *, .profile__text:focus * {
+  color: black;
+  text-shadow: 0 0 0.5rem #000000;
   outline: none;
 }
 .profile__location {
@@ -841,12 +908,12 @@ body * {
   width: 12.5rem;
   height: 12.5rem;
   object-fit: cover;
-  clip-path: circle(50%);
+  border-radius: 50%;
   align-self: start;
   justify-self: end;
 }
-.profile__picture__wrapper:hover, .profile__picture__wrapper:focus {
-  filter: drop-shadow(0 0 0.5rem #000000);
+.profile__picture:hover, .profile__picture:focus {
+  box-shadow: 0 0 0.5rem 0.25rem #000000;
   outline: none;
 }
 .profile__moreinfo {
@@ -859,7 +926,7 @@ body * {
   z-index: 3;
 }
 .profile__moreinfo:hover, .profile__moreinfo:focus {
-  filter: drop-shadow(0 0 0.5rem #000000);
+  box-shadow: 0 0 0.5rem 0.25rem #000000;
   outline: none;
 }
 .profile__likes, .profile__price {
@@ -974,7 +1041,13 @@ body * {
   margin-top: 0.75rem;
 }
 .sort__label:hover, .sort__label:focus {
-  filter: drop-shadow(0 0 0.5rem #901C1C);
+  color: black;
+  text-shadow: 0 0 0.5rem #000000;
+  outline: none;
+}
+.sort__label:hover *, .sort__label:focus * {
+  color: black;
+  text-shadow: 0 0 0.5rem #000000;
   outline: none;
 }
 .sort__criterialist {
@@ -1043,9 +1116,10 @@ body * {
 .media__button {
   width: 100%;
   cursor: pointer;
+  border-radius: 0.3125rem;
 }
 .media__button:hover, .media__button:focus {
-  filter: drop-shadow(0 0 0.5rem #901C1C);
+  box-shadow: 0 0 0.5rem 0.25rem #000000;
   outline: none;
 }
 .media__img {
@@ -1084,7 +1158,13 @@ body * {
   text-overflow: ellipsis;
 }
 .media__title:hover, .media__title:focus {
-  filter: drop-shadow(0 0 0.5rem #000000);
+  color: black;
+  text-shadow: 0 0 0.5rem #000000;
+  outline: none;
+}
+.media__title:hover *, .media__title:focus * {
+  color: black;
+  text-shadow: 0 0 0.5rem #000000;
   outline: none;
 }
 .media__price {
@@ -1095,7 +1175,13 @@ body * {
   color: #901C1C;
 }
 .media__price:hover, .media__price:focus {
-  filter: drop-shadow(0 0 0.5rem #000000);
+  color: black;
+  text-shadow: 0 0 0.5rem #000000;
+  outline: none;
+}
+.media__price:hover *, .media__price:focus * {
+  color: black;
+  text-shadow: 0 0 0.5rem #000000;
   outline: none;
 }
 .media__likes {
@@ -1111,10 +1197,6 @@ body * {
   height: 1.75rem;
   cursor: pointer;
 }
-.media__likes:hover, .media__likes:focus {
-  filter: drop-shadow(0 0 0.5rem #901C1C);
-  outline: none;
-}
 .media__likes img {
   /*absolute position to avoid shift during the frame when the liked icon is loaded*/
   height: 1.25rem;
@@ -1123,13 +1205,28 @@ body * {
   top: calc((1.75rem - 1.25rem) / 2);
   /*(height of parent - height of img / 2)*/
 }
-.media__likes .media__likes__liked {
-  /*.media__likes is here to enhance specificity for cursor property*/
-  animation: liked 0.6s both;
+.media__likes:hover, .media__likes:focus {
+  /*Same as mixins dropshadow, but the mixin is not workable as it needs to be on the parent element*/
+}
+.media__likes:hover:hover, .media__likes:hover:focus, .media__likes:focus:hover, .media__likes:focus:focus {
+  color: black;
+  text-shadow: 0 0 0.5rem #000000;
+  outline: none;
+}
+.media__likes:hover:hover *, .media__likes:hover:focus *, .media__likes:focus:hover *, .media__likes:focus:focus * {
+  color: black;
+  text-shadow: 0 0 0.5rem #000000;
+  outline: none;
+}
+.media__likes:hover img, .media__likes:focus img {
+  filter: drop-shadow(0 0 0.5rem black);
+  outline: none;
+}
+.media__likes__liked {
   cursor: default;
 }
-.media__likes .media__likes__liked:hover, .media__likes .media__likes__liked:focus {
-  filter: unset;
+.media__likes__liked img {
+  animation: liked 0.6s both;
 }
 
 /*# sourceMappingURL=style.css.map */
