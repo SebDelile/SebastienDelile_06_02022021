@@ -18,14 +18,14 @@
     font-size: 4rem;
     font-weight: 400;
     color: map-get($color, tertiary);
-    @include dropshadow(black);
+    @include textshadow;
   }
   &__text {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    @include dropshadow(black);
+    @include textshadow;
   }
   &__location {
     font-size: 1.5rem;
@@ -70,12 +70,10 @@
     width: 12.5rem;
     height: 12.5rem;
     object-fit: cover;
-    clip-path: circle(50%);
+    border-radius: 50%;
     align-self: start;
     justify-self: end;
-    &__wrapper {
-      @include dropshadow(black);
-    }
+    @include boxshadow;
   }
   &__moreinfo {
     position: fixed;
@@ -85,7 +83,7 @@
     border-radius: 0.3125rem 0.3125rem 0 0;
     white-space: nowrap;
     z-index: 3;
-    @include dropshadow(black);
+    @include boxshadow;
   }
   &__likes,
   &__price {
@@ -110,44 +108,47 @@
         font-size: 0.8125rem;
       }
       @media only screen and (max-width: 57rem) {
+        background-color: white;
+        padding: 0;
+        grid-template-columns: auto auto;
         &__picture {
           width: 9rem;
           height: 9rem;
         }
-        @media only screen and (max-width: 57rem) {
+        &__contact {
+          padding: 0.35rem 1rem;
+          margin: 0;
+          position: fixed;
+          bottom: 2rem;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+        &__moreinfo {
+          position: absolute;
+          left: 50%;
+          right: unset;
+          transform: translateX(-50%);
+        }
+        &__tag .tag {
           background-color: white;
-          padding: 0;
-          grid-template-columns: auto auto;
-          &__contact {
-            padding: 0.35rem 1rem;
-            margin: 0;
-            position: fixed;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-          }
-          &__moreinfo {
-            position: absolute;
-            left: 50%;
-            right: unset;
-            transform: translateX(-50%);
-          }
-          &__tag .tag {
-            background-color: white;
-          }
         }
-      }
-      @media only screen and (max-width: 35rem) {
-        &__location {
-          margin-bottom: 0.5rem;
-        }
-        &__taglist {
-          flex-wrap: wrap;
-          justify-content: flex-start;
-        }
-        &__picture {
-          width: 6.25rem;
-          height: 6.25rem;
+        @media only screen and (max-width: 35rem) {
+          &__location {
+            margin-bottom: 0.5rem;
+          }
+          &__taglist {
+            flex-wrap: wrap;
+            justify-content: flex-start;
+          }
+          &__picture {
+            width: 6.25rem;
+            height: 6.25rem;
+          }
+          @media only screen and (max-width: 20rem) {
+            &__contact {
+              left: 10rem; /*the screen size is minimum width is 20rem*/
+            }
+          }
         }
       }
     }
@@ -192,7 +193,7 @@
     color: black;
     padding-right: 1.5rem;
     margin-top: 0.75rem;
-    @include dropshadow(primary);
+    @include textshadow;
   }
   &__criterialist {
     display: grid;
@@ -259,7 +260,8 @@
   &__button {
     width: 100%;
     cursor: pointer;
-    @include dropshadow(primary);
+    border-radius: 0.3125rem;
+    @include boxshadow;
   }
   &__img {
     display: block;
@@ -289,7 +291,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    @include dropshadow(black);
+    @include textshadow;
   }
   &__price {
     flex: none;
@@ -297,7 +299,7 @@
     font-size: 1.5rem;
     font-weight: 500;
     color: map-get($color, primary);
-    @include dropshadow(black);
+    @include textshadow;
   }
   &__likes {
     flex: none;
@@ -310,7 +312,6 @@
     position: relative;
     padding-right: 1.5rem;
     height: 1.75rem;
-    @include dropshadow(primary);
     cursor: pointer;
     img {
       /*absolute position to avoid shift during the frame when the liked icon is loaded*/
@@ -319,13 +320,19 @@
       right: 0;
       top: calc((1.75rem - 1.25rem) / 2); /*(height of parent - height of img / 2)*/
     }
-    .media__likes &__liked {
-      /*.media__likes is here to enhance specificity for cursor property*/
-      animation: liked 0.6s both;
+    &:hover,
+    &:focus {
+      @include textshadow;
+      /*Same as mixins dropshadow, but the mixin is not workable as it needs to be on the parent element*/
+      img {
+        filter: drop-shadow(0 0 0.5rem black);
+        outline: none;
+      }
+    }
+    &__liked {
       cursor: default;
-      &:hover,
-      &:focus {
-        filter: unset;
+      img {
+        animation: liked 0.6s both;
       }
     }
   }

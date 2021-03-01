@@ -12,17 +12,17 @@ import { taglist } from "../main_index.js";
 //----------------------------------- Export(s) ----------------------------------------------
 //--------------------------------------------------------------------------------------------
 
-//sort the photographer according to the selected tag
-export function tagSort(activatedTag) {
+//filters the photographer according to the selected tag
+export function tagFilter(activatedTag) {
   //activatedTag is the tag element selected by the user
   const tags = document.getElementsByClassName("tag");
   const cards = document.getElementsByClassName("card");
-  //step 1 : check if it needs to sort or unsort
-  const sortMode = activatedTag.getAttribute("aria-checked"); // false : need to sort, true : to unsort
+  //step 1 : check if it needs to filter or unfilter
+  const filterMode = activatedTag.getAttribute("aria-checked"); // false : need to filter, true : to unfilter
   //step 2 : turn true/false the aria-checked attribute on the corresponding tags
   for (let tag of tags) {
     if (tag.textContent.toUpperCase() === activatedTag.textContent.toUpperCase()) {
-      if (sortMode === "true") {
+      if (filterMode === "true") {
         tag.setAttribute("aria-checked", "false");
       } else {
         tag.setAttribute("aria-checked", "true");

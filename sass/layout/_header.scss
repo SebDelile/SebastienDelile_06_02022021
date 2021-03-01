@@ -1,15 +1,15 @@
 .header {
   margin: 2rem 0;
   width: 100%;
-  padding-left: 2rem;
-  padding-right: 22rem; /*need space for title main>h1* : 20rem + 2rem padding*/
+  padding-left: 0rem;
+  padding-right: 20rem; /*need space for title main>h1* : 20rem */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   min-height: $header-minheight;
   &__homepagelink {
-    @include dropshadow(primary);
+    @include dropshadow;
   }
   &__logo {
     width: 12.5rem;
@@ -23,12 +23,12 @@
       justify-content: center;
       align-items: center;
       flex-wrap: wrap;
-      @include dropshadow(primary);
+      @include dropshadow;
     }
   }
   @media only screen and (max-width: 70rem) {
     padding-left: 1rem;
-    padding-right: 14.5rem; /*need space for title main>h1* : 13.5rem + 1rem padding*/
+    padding-right: 13.5rem; /*need space for title main>h1* : 13.5rem*/
     &__logo {
       width: 9.375rem;
       margin : calc((3.048125rem - 2.34375rem) / 2) 0;// (height of H1 - height of logo) / 2
@@ -37,7 +37,7 @@
       padding: 0 0.5rem;
     }
     @media only screen and (max-width: 51rem) {
-      padding: 0 1rem; /*tag menu down to second line*/
+      padding: 0; /*tag menu down to second line*/
       flex-wrap: wrap;
       min-height: unset;
       margin-bottom: 0.5rem;

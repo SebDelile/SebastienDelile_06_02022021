@@ -2,7 +2,7 @@
 //------------------------------ Import from modules -----------------------------------------
 //--------------------------------------------------------------------------------------------
 
-import { tagSort } from "./modules/tag_sort.js";
+import { tagFilter } from "./modules/tag_sort.js";
 import { tagTabAcces, tagTabForbid } from "./modules/tag_keyboard_nav.js";
 import { createCard } from "./modules/card_generator.js";
 
@@ -12,6 +12,7 @@ import { createCard } from "./modules/card_generator.js";
 
 const url = "#" + window.location.search.slice(5); //remove "?tag=" and add the "#" to format the url keyword suitable with the tags
 export const taglist = document.querySelectorAll(".header__nav__tag");
+const skiplink = document.querySelector(".skiplink");
 
 //DOM elements depending on the JSON  data need to be declare inside the fetch
 
@@ -43,7 +44,7 @@ fetch("./public/FishEyeDataFR.json")
     const tags = document.getElementsByClassName("tag");
     for (let tag of tags) {
       tag.addEventListener("click", function (event) {
-        tagSort(event.target);
+        tagFilter(event.target);
       });
     }
     //to enter the taglist with keyboard navigation it should press enter on a button
@@ -66,10 +67,12 @@ fetch("./public/FishEyeDataFR.json")
   })
   //if coming from photograph page via tag link : activate the tag
   .then(function () {
-    for (let tag of taglist) {
-      if (tag.textContent.toUpperCase() === url.toUpperCase()) {
-        tag.click();
-        break;
+    if (url) { // "?tag=***"
+      for (let tag of taglist) {
+        if (tag.textContent.toUpperCase() === url.toUpperCase()) {
+          tag.click();
+          break;
+        }
       }
     }
   });
@@ -77,3 +80,10 @@ fetch("./public/FishEyeDataFR.json")
 //--------------------------------------------------------------------------------------------
 //--------------------------------- Event listeners ------------------------------------------
 //--------------------------------------------------------------------------------------------
+
+//On firefox, click on the skiplink goes to the main title but there is not displayed focus
+//the trick doesn't work without the preventdefault method.
+skiplink.addEventListener("click", function(event){
+  event.preventDefault();
+  document.getElementById("main__title").focus();
+})

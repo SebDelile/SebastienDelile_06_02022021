@@ -9,100 +9,112 @@
   </head>
 
   <body>
-    <header class="header">
-      <a class="header__homepagelink" href="index.html" aria-label="Page d'accueil de FishEye"><img class="header__logo" src="public/img/logo-Fisheye.svg" alt="logo FishEye" /></a>
-    </header>
+    <div class="container">
+      <header class="header">
+        <a class="header__homepagelink" href="index.html" aria-label="Page d'accueil de FishEye"><img class="header__logo" src="public/img/logo-Fisheye.svg" alt="logo FishEye" /></a>
+      </header>
 
-    <main class="main">
-      <section class="profile">
-        <h1 class="profile__title hidden">Profil</h1>
-        <article class="profile__info">
-          <h2 class="profile__name" tabindex="0">nom</h2>
-          <div class="profile__text" tabindex="0">
-            <p class="profile__location">Ville, Pays</p>
-            <p class="profile__quote">Citation</p>
+      <main class="main">
+        <section class="profile">
+          <h1 class="profile__title hidden">Profil</h1>
+          <article class="profile__info">
+            <h2 class="profile__name" tabindex="0">nom</h2>
+            <div class="profile__text" tabindex="0">
+              <p class="profile__location">Ville, Pays</p>
+              <p class="profile__quote">Citation</p>
+            </div>
+            <button class="profile__taglist__button tag__button sr-only" aria-label="Trouver les autres photographes selon la catégorie," type="button"></button>
+            <ul class="profile__taglist taglist" role="menubar"></ul>
+          </article>
+          <button class="profile__contact button" type="button">Contactez-moi</button>
+          <img class="profile__picture" tabindex="0" src="public/img/logo-Fisheye.svg" alt="" />
+          <aside class="profile__moreinfo" tabindex="0">
+            <p class="profile__likes"></p>
+            <p class="profile__price"></p>
+          </aside>
+        </section>
+        <section class="portfolio">
+          <h2 class="porfolio__title sr-only">Portfolio</h2>
+          <aside class="sort">
+            <p class="sort__label" tabindex="0">Trier par</p>
+            <ul class="sort__criterialist" role="menu" aria-expanded="false">
+              <li class="sort__li">
+                <button class="sort__criteria" aria-label="Actuellement trié par popularité">
+                  Popularité<img class="sort__icon" src="public/img/icon/menu-closed.svg" alt="icone menu déroulant" />
+                </button>
+              </li>
+              <li class="sort__li"><button class="sort__criteria" aria-label="Trier par date">Date</button></li>
+              <li class="sort__li"><button class="sort__criteria" aria-label="Trier par titre">Titre</button></li>
+            </ul>
+          </aside>
+          <article class="portfolio__grid">
+            <!--Media are generated with JS-->
+          </article>
+        </section>
+      </main>
+      <div class="modal form__modal" id="form__modal" role="dialog" aria-modal="true" aria-label="formulaire de contact" aria-hidden="true" tabindex="-1">
+        <form class="form">
+          <div class="form__head" tabindex="0">
+            <h3 class="form__title">Contactez-moi</h3>
+            <h3 class="form__subtitle">Ellen-Rose Wilkens</h3>
           </div>
-          <button class="profile__taglist__button tag__button sr-only" aria-label="Trouver les autres photographes selon la catégorie," type="button"></button>
-          <ul class="profile__taglist taglist" role="menubar"></ul>
-        </article>
-        <button class="profile__contact button" type="button">Contactez-moi</button>
-        <span class="profile__picture__wrapper" tabindex="0"></span>
-        <aside class="profile__moreinfo" tabindex="0">
-          <p class="profile__likes"></p>
-          <p class="profile__price"></p>
-        </aside>
-      </section>
-      <section class="portfolio">
-        <h2 class="porfolio__title sr-only">Portfolio</h2>
-        <aside class="sort">
-          <p class="sort__label" tabindex="0">Trier par</p>
-          <ul class="sort__criterialist" role="menu" aria-expanded="false">
-            <li class="sort__li">
-              <button class="sort__criteria" aria-label="Actuellement trié par popularité">Popularité<img class="sort__icon" src="public/img/icon/menu-closed.svg" alt="icone menu déroulant"/></button>
-            </li>
-            <li class="sort__li"><button class="sort__criteria" aria-label="Trier par date" >Date</button></li>
-            <li class="sort__li"><button class="sort__criteria" aria-label="Trier par titre" >Titre</button></li>
-          </ul>
-        </aside>
-        <article class="portfolio__grid">
-          <!--Media are generated with JS-->
-        </article>
-      </section>
-    </main>
-    <div class="modal form__modal" id="form__modal" role="dialog" aria-modal="true" aria-label="formulaire de contact" aria-hidden="true" tabindex="-1">
-      <form class="form">
-        <div class="form__head" tabindex="0">
-          <h3 class="form__title">Contactez-moi</h3>
-          <h3 class="form__subtitle">Ellen-Rose Wilkens</h3>
-        </div>
-        <div class="form__field">
-          <label class="form__label" for="firstname" tabindex="0">Prénom</label>
-          <input class="form__input" type="text" id="firstname" name="firstname" required minlength="2" />
-          <img class="form__validity" src="public/img/icon/warning.svg" alt="indicateur de validité du champ de formulaire" />
-        </div>
-        <div class="form__field">
-          <label class="form__label" for="lastname" tabindex="0">Nom</label>
-          <input class="form__input" type="text" id="lastname" name="lastname" required minlength="2" />
-          <img class="form__validity" src="public/img/icon/warning.svg" alt="indicateur de validité du champ de formulaire" />
-        </div>
-        <div class="form__field">
-          <label class="form__label" for="email" tabindex="0">Email</label>
-          <input class="form__input" type="email" id="email" name="email" required />
-          <img class="form__validity" src="public/img/icon/warning.svg" alt="indicateur de validité du champ de formulaire" />
-        </div>
-        <div class="form__field">
-          <label class="form__label" for="message" tabindex="0">Votre message</label>
-          <textarea class="form__input form__input--area" id="message" name="message" required minlength="10"></textarea>
-          <img class="form__validity" src="public/img/icon/warning.svg" alt="indicateur de validité du champ de formulaire" />
-        </div>
-        <button class="form__submit button" type="submit">Envoyer</button>
-        <div class="form__submitted">
-          <p role="alert">Votre message a bien été envoyé</p>
-        </div>
-        <button class="form__close" type="button" aria-label="Fermer" title="Fermer la fenêtre"><img class="form__close__img" src="public/img/icon/modal-close-button-alt.svg" alt="bouton fermer"/></button>
-      </form>
-    </div>
-    <div class="modal lightbox__modal" id="lightbox__modal" role="dialog" aria-modal="true" aria-label="vue rapprochée de l'image" aria-hidden="true" tabindex="-1">
-      <div class="lightbox">
-        <img class="lightbox__medium" src="public/img/media/243/full/Animals_Rainbow.jpg" alt="" tabindex="0"/>
-        <h3 class="lightbox__title" tabindex="0" lang="en">Arc-en-ciel</h3>
-        <button class="lightbox__command lightbox__command__backward" aria-label="Média précédent" type="button"><img class="lightbox__command__img" src="public/img/icon/modal-left-button.svg" alt="bouton flèche gauche"/></button>
-        <button class="lightbox__command lightbox__command__forward" aria-label="Média suivant" type="button"><img class="lightbox__command__img" src="public/img/icon/modal-right-button.svg" alt="bouton flèche droite" /></button>
-        <button class="lightbox__close" type="button" aria-label="Fermer" title="Fermer la fenêtre" ><img class="lightbox__close__img" src="public/img/icon/modal-close-button.svg" alt="bouton fermer"/></button>
-        <div class="lightbox__videocontrols">
-          <button class="lightbox__videocontrols__playpause lightbox__videocontrols__button" aria-label="Lecture">
-            <img src="public/img/icon/play.svg" alt="Lecture"/>
+          <div class="form__field">
+            <label class="form__label" for="firstname" tabindex="0">Prénom</label>
+            <input class="form__input" type="text" id="firstname" name="firstname" required minlength="2" />
+            <img class="form__validity" src="public/img/icon/warning.svg" alt="indicateur de validité du champ de formulaire" />
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="lastname" tabindex="0">Nom</label>
+            <input class="form__input" type="text" id="lastname" name="lastname" required minlength="2" />
+            <img class="form__validity" src="public/img/icon/warning.svg" alt="indicateur de validité du champ de formulaire" />
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="email" tabindex="0">Email</label>
+            <input class="form__input" type="email" id="email" name="email" required />
+            <img class="form__validity" src="public/img/icon/warning.svg" alt="indicateur de validité du champ de formulaire" />
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="message" tabindex="0">Votre message</label>
+            <textarea class="form__input form__input--area" id="message" name="message" required minlength="10"></textarea>
+            <img class="form__validity" src="public/img/icon/warning.svg" alt="indicateur de validité du champ de formulaire" />
+          </div>
+          <button class="form__submit button" type="submit">Envoyer</button>
+          <div class="form__submitted">
+            <p role="alert">Votre message a bien été envoyé</p>
+          </div>
+          <button class="form__close" type="button" aria-label="Fermer" title="Fermer la fenêtre">
+            <img class="form__close__img" src="public/img/icon/modal-close-button-alt.svg" alt="bouton fermer" />
           </button>
-          <button class="lightbox__videocontrols__stop lightbox__videocontrols__button" aria-label="Arrêt">
-            <img src="public/img/icon/stop.svg" alt="Arrêt"/>
+        </form>
+      </div>
+      <div class="modal lightbox__modal" id="lightbox__modal" role="dialog" aria-modal="true" aria-label="vue rapprochée de l'image" aria-hidden="true" tabindex="-1">
+        <div class="lightbox">
+          <img class="lightbox__medium" src="public/img/media/243/full/Animals_Rainbow.jpg" alt="" tabindex="0" />
+          <h3 class="lightbox__title" tabindex="0" lang="en">Arc-en-ciel</h3>
+          <button class="lightbox__command lightbox__command__backward" aria-label="Média précédent" type="button">
+            <img class="lightbox__command__img" src="public/img/icon/modal-left-button.svg" alt="bouton flèche gauche" />
           </button>
-          <button class="lightbox__videocontrols__rwd lightbox__videocontrols__button" aria-label="Recule de 3 secondes">
-            <img src="public/img/icon/reverse.svg" alt="Avance 3 secondes"/>
+          <button class="lightbox__command lightbox__command__forward" aria-label="Média suivant" type="button">
+            <img class="lightbox__command__img" src="public/img/icon/modal-right-button.svg" alt="bouton flèche droite" />
           </button>
-          <button class="lightbox__videocontrols__fwd lightbox__videocontrols__button" aria-label="Avance de 3 secondes">
-            <img src="public/img/icon/forward.svg" alt="Retour 3 secondes"/>
+          <button class="lightbox__close" type="button" aria-label="Fermer" title="Fermer la fenêtre">
+            <img class="lightbox__close__img" src="public/img/icon/modal-close-button.svg" alt="bouton fermer" />
           </button>
-          <div class="lightbox__videocontrols__time lightbox__videocontrols__button" tabindex="0" role ="status">00:00</div>
+          <div class="lightbox__videocontrols">
+            <button class="lightbox__videocontrols__playpause lightbox__videocontrols__button" aria-label="Lecture">
+              <img src="public/img/icon/play.svg" alt="Lecture" />
+            </button>
+            <button class="lightbox__videocontrols__stop lightbox__videocontrols__button" aria-label="Arrêt">
+              <img src="public/img/icon/stop.svg" alt="Arrêt" />
+            </button>
+            <button class="lightbox__videocontrols__rwd lightbox__videocontrols__button" aria-label="Recule de 3 secondes">
+              <img src="public/img/icon/reverse.svg" alt="Avance 3 secondes" />
+            </button>
+            <button class="lightbox__videocontrols__fwd lightbox__videocontrols__button" aria-label="Avance de 3 secondes">
+              <img src="public/img/icon/forward.svg" alt="Retour 3 secondes" />
+            </button>
+            <div class="lightbox__videocontrols__time lightbox__videocontrols__button" tabindex="0" role="status">00:00</div>
+          </div>
         </div>
       </div>
     </div>

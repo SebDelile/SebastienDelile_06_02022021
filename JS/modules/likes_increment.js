@@ -24,18 +24,17 @@ export function likesIncrement(target) {
       //changes the tag button for a new p one without interaction and gives it the focus
       //So it's not possible to like more than one time the same medium
       let element = document.createElement("p");
-      element.classList.add("media__likes");
+      element.classList.add("media__likes", "media__likes__liked");
       element.setAttribute("tabindex", "0");
-      element.innerHTML = `${medium.likes} <span aria-hidden="true"><img class="media__likes__liked" src="public/img/icon/like-liked.svg" alt="mentions j'aime, j'aime déjà"/></span><span class="sr-only">mentions j'aime, j'aime déjà</span>`;
+      element.innerHTML = `${medium.likes} <span aria-hidden="true"><img src="public/img/icon/like-liked.svg" alt="mentions j'aime, j'aime déjà"/></span><span class="sr-only">mentions j'aime, j'aime déjà</span>`;
       // insertion of element and removing of the old button
       // target.replaceWith(element) should have worked BUT the focus action does not let NVDA screen reader to immediately read the new element
       // so the trick is to let the old element displayed (display none does not worked either) and to move it away, so focusing new one is understood as focusing a new element
       // after a few time, the old element can be properly removed.
       target.parentNode.append(element);
-      const newLikesButton = document.querySelector(`#${medium.id} .media__likes:last-child`);
+      target.classList.add("sr-only");
+      const newLikesButton = target.parentNode.querySelector(".media__likes__liked");
       newLikesButton.focus();
-      target.style.position = "absolute";
-      target.style.left = "100000px";
       setInterval(function () {
         target.remove(), 100;
       });

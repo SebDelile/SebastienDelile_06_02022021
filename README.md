@@ -9,3 +9,5 @@ Ecrire du code JavaScript maintenable
 Gérer les évènements d'un site avec JavaScript
 
 Par sébastien Delile, débuté le 02/02/2021, fini le XX/XX/XXXX, soutenu le XX/XX/XXXX
+
+Lien vers la page hébergée : https://sebdelile.github.io/SebastienDelile_06_02022021/

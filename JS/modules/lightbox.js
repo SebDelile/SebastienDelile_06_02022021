@@ -80,9 +80,9 @@ function videoControlsAlignement(displayedMedium, mediumTitle) {
 //Builds the medium and then inserts in replacement with old one and updates the title
 export function lightboxDisplayMedium(mediumId) {
   //mediumId is the id of the selected medium
-  let factory = new Factory();
   for (let medium of mediaList) {
     if (medium.id === mediumId) {
+      let factory = new Factory();
       let mediumElement = factory.createMedium(medium);
       let displayedMedium = lightbox.querySelector(".lightbox__medium");
       let mediumTitle = lightbox.querySelector(".lightbox__title");
