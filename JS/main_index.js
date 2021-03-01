@@ -12,6 +12,7 @@ import { createCard } from "./modules/card_generator.js";
 
 const url = "#" + window.location.search.slice(5); //remove "?tag=" and add the "#" to format the url keyword suitable with the tags
 export const taglist = document.querySelectorAll(".header__nav__tag");
+const skiplink = document.querySelector(".skiplink");
 
 //DOM elements depending on the JSON  data need to be declare inside the fetch
 
@@ -79,3 +80,10 @@ fetch("./public/FishEyeDataFR.json")
 //--------------------------------------------------------------------------------------------
 //--------------------------------- Event listeners ------------------------------------------
 //--------------------------------------------------------------------------------------------
+
+//On firefox, click on the skiplink goes to the main title but there is not displayed focus
+//the trick doesn't work without the preventdefault method.
+skiplink.addEventListener("click", function(event){
+  event.preventDefault();
+  document.getElementById("main__title").focus();
+})

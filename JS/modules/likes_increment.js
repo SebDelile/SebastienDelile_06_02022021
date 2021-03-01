@@ -32,10 +32,9 @@ export function likesIncrement(target) {
       // so the trick is to let the old element displayed (display none does not worked either) and to move it away, so focusing new one is understood as focusing a new element
       // after a few time, the old element can be properly removed.
       target.parentNode.append(element);
+      target.classList.add("sr-only");
       const newLikesButton = target.parentNode.querySelector(".media__likes__liked");
       newLikesButton.focus();
-      target.style.position = "absolute";
-      target.style.left = "100000px";
       setInterval(function () {
         target.remove(), 100;
       });

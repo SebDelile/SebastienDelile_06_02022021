@@ -9,58 +9,60 @@
   </head>
 
   <body>
-    <a class="skiplink sr-only" href="#main__title">Passer au contenu</a>
-    <header class="header">
-      <a class="header__homepagelink" href="index.html" aria-label="Page d'accueil de FishEye" aria-current="page"
-        ><img class="header__logo" src="public/img/logo-Fisheye.svg" alt="logo FishEye"
-      /></a>
-      <nav class="header__nav">
-        <span class="hidden" id="taglist-button-label">Filtrer par catégorie</span>
-        <button class="header__nav__button tag__button sr-only" aria-labelledby="taglist-button-label" type="button"></button>
-        <ul class="header__nav__taglist taglist" role="menubar">
-          <li>
-            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-portrait" type="button" tabindex="-1">#Portrait</button>
-            <span class="hidden" id="tagLabel-portrait" lang="en">Portrait</span>
-          </li>
-          <li>
-            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-art" type="button" tabindex="-1">#Art</button>
-            <span class="hidden" id="tagLabel-art" lang="en">Art</span>
-          </li>
-          <li>
-            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-fashion" type="button" tabindex="-1">#Fashion</button>
-            <span class="hidden" id="tagLabel-fashion" lang="en">Fashion</span>
-          </li>
-          <li>
-            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-architecture" type="button" tabindex="-1">#Architecture</button>
-            <span class="hidden" id="tagLabel-architecture" lang="en">Architecture</span>
-          </li>
-          <li>
-            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-travel" type="button" tabindex="-1">#Travel</button>
-            <span class="hidden" id="tagLabel-travel" lang="en">Travel</span>
-          </li>
-          <li>
-            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-sport" type="button" tabindex="-1">#Sport</button>
-            <span class="hidden" id="tagLabel-sport" lang="en">Sport</span>
-          </li>
-          <li>
-            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-animals" type="button" tabindex="-1">#Animals</button>
-            <span class="hidden" id="tagLabel-animals" lang="en">Animals</span>
-          </li>
-          <li>
-            <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-events" type="button" tabindex="-1">#Events</button>
-            <span class="hidden" id="tagLabel-events" lang="en">Events</span>
-          </li>
-        </ul>
-      </nav>
-    </header>
+    <div class="container">
+      <a class="skiplink sr-only" href="#main__title">Passer au contenu</a>
+      <header class="header">
+        <a class="header__homepagelink" href="index.html" aria-label="Page d'accueil de FishEye" aria-current="page"
+          ><img class="header__logo" src="public/img/logo-Fisheye.svg" alt="logo FishEye"
+        /></a>
+        <nav class="header__nav">
+          <span class="hidden" id="taglist-button-label">Filtrer par catégorie</span>
+          <button class="header__nav__button tag__button sr-only" aria-labelledby="taglist-button-label" type="button"></button>
+          <ul class="header__nav__taglist taglist" role="menubar">
+            <li>
+              <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-portrait" type="button" tabindex="-1">#Portrait</button>
+              <span class="hidden" id="tagLabel-portrait" lang="en">Portrait</span>
+            </li>
+            <li>
+              <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-art" type="button" tabindex="-1">#Art</button>
+              <span class="hidden" id="tagLabel-art" lang="en">Art</span>
+            </li>
+            <li>
+              <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-fashion" type="button" tabindex="-1">#Fashion</button>
+              <span class="hidden" id="tagLabel-fashion" lang="en">Fashion</span>
+            </li>
+            <li>
+              <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-architecture" type="button" tabindex="-1">#Architecture</button>
+              <span class="hidden" id="tagLabel-architecture" lang="en">Architecture</span>
+            </li>
+            <li>
+              <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-travel" type="button" tabindex="-1">#Travel</button>
+              <span class="hidden" id="tagLabel-travel" lang="en">Travel</span>
+            </li>
+            <li>
+              <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-sport" type="button" tabindex="-1">#Sport</button>
+              <span class="hidden" id="tagLabel-sport" lang="en">Sport</span>
+            </li>
+            <li>
+              <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-animals" type="button" tabindex="-1">#Animals</button>
+              <span class="hidden" id="tagLabel-animals" lang="en">Animals</span>
+            </li>
+            <li>
+              <button class="header__nav__tag tag" role="menuitemcheckbox" aria-checked="false" aria-labelledby="tagLabel-events" type="button" tabindex="-1">#Events</button>
+              <span class="hidden" id="tagLabel-events" lang="en">Events</span>
+            </li>
+          </ul>
+        </nav>
+      </header>
 
-    <main class="index main">
-      <h1 class="index__title" tabindex="0" id="main__title">Nos photographes</h1>
-      <section class="main__grid">
-        <h2 class="main__grid__title sr-only">Liste des photographes</h2>
-        <!--article for each photographer are generated with JS-->
-      </section>
-    </main>
+      <main class="index main">
+        <h1 class="index__title" tabindex="0" id="main__title">Nos photographes</h1>
+        <section class="main__grid">
+          <h2 class="main__grid__title sr-only">Liste des photographes</h2>
+          <!--article for each photographer are generated with JS-->
+        </section>
+      </main>
+    </div>
     <script type="module" src="./JS/main_index.js"></script>
   </body>
 </html>

@@ -108,44 +108,47 @@
         font-size: 0.8125rem;
       }
       @media only screen and (max-width: 57rem) {
+        background-color: white;
+        padding: 0;
+        grid-template-columns: auto auto;
         &__picture {
           width: 9rem;
           height: 9rem;
         }
-        @media only screen and (max-width: 57rem) {
+        &__contact {
+          padding: 0.35rem 1rem;
+          margin: 0;
+          position: fixed;
+          bottom: 2rem;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+        &__moreinfo {
+          position: absolute;
+          left: 50%;
+          right: unset;
+          transform: translateX(-50%);
+        }
+        &__tag .tag {
           background-color: white;
-          padding: 0;
-          grid-template-columns: auto auto;
-          &__contact {
-            padding: 0.35rem 1rem;
-            margin: 0;
-            position: fixed;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-          }
-          &__moreinfo {
-            position: absolute;
-            left: 50%;
-            right: unset;
-            transform: translateX(-50%);
-          }
-          &__tag .tag {
-            background-color: white;
-          }
         }
-      }
-      @media only screen and (max-width: 35rem) {
-        &__location {
-          margin-bottom: 0.5rem;
-        }
-        &__taglist {
-          flex-wrap: wrap;
-          justify-content: flex-start;
-        }
-        &__picture {
-          width: 6.25rem;
-          height: 6.25rem;
+        @media only screen and (max-width: 35rem) {
+          &__location {
+            margin-bottom: 0.5rem;
+          }
+          &__taglist {
+            flex-wrap: wrap;
+            justify-content: flex-start;
+          }
+          &__picture {
+            width: 6.25rem;
+            height: 6.25rem;
+          }
+          @media only screen and (max-width: 20rem) {
+            &__contact {
+              left: 10rem; /*the screen size is minimum width is 20rem*/
+            }
+          }
         }
       }
     }
