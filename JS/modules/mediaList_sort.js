@@ -15,7 +15,7 @@ import { mediaList } from "../main_photographer.js";
 //sort the mediaList table according to the selected criterion
 export function mediaListSort(target) {
   //target is the selected criterion element
-  switch (target.textContent) {
+  switch (target.innerText) {
     case "Popularité":
       mediaList.sort((a, b) => b.likes - a.likes); // sort from the more liked to the less liked
       break;

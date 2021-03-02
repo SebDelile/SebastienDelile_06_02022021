@@ -34,12 +34,12 @@ function criteriaListSort(target) {
   ul.prepend(liTarget);
   //deletes icon and thecustomized aria-label for the old first item of the list
   for (let criterion of criteriaButtons) {
-    criterion.innerHTML = criterion.textContent;
-    criterion.setAttribute("aria-label", `trier par ${criterion.textContent}`);
+    criterion.innerHTML = criterion.innerText;
+    criterion.setAttribute("aria-label", `trier par ${criterion.innerText}`);
   }
   //gives the icon and the customized aria-label to the new first item of the list
-  criteriaButtons[0].innerHTML = `${target.textContent}<img class="sort__icon" src="public/img/icon/menu-closed.svg"  alt="icone menu déroulant">`;
-  criteriaButtons[0].setAttribute("aria-label", `Actuellement trié par ${criteriaButtons[0].textContent}`);
+  criteriaButtons[0].innerHTML = `${target.innerText}<img class="sort__icon" src="public/img/icon/menu-closed.svg"  alt="icone menu déroulant">`;
+  criteriaButtons[0].setAttribute("aria-label", `Actuellement trié par ${criteriaButtons[0].innerText}`);
 }
 
 let sortEventListener = function (e) {
