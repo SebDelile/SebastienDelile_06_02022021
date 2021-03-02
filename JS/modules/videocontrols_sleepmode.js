@@ -75,7 +75,6 @@ let isActive = function() {
 function showVideoControls() {
   const videoElement = document.querySelector(".lightbox__medium");
   videoControls.style.opacity = 1;
-  videoControls.style.zIndex = 100;
   videoElement.controlsIsDisplayed = true;
 }
 
@@ -83,9 +82,6 @@ function showVideoControls() {
 function hideVideoControls() {
   const videoElement = document.querySelector(".lightbox__medium");
   videoControls.style.opacity = 0;
-  setTimeout(function () {
-    videoControls.style.zIndex = -1;
-  }, 400); // after opacitiy transition
   videoElement.controlsIsDisplayed = false;
 }
 

@@ -584,7 +584,7 @@ body * {
   height: 4rem;
   background-color: rgba(196, 196, 196, 0.4);
   border-radius: 0 0 0.3125rem 0.3125rem;
-  transition: opacity 0.4s, z-index 0.01s;
+  transition: opacity 0.4s;
 }
 .lightbox__videocontrols__button {
   flex: none;

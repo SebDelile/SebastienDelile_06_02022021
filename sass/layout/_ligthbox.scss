@@ -84,7 +84,7 @@
     height: 4rem;
     background-color: map-get($color, modal-bg);
     border-radius: 0 0 0.3125rem 0.3125rem;
-    transition: opacity 0.4s, z-index 0.01s;
+    transition: opacity 0.4s;
     &__button {
       flex:none;
       width: 3rem;
