@@ -27,11 +27,7 @@ function videoControlsGlobalListener(videoElement) {
       videoElement.addEventListener("keydown", function (event) {
         if (event.which === 32) { //32 = SPACE
           event.preventDefault();
-          if (videoElement.paused) {
-            videoElement.play();
-          } else {
-            videoElement.pause();
-          }
+          playPauseButton.click();
         }
       });
     }
