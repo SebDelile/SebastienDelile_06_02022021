@@ -3,6 +3,7 @@
 //--------------------------------------------------------------------------------------------
 
 import { lightboxModal, lightboxModalClose, lightboxBackward, lightboxForward, videoControls, videoButtons } from "../main_photographer.js";
+import { clearButtonsListener } from "./videocontrols_initialization.js";
 
 //--------------------------------------------------------------------------------------------
 //------------------------------ DOM static elements -----------------------------------------
@@ -63,13 +64,13 @@ function mouseDoesntMoved() {
 }
 
 // reset the "countdown" of the sleep mode and display the controls if needed
-let isActive = function() {
+let isActive = function () {
   const videoElement = document.querySelector(".lightbox__medium");
   mouseCount = 0;
   if (!videoElement.controlsIsDisplayed) {
     showVideoControls();
   }
-}
+};
 
 //shows the controls with a transition (pure CSS) and updates the controlsIsDisplayed property
 function showVideoControls() {
@@ -87,15 +88,31 @@ function hideVideoControls() {
 
 //removes the mouse and keyboard activity tracking features and reset the timer and counter
 let stopActivityTracking = function () {
-    clearInterval(timer);
-    mouseCount = 0;
-    document.removeEventListener("mousemove", mouseTracking);
-    for (let button of videoButtons) {
-      button.removeEventListener("focus", isActive);
-      button.removeEventListener("click", isActive);
-    }
-  };
+  clearInterval(timer);
+  mouseCount = 0;
+  document.removeEventListener("mousemove", mouseTracking);
+};
 
+//remove activity tracking and event listener on the video/videocontrols
+let cleanVideocontrols = function () {
+  stopActivityTracking();
+  clearButtonsListener(); // see videocontrols_initialization file
+};
+
+//allow cleaning of the activity tracking and listener of the videocontrols on action to the modal (click on background or keyboard)
+let modalListener = function (event) {
+  if (event.type.toUpperCase === "CLICK") {
+    if (event.target === lightboxModal) {
+      cleanVideocontrols();
+    }
+  }
+  if (event.type.toUpperCase === "KEYDOWN") {
+    if (event.which === 39 || event.which === 37 || event.which === 27) {
+      // 39 = right arrow, 37 = left arrow, 27 = ESC
+      cleanVideocontrols();
+    }
+  }
+};
 //--------------------------------------------------------------------------------------------
 //------------------------------------ Export(s) ---------------------------------------------
 //--------------------------------------------------------------------------------------------
@@ -116,18 +133,8 @@ export function videoControlsDisplay() {
   //launch the timer which acts as a countdown to hide the videocontrols after inactivity period
   timer = setInterval(checkActivity, 100);
   //remove all tracking when the video is undisplayed (whatever the way)
-  lightboxModalClose.addEventListener("click", stopActivityTracking);
-  lightboxBackward.addEventListener("click", stopActivityTracking);
-  lightboxForward.addEventListener("click", stopActivityTracking);
-  lightboxModal.addEventListener("click", function (event) {
-    if (event.target === lightboxModal) {
-      stopActivityTracking();
-    }
-  });
-  lightboxModal.addEventListener("keydown", function (event) {
-    if (event.which === 39 || event.which === 37 || event.which === 27) {
-      // 39 = right arrow, 37 = left arrow, 27 = ESC
-      stopActivityTracking();
-    }
-  });
+  lightboxModalClose.addEventListener("click", cleanVideocontrols);
+  lightboxBackward.addEventListener("click", cleanVideocontrols);
+  lightboxForward.addEventListener("click", cleanVideocontrols);
+  lightboxModal.addEventListener("click", modalListener);
 }
